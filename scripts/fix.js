@@ -64,7 +64,7 @@ const appsWithPkgJson = [...examples, ...apps].filter(app => {
 for (const file of appsWithPkgJson) {
 	const pkgjsonPath = path.join(file, 'package.json')
 	const pkg = JSON.parse(await fs.promises.readFile(pkgjsonPath, 'utf8'))
-	pkg.name = relativeToWorkshopRoot(file).replace(/\\|\//g, '.')
+	pkg.name = relativeToWorkshopRoot(file).replace(/\\|\//g, '__sep__')
 	await fs.promises.writeFile(pkgjsonPath, JSON.stringify(pkg, null, 2))
 }
 
