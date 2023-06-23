@@ -1,0 +1,115 @@
+# Accessibility
+
+I'm not going to beat around the bush. It's a lot of work to make a web
+application fully accessible to all users. However failure to do so can lead to
+an extremely poor user experience for a segment of your users that are already
+at a disadvantage. Additionally, you could find yourself in the middle of a
+lawsuit if you don't make your web application accessible. So this is an
+extremely important subject that deserves more of your attention than a single
+exercise in a web app fundamentals workshop.
+
+## The web
+
+The web platform has been meticulously designed to maximize accessibility for a
+diverse range of users. This includes addressing the needs of those with visual,
+auditory, motor, and cognitive impairments. A multitude of features have been
+implemented, such as keyboard navigation,
+[screen reader](https://en.wikipedia.org/wiki/Screen_reader) compatibility, and
+voice command support.
+
+Moreover, the platform offers extensive customization options, enabling users to
+tailor the appearance, text size, contrast, color, font, layout, and animation
+of a web page to their preferences.
+
+Your job is to make it so the browser can employ these technologies to provide a
+great experience for all users. So while many accessibility concerns involve
+design and word choice, in your role as a web developer, a lot of your time will
+be spent ensuring your forms, links, and other interactive elements are properly
+labeled and structured.
+
+One example of this is properly labeling your form elements so the browser knows
+which labels are associated to which form elements. This is important because
+screen readers will read out the label when the user focuses on the form
+element. If the label is not properly associated, you don't have any guarantees.
+There are a few ways to associate a label and a form element. A common way to do
+this is through the `for` and `id` attributes.
+
+```html
+<form>
+	<label for="name">Name</label>
+	<input id="name" type="text" />
+</form>
+```
+
+<callout-info class="aside">
+	In React, the `for` attribute is not allowed as a prop, so you use `htmlFor`
+	instead.
+</callout-info>
+
+The web platform has many good built-in features for accessible elements,
+however, in some cases, you will need to use props prefixed as `aria-`. ARIA is
+an acronym for "Accessible Rich Internet Applications". It is a set of
+attributes that define ways to make web content and web applications more
+accessible to people with disabilities. You can
+[find the ARIA specification on the w3.org website](https://www.w3.org/WAI/standards-guidelines/aria/).
+
+It's often said that the first rule of aria is "don't use aria". This is because
+aria is a tool of last resort. It is meant to be used when the browser and HTML
+alone are not enough to make your web application accessible.
+
+One common example of this is error messages. The web doesn't have a built-in
+mechanism for associating error messages to the fields they're reporting on, so
+you need to use aria to do this.
+
+```html
+<form>
+	<label for="name">Name</label>
+	<input
+		id="name"
+		type="text"
+		aria-invalid="true"
+		aria-describedby="name-error"
+	/>
+	<div id="name-error">Name is required</div>
+</form>
+```
+
+There is a disappointing gap in the support various screen readers have for ARIA
+and other accessibility features. This is why it's important to test your web
+application with a screen reader on various platforms. You can use the
+[NVDA screen reader](https://www.nvaccess.org/) on Windows, or the
+[VoiceOver screen reader](https://www.apple.com/voiceover/info/guide/) on Mac.
+
+Another important aspect you'll have to work with a lot as a web dev is managing
+keyboard focus. For example, when the user navigates to a page, your application
+should automatically focus them to the first relevant focusable element on the
+page. Or, if the user submits a form and there are errors, your application
+should auto-focus to the first field with an error message.
+
+One thing that can help a lot is using libraries that abstract away the
+complexities of accessibility for common components you need. In Rocket Rental
+for example, we're using a set of React components from
+[Radix UI](https://www.radix-ui.com/).
+
+## In Remix
+
+Remix has some features that support you in making your application accessible.
+For example, Remix will automatically manage scrolling for you as the user
+navigates around your application, and if there's a situation where you don't
+want to restore scrolling, you have a lot of power to control this on a per-link
+or per-page basis. Learn more from
+[this Remix Single YouTube video about Scroll Restoration](https://www.youtube.com/watch?v=4_H8j3rkpjI).
+
+Also, Remix's support for React enables you to use libraries (like Radix UI)
+which do a great job of making common components accessible.
+
+Additionally, nested routes can help with maintaining keyboard focus in many
+instances. It is possible that in the future, Remix will add even better support
+for this.
+
+<callout-info>
+	Because we're dealing with both "reusable components" and "non-reusable" IDs,
+	sometimes it can be handy to generate IDs. In React to do this in a way that
+	is "safe" for a server render, you'll likely need to use [the `useId`
+	hook](https://react.dev/reference/react/useId).
+</callout-info>

@@ -1,0 +1,104 @@
+# Form Validation
+
+## The web
+
+HTML has built-in support for validation of form elements. Among others, here
+are some of the attributes you can give form elements to have the browser
+validate them for you:
+
+- `required` - the element must be filled in
+- `minlength` - the element must be at least this many characters
+- `maxlength` - the element must be at most this many characters
+- `min` - the element must be at least this value
+- `max` - the element must be at most this value
+- `pattern` - the element must match this regular expression
+
+For example, here's a form with a required text field and a required email
+field:
+
+```html
+<form>
+	<label for="name">Name</label>
+	<input type="text" id="name" required />
+	<label for="email">Email</label>
+	<input type="email" id="email" required />
+	<button type="submit">Submit</button>
+</form>
+```
+
+The unfortunate truth here though is that you cannot rely on the browser to
+validate your forms for you. Users can easily bypass such validation by manually
+adding `novalidate` to the form tag or making the HTTP request directly using
+another tool. This is why it's important to validate your forms on the server.
+Client-side validation should be seen as a nice progressive enhancement for a
+better user experience, not a replacement for server-side validation.
+
+As far as the server is concerned, there is no standard way to handle validation
+other than to respond with a `400` status code if there are validation errors.
+You typically want to respond with the error messages as well and then the
+client should display those error messages next to the form elements that failed
+validation.
+
+<callout-danger>
+	There are important accessibility considerations when it comes to form
+	validation, which we will address in the next exercise.
+</callout-danger>
+
+## In Remix
+
+Remix does not have any built-in support for form validation. However, it does
+have a nice way to get the error messages the server responds with using
+[the `useActionData()` hook](https://remix.run/docs/en/main/hooks/use-action-data):
+
+```tsx filename=app/routes/subscribe.tsx lines=2,9-18,27,29-30,37-43
+import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
+import { useActionData } from '@remix-run/react'
+
+export async function action({ request }: DataFunctionArgs) {
+	const formData = await request.formData()
+	const email = formData.get('email')
+
+	if (!email) {
+		return json(
+			{
+				status: 'error',
+				errors: {
+					formErrors: [],
+					fieldErrors: { email: ['Email is required'] },
+				},
+			} as const,
+			{ status: 400 },
+		)
+	}
+
+	// subscribe the user to the newsletter
+
+	return redirect('/success')
+}
+
+export default function Subscribe() {
+	const actionData = useActionData<typeof action>()
+
+	const fieldErrors =
+		actionData?.status === 'error' ? actionData.errors.fieldErrors : {}
+
+	return (
+		<Form method="post">
+			<label>
+				Email <input required type="email" />
+			</label>
+			{fieldErrors.email?.length ? (
+				<ul>
+					{fieldErrors.email.map(e => (
+						<p key={e}>{e}</p>
+					))}
+				</ul>
+			) : null}
+			<button type="submit">Subscribe</button>
+		</Form>
+	)
+}
+```
+
+Keep in mind that because `useActionData` returns the `action` data, it could be
+undefined until the form has been submitted.

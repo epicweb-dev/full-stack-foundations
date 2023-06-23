@@ -1,0 +1,16 @@
+node_modules
+
+workspace/
+**/.cache/
+**/build/
+**/public/build
+**/prisma/data.db
+**/playwright-report
+data.db
+/playground
+**/tsconfig.tsbuildinfo
+
+# in a real app you'd want to not commit the .env
+# file as well, but since this is for a workshop
+# we're going to keep them around.
+# .env

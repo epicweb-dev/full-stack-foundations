@@ -1,0 +1,31 @@
+name: validate
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  setup:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: ▶️ Run setup script
+        run: npm run setup
+
+      - name: ʦ TypeScript
+        run: npm run typecheck
+
+      - name: ⬣ ESLint
+        run: npm run lint

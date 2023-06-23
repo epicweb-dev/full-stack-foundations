@@ -1,0 +1,12 @@
+node_modules
+
+**/build/**
+**/public/build/**
+.env
+
+**/prisma/migrations
+
+**/package.json
+**/tsconfig.json
+
+**/package-lock.json

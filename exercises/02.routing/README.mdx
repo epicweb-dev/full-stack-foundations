@@ -1,0 +1,202 @@
+# Routing
+
+## The web
+
+One of the critical pieces of the web is the URL (which is short for Uniform
+Resource Locator 📜
+[What is a URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)).
+The URL is what allows us to navigate to different pages on the web. It allows
+users to bookmark and share those pages with one another. As a result, using the
+URL as the primary mechanism for storing state is not only common, but often
+necessary for an excellent user experience. Users of web apps often expect to be
+able to return to a specific page and see the same content they did before.
+
+URLs can be broken into segments. On the "What is a URL" article, we find a
+helpful diagram:
+
+![an example url color coding different segments of the URL including, scheme, domain name, port, path to the file, parameters, and anchor](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL/mdn-url-all.png)
+
+For more on these sections, check
+[the article](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL).
+
+The domain name is something typically configured once for an entire site, so
+you don't typically end up working with that part of the URL much.
+
+The anchor (the part following `#`) is used to link to specific elements on a
+page by their ID (so when the user opens their browser, it automatically scrolls
+to that element on the page). We don't often work with that part of the URL in
+day-to-day web development either.
+
+What we spend most of our time working with is the pathname and parameters.
+
+The pathname can be broken into what we call "segments" which are separated by
+`/`. For example, the pathname `/about` has one segment, and the pathname
+`/about/team` has two segments. The pathname segments can also be used to store
+state. For example, if we wanted to show a specific user's profile, we could use
+the pathname `/users/123` where `123` is the user's ID. The user's ID segment is
+often referred to as a "route parameter".
+
+🦉 As you can tell, there's a bit of an unfortunate term overload in web
+development. "parameters" in the diagram above refers to the part of the URL
+after the `?`. But we also just talked about "route parameters." And then of
+course there are "function parameters." All of these serve a similar purpose. To
+avoid confusion, we typically call "route parameters" simply "params" and the
+bit after the `?` is often called "query params" or "search params."
+
+### Navigation
+
+To navigate around the web, we use `<a>` tags ("a" is short for "anchor", please
+don't ask why it's not called "link" 🤷‍♂️). For example, if we wanted to link to
+the user's profile page, we could use the following:
+
+```html
+<a href="/users/123">User Profile</a>
+```
+
+You can also navigate to other pages on the web using a `<form>` tag. For
+example, if we wanted to search for users, we could use the following:
+
+```html
+<form action="/users/search" method="GET">
+	<input type="text" name="q" />
+	<button type="submit">Search</button>
+</form>
+```
+
+This will take the value of the input and add it to the URL as a query param
+(`?q=...`). The `method` attribute tells the browser to use the `GET` HTTP
+method when submitting the form. We'll get into forms more in a later exercise.
+
+You can also navigate using JavaScript, but generally you should use anchors and
+forms.
+
+### Routers
+
+Most web applications use what is called a "router" to associate specific code
+with the URL segment. This allows us to both organize our code, and optimize it
+for loading performance (to ensure we only load the code that is necessary based
+on what our user needs on a specific route). Routers are also often used to help
+load the data that will be used on the page. The Router typically allows you to
+define certain URL segments as "params" which can be any value, and the Router
+will parse the URL (and those params), and execute the code that has been
+configured for that specific URL (passing along the params to the code). This is
+what allows GitHub to load a specific repository when you visit
+`https://github.com/epicweb-dev/web-app-fundamentals` for example. Route params
+are often represented by a `:` in the URL, for example:
+`https://github.com/:username/:repo`. This tells the router that the `username`
+and `repo` segments are params, and that they can be any value.
+
+## In Remix
+
+Remix has a built-in router that enables you to easily map URLs and route
+parameters to files in your application's `app/routes` directory. Thanks to the
+file system convention from Remix, we don't have to spend any time configuring
+the routes for our application. That said, it can be quite helpful to know what
+the generated routes are, so the Remix command line interface (CLI) has a
+`routes` command that will print out all of the routes in your application. To
+use it, open your terminal in a Remix project, and run:
+
+```zsh
+npx remix routes
+```
+
+<details>
+  <summary>Click here's for an example of the output:</summary>
+
+```tsx
+<Routes>
+	<Route file="root.tsx">
+		<Route path="admin/users/list" file="routes/admin.users.list.tsx" />
+		<Route path="forgot-password" file="routes/forgot-password.tsx" />
+		<Route path="images/:fileId" file="routes/images_+/$fileId.tsx" />
+		<Route index file="routes/index.tsx" />
+		<Route path="login" file="routes/login.tsx" />
+		<Route path="logout" file="routes/logout.tsx" />
+		<Route path="me" file="routes/me.tsx" />
+		<Route path="onboarding" file="routes/onboarding.tsx" />
+		<Route path="reset-password" file="routes/reset-password.tsx" />
+		<Route
+			path="resources/create-host"
+			file="routes/resources+/create-host.tsx"
+		/>
+		<Route
+			path="resources/create-renter"
+			file="routes/resources+/create-renter.tsx"
+		/>
+		<Route
+			path="resources/delete-image"
+			file="routes/resources+/delete-image.tsx"
+		/>
+		<Route
+			path="resources/image-upload"
+			file="routes/resources+/image-upload.tsx"
+		/>
+		<Route path="resources/login" file="routes/resources+/login.tsx" />
+		<Route path="settings/profile" file="routes/settings+/profile.tsx">
+			<Route path="photo" file="routes/settings+/profile.photo.tsx" />
+		</Route>
+		<Route path="signup" file="routes/signup.tsx" />
+		<Route path="users/:username" file="routes/users_+/$username.tsx">
+			<Route path="host" file="routes/users_+/$username.host.tsx" />
+			<Route path="renter" file="routes/users_+/$username.renter.tsx" />
+			<Route index file="routes/users_+/$username.index.tsx" />
+		</Route>
+	</Route>
+</Routes>
+```
+
+</details>
+
+Because sometimes you need to reach outside the conventions (for example the
+file system can be a bit limited on the types of characters we can have in our
+URL segments), it is good to know that you can programmatically generate routes
+as well in your `remix.config.js`.
+
+Remix's router supports what's called "nested routing." Often, the UI of an
+application is nested in a similar fashion to the URL. For example, let's take a
+URL like this: `https://example.com/sales/invoices/:invoiceId`. The "root" of
+the application (the part of the app that's on all pages) is considered the
+"parent route" of all the routes on the page. The `/sales` portion is a child of
+the root, the `/invoices` is a child of the `/sales` route, and the
+`/:invoiceId` is a child of the `/invoices` route. The UI could resemble
+something like this: A left navigation section (root), then a top navigation
+(sales), then a list (invoices), and finally a details portion of the page
+(invoice ID).
+
+We'll be exploring how to create these relationships in the exercise.
+
+### Navigation
+
+To facilitate navigation, Remix provides
+[a `<Link>` component](https://remix.run/docs/en/1.14.3/components/link) that
+you can use to create links (`<a>`) to other pages in your application without
+triggering a full-page refresh (which is what clicking a regular `<a>` will do).
+This is a nice performance optimization and it also has better accessibility
+characteristics and gives a better user experience.
+
+Remix also has a built-in
+[`<Form>`](https://remix.run/docs/en/1.14.3/components/form) component which
+improves upon the browser's handling of forms. We'll dive deeper into that in a
+future exercise.
+
+### The Route Convention
+
+Remix originally shipped with a route convention, but Remix v2 will be shipping
+a new one that enables better colocation of related files (which helps with
+long-term maintenance).
+
+We will actually be using a different convention for our app that is based on
+the v2 convention but allows for even better colocation of related files. The
+library we're using is called
+[`remix-flat-routes`](https://github.com/kiliman/remix-flat-routes). This has
+already been configured in our `remix.config.js` (as it uses the programmatic
+interface for defining routes).
+
+We'll guide you along in creating route files that match this convention, but it
+wouldn't hurt to have the
+[`remix-flat-routes` documentation](https://github.com/kiliman/remix-flat-routes)
+open in another tab to reference.
+
+At any time, remember if you get lost, you can run `npx remix routes` in the
+project directory to check the generated routes configuration based on your file
+system.

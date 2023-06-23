@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "exercises/01.styling/01.problem.public-links"
+    },
+    {
+      "path": "exercises/01.styling/01.solution.public-links"
+    }
+  ]
+}

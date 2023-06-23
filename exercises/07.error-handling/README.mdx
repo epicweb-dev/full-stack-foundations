@@ -1,0 +1,92 @@
+# Error Handling
+
+## The web
+
+On the web, errors can happen in many ways. You can have errors from your
+JavaScript code running in the browser and errors that happen on the server when
+a request is made. The server errors are communicated through
+[HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+From that article, we find the categories of HTTP status codes:
+
+1.  [Informational responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#information_responses)
+    (`100` – `199`)
+2.  [Successful responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses)
+    (`200` – `299`)
+3.  [Redirection messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#redirection_messages)
+    (`300` – `399`)
+4.  [Client error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses)
+    (`400` – `499`)
+5.  [Server error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses)
+    (`500` – `599`)
+
+So, errors are communicated through HTTP status codes ranging from 400-599.
+These status codes are important because the browser and search engines behave
+differently based on the status code. So you do want to make sure you're
+following the specification for each one.
+
+"Client error responses" could also be termed as "expected" errors where we (the
+server) know that the client did something wrong that we anticipated. For
+example, maybe they requested something that does not exist (404), they don't
+have access to (403), or they must first login to access (401).
+
+"Server error responses" are errors that we did not anticipate. These are errors
+that we did not handle in our code. For example, maybe we tried to access a
+database that was not available (503), or it could be as simple as a runtime
+error where we tried to access a property on an object that does not exist.
+
+It should be noted that you can intentionally throw errors that result in `500`
+range errors, but the point is that for those types of errors, there's nothing
+the user can do to avoid the error. Those errors are the server's
+responsibility.
+
+You will sometimes run into error pages in your browser, but there's not a
+standard way to display errors in the browser. Applications need to handle these
+errors themselves.
+
+<callout-info class="aside">
+	When making an HTTP request with `fetch`, if the response comes back with an
+	error status code (400-599), the promise is (correctly) not rejected. Even
+	though there was an "error," the request was still successful. The response
+	object will have an `ok` property you can use to check if the response was
+	successful or not.
+</callout-info>
+
+## In Remix
+
+Remix has a nice way to handle these kinds of errors and customize the UI for
+them. It's called "Error Boundaries" which is a borrowed concept from React, but
+has more capabilities (for example, it handles errors that occur during the
+server render).
+
+Each route module can export a component called `ErrorBoundary` and that
+component can access the error it's handling via
+[the `useRouteError()` hook](https://remix.run/docs/en/main/hooks/use-route-error).
+
+```tsx filename=app/routes/errors-oh-no.tsx
+import { useRouteError } from 'remix'
+
+export function ErrorBoundary() {
+	const error = useRouteError()
+	console.error(error)
+
+	return (
+		<div>
+			<h1>Oh no!</h1>
+			<p>Something bad happened! Sorry!</p>
+		</div>
+	)
+}
+```
+
+Thanks to the nested layout routing of Remix, this error boundary mechanism
+allows fairly fine-grained control over where errors appear in the UI and how
+they are displayed. It allows much of the application to still be functional if
+only a part of the nested layout is affected.
+
+Additionally, if a route module does not export an ErrorBoundary, then Remix
+will find its nearest ancestor that does and render that one in place of that
+ancestor. We call this "error bubbling".
+
+Remix also has a special ability for you to throw `Response` objects in your
+`loader`s and `action`s which allows you to specify a status code for the error
+that ends up being sent to the browser. We'll get to that later in the exercise.

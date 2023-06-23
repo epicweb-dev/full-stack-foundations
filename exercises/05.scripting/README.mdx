@@ -1,0 +1,184 @@
+# Scripting
+
+## The web
+
+The browser is pretty capable of doing many things necessary to build web
+applications, but there are two significant limitations most web applications
+face:
+
+- Navigations (including form submissions) trigger full-page reloads.
+- Pending UI is limited and not customizable.
+
+Full-page refreshes is just not acceptable in the modern age. Can you imagine if
+"liking" a tweet triggered a full page reload? I know I would like fewer tweets,
+that's for sure.
+
+Pending UI in the browser really only amounts to the favicon turning into a
+spinner, and in some cases, a mobile browser will have a progress bar.
+Completely non-customizable and of limited use.
+
+On top of that, the collection of built-in HTML elements are not sufficient to
+for most applications, and many of those that are available are limited in their
+customizability (particularly with styling).
+
+To give our users the experience they expect, we can't simply rely on HTML and
+CSS to do the job. Even if you're building a simple web application, you'll be
+forced to include some client-side JavaScript to ensure it is accessible (look
+forward to the Accessibility exercise for more on that).
+
+Additionally, we can use JavaScript to help build faster applications by
+anticipating the user's next action and preloading the necessary code and data.
+By using JavaScript to avoid a full page reload we can also reduce the amount of
+content needed to be sent over the network (particularly when considering an
+application the user uses for an extended period of time).
+
+The first version of JavaScript was standardized at the end of 1995, three
+months after HTML was standardized and before HTTP and CSS were standardized.
+The original standardized version of JavaScript was quite limited compared to
+what we can do now, but it did allow for some basic interactivity. It was also
+limited by the
+[📜 DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+which has come a long way since then as well.
+
+Modern-day JavaScript and DOM APIs are powerful enough to make up for
+shortcomings in what's available via HTML and CSS alone (though there are
+exciting advancements in those areas as well). In general, if you can do it in
+HTML and CSS, you should. If you can't, JavaScript is a great way to fill in the
+gaps.
+
+To get JavaScript running in your application, you use a `script` tag. With
+this, you have a few options:
+
+```html
+<!-- Basic scripts -->
+<script src="path/to/script.js"></script>
+<script>
+	// JavaScript code goes here
+</script>
+
+<!-- Modern Modules -->
+<script type="module">
+	// JavaScript code goes here
+	import { foo } from 'path/to/module.js'
+</script>
+<script type="module" src="path/to/module.js"></script>
+```
+
+There are important differences between the different types of scripts which we
+won't dive into too much today. The `type="module"` scripts are a relatively new
+addition to the web platform and are the most powerful. They allow you to use
+the
+[📜 ES Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+syntax to import and export code. This is the syntax that is used in modern
+frameworks and is the recommended way to write JavaScript for the web.
+
+There are various other attributes you can add to the `<script>` tag to
+customize how it is loaded and executed. For example, you can add a `defer`
+attribute to tell the browser to load the script in the background and execute
+it after the page has loaded (this is actually the default for `type="module"`).
+You can also add a `async` attribute to effectively tell the browser to load the
+script in the background and execute it as soon as it's ready. You can also add
+a `crossorigin` attribute to specify how the browser should handle cross-origin
+requests. For more on these and other attributes, check out the
+[📜 MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script).
+
+One last thing that's important to call out is that in order to solve the "full
+page reload" problem, we have to take a lot of the browser's responsibilities
+upon ourselves. We end up using `event.preventDefault()` on `<a>` clicks and
+`<form>` submissions. Unfortunately, the browser does a _lot_ of work for us
+that we have to re-implement ourselves when we do this. It's almost like it
+would be useful to have a framework to handle this stuff for us...
+
+## In Remix
+
+When you generate a new Remix project, it comes set up with scripts already. The
+`entry.client.tsx` file is the entry point for the client-side code. Typically,
+this will be the file responsible for
+[hydrating the application](https://react.dev/reference/react-dom/client/hydrateRoot).
+For example:
+
+```tsx
+import { RemixBrowser } from '@remix-run/react'
+import { startTransition } from 'react'
+import { hydrateRoot } from 'react-dom/client'
+
+startTransition(() => {
+	hydrateRoot(document, <RemixBrowser />)
+})
+```
+
+The `startTransition` bit ensures that the hydration is done in a way that
+doesn't block the main thread. This is important because hydration can take a
+while on lower end devices, and we don't want to block the user from interacting
+with the page while it's happening. For example, if the HTML loads and the user
+starts scrolling the page, the scroll can be interrupted by hydration, leading
+to a "janky" experience. By hydrating our root in a transition, we can ensure
+that the user can interact with the page while hydration is happening without
+being interrupted.
+
+Another thing to call out is the fact that we're hydrating the entire `document`
+rather than just an element in the `body` as is common in other frameworks. By
+doing this, we have much more control over everything between `<html>` and
+`</html>` which can be very useful.
+
+But this is not all that's required to get the client-side code of a Remix app
+running. Remember that you're responsible for everything between `<html>` and
+`</html>` in your `app/root.tsx` component. So if you're not rendering any
+`<script>` elements, then no JavaScript will be loaded. The trick is that
+because Remix is building (and fingerprinting) our JavaScript, we don't actually
+know what the `src` attribute of our `<script>` should be. This is why Remix
+provides a `Scripts` component that you can use to render the necessary
+`<script>` elements. For example:
+
+```tsx filename=app/root.tsx lines=1,13
+import { Links, Meta, Scripts } from '@remix-run/react'
+
+// ...
+export default function App() {
+	return (
+		<html lang="en">
+			<head>
+				<Meta />
+				<Links />
+			</head>
+			<body>
+				{/* ... */}
+				<Scripts />
+			</body>
+		</html>
+	)
+}
+// ...
+```
+
+Of course, you can always place a JavaScript file in the `public` directory and
+reference it directly in the `src` attribute of a `<script>` in your `root.tsx`
+(or any other) component. Just keep in mind that those would not be processed by
+Remix, so you'll want to make sure they execute in every browser version you
+support.
+
+Additionally, you can always render an inline `<script>` element if you like.
+The same rules apply (they're not processed), but in React, you also have to use
+the `dangerouslySetInnerHTML` prop to render the contents of the script. For
+example:
+
+```tsx
+<script
+	type="module"
+	dangerouslySetInnerHTML={{
+		__html: `
+			// JavaScript code goes here
+		`,
+	}}
+/>
+```
+
+In general, inline scripts can be tricky to maintain (due to a lack of tooling),
+but very useful in some situations.
+
+<callout-success class="aside">
+	While it's not recommended to use inline scripts for a lot of code, if you
+	need to do it, check out the
+	[es6-string-javascript](https://marketplace.visualstudio.com/items?itemName=zjcompt.es6-string-javascript)
+	extension for vscode to get syntax highlighting in that string.
+</callout-success>

@@ -1,0 +1,176 @@
+# Search Engine Optimization
+
+When it comes to finding things on the web, almost everyone does so using a
+search engine. There's a growing diversity of search engines, but still Google
+is the king 👑. Helping search engines like Google to properly categorize your
+content is called Search Engine Optimization (SEO). It's a very broad topic, and
+we're not going to cover the specifics of everything here. Our primary goal is
+to help you understand how to properly use metadata tags (like `meta` and
+`title`) to help search engines categorize your content.
+
+Lots of what applies to search engines also applies to other tools and social
+media platforms as well. So it's a good idea to spend some time thinking about
+your website's sources of traffic and learning how to optimize your website's
+presentation on those platforms.
+
+## The web
+
+The `<title>` tag appears in the `<head>` and is typically what is displayed in
+the browser tab. It's also what is displayed in search engine results.
+
+```html lines=3
+<html>
+	<head>
+		<title>My Page</title>
+	</head>
+	<body>
+		<!-- ... -->
+	</body>
+</html>
+```
+
+The `<meta>` tag is used to provide metadata about the page. It's typically used
+to provide information about the page to search engines. The `name` attribute is
+used to specify the type of metadata, and the `content` attribute is used to
+provide the actual metadata.
+
+The `description` metadata is used to provide a short description of the page
+and is often used in search engine results as well as social media preview
+cards.
+
+```html lines=4
+<html>
+	<head>
+		<title>My Page</title>
+		<meta name="description" content="This is my page" />
+	</head>
+	<body>
+		<!-- ... -->
+	</body>
+</html>
+```
+
+Meta tags aren't only for search engines. They can also be used to provide
+configuration information to other tools. For example, the `viewport` metadata
+is used to configure the viewport of a mobile browser.
+
+```html lines=5
+<html>
+	<head>
+		<title>My Page</title>
+		<meta name="description" content="This is my page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<!-- ... -->
+	</body>
+</html>
+```
+
+What this does is tell the browser to set the width of the viewport to the width
+of the device, and to set the initial zoom level to 1. This is a common
+configuration for mobile browsers.
+
+A final example is the `charset` metadata. This is used to specify the character
+encoding of the page.
+
+```html lines=6
+<html>
+	<head>
+		<title>My Page</title>
+		<meta name="description" content="This is my page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<!-- ... -->
+	</body>
+</html>
+```
+
+This is pretty much always how you'd want to configure charset, unless you're
+doing something funky with character encodings.
+
+There are many other types of metadata that can be provided, but we'll leave
+that as an exercise for the reader (you can
+[learn more about meta tags on seosherpa.com](https://seosherpa.com/meta-tags/)).
+
+## In Remix
+
+Because you're responsible for everything between the `<html>` and `</html>` in
+your document, adding metadata tags is as simple as adding them to your JSX.
+
+```tsx filename=app/root.tsx
+export default function App() {
+	return (
+		<html>
+			<head>
+				<title>My Page</title>
+				<meta name="description" content="This is my page" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta charset="utf-8" />
+			</head>
+			<body>{/* ... */}</body>
+		</html>
+	)
+}
+```
+
+However, things can get tricky when we start thinking about nested routes and
+having that title and description be dynamic based on the current route. That's
+why Remix has a built-in API for routes defining the `meta` tags that should be
+used when the route is active through
+[the route `meta` export](https://remix.run/docs/en/main/route/meta). It's
+similar in some ways to the `links` export, but instead, when a route defines a
+`meta` export, the `meta` tags from ancestor routes are ignored and must be
+manually merged. This avoids conflicts between routes that might have the same
+`meta` tags. However, you do have access to the parent metas in the `meta`
+function so you can merge them yourself if you so desire (you do).
+
+```tsx filename=app/routes/sandwiches.tsx
+import { type V2_MetaFunction } from '@remix-run/node'
+
+export const meta: V2_MetaFunction = () => {
+	return [
+		{ title: 'Sandwich Shop' },
+		{ charSet: 'utf-8' },
+		{ name: 'viewport', content: 'width=device-width,initial-scale=1' },
+		{ name: 'description', content: 'Fill your tummy with something yummy' },
+	]
+}
+```
+
+Again, in Remix you're responsible for everything on the page between `<html>`
+and `</html>` and that's no different here. You need to apply the
+[`<Meta />`](https://remix.run/docs/en/main/components/meta) component in the
+`<head>` of your document in your `app/root.tsx` to ensure these meta tags are
+rendered. Much like the `<Links />` component.
+
+With that example above, the `<head>` of your document have this:
+
+```html
+<title>Sandwich Shop</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Fill your tummy with something yummy" />
+```
+
+You can also access dynamic data (data from your `loader`) in the `meta` export
+so you can dynamically set the title, description, `og:image`, etc for your
+page.
+
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx
+import { json, type V2_MetaFunction } from '@remix-run/node'
+import { getSandwich } from '../sandwiches.server'
+
+export const meta: V2_MetaFunction<typeof loader> = ({ loaderData }) => {
+	return [
+		{ title: loaderData.sandwich.name },
+		{ name: 'description', content: loaderData.sandwich.description },
+	]
+}
+
+export function loader({ params }) {
+	return json({ sandwich: getSandwich(params.sandwichId) })
+}
+```

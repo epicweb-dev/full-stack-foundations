@@ -1,0 +1,165 @@
+# Data Mutations
+
+## The web
+
+Ever since the invention of HTML, we've had the ability to create interactive
+web applications thanks to
+[the `<form>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form):
+
+```html
+<form>
+	<label>Type: <input name="sandwichType" /></label>
+	<button type="submit">Create Sandwich</button>
+</form>
+```
+
+When a form is submitted on the web (like if we were to type "ham" in the
+`sandwichType` input and click "Create Sandwich"), the browser will take all
+associated form elements (the `sandwichType` input in our example above) and
+"serialize" them into what's called a "query string" (e.g. `sandwichType=ham`)
+and make a request to the server at the current URL. So, if this form appears on
+the route `/sandwiches`, submitting the form will trigger a full-page refresh to
+the route `/sandwiches?sandwichType=ham`.
+
+This is great for search pages for example, but it would be really bad for a
+login form (you wouldn't want someone looking over your shoulder to see your
+password in the URL would you?), which is why the `<form>` element also allows
+you to specify a `method` attribute to switch from the default `GET` request to
+a `POST` request: `<form method="post">`.
+
+<callout-warning class="aside">
+	Even though `GET` and `POST` are not the only methods available in HTTP, they
+	are the only two methods available on HTML forms. If you try anything other
+	than `post`, the browser will just do a `GET` instead.
+</callout-warning>
+
+When the method is `POST` the form body is submitted as a "payload" instead of a
+query string. The browser will encode it as `application/x-www-form-urlencoded`.
+On the server side, you can use
+[the `Request`'s `formData` method](https://developer.mozilla.org/en-US/docs/Web/API/Request/formData)
+to get the form data as a `FormData` object:
+
+```tsx
+const formData = await request.formData()
+const sandwichType = formData.get('sandwichType')
+```
+
+You can also change the encoding type of the form by setting the `enctype`
+attribute. The only typical value for this attribute is `multipart/form-data`,
+which is used for file uploads.
+
+Sometimes the server code you want to have handle the form submission is not at
+the same URL where the form appears. In this case, you can use the `action`
+attribute to specify a different URL:
+
+```html
+<form action="/make-a-sandwich">
+	<label>Type: <input name="sandwichType" /></label>
+	<button type="submit">Create Sandwich</button>
+</form>
+```
+
+This would make a request to `/make-a-sandwich` instead of `/sandwiches`.
+
+### The back button
+
+The browser submits forms with full-page refreshes, and expects to get a
+response from the server that tells the browser what to do next. If the response
+is HTML, then the browser will simply render that HTML. However you should _not_
+do this for a successful form submission.
+
+Have you ever seen those really annoying popups when hitting the back button
+that say "Confirm Form Resubmission"? That's because the browser is trying to
+resubmit the form data to the server that you submitted when you were brought to
+that page the first time. This can be a major problem if the request that was
+submitted was a bank transfer or an airline ticket purchase.
+
+This is a really common problem with an extremely simple solution: **don't
+respond with HTML for successful form submissions**. Instead, respond with an
+redirect (using the `Location` header and a 302 status code). This is commonly
+referred to as "Post/Redirect/Get" (PRG) pattern.
+
+### Revalidation
+
+Because this is a full-page refresh, the HTML the server sends back to the user
+will always have the latest data. This is awesome because it means you don't
+really need to worry about state management. The database can be the source of
+truth. So with the foundational web primitives we have, web apps will always
+have fresh data as the user navigates with links and submits forms.
+
+Unfortunately, that's not the default situation if you try to update data with
+JavaScript (which you can do with the `fetch` API). You would do this if you
+don't want a full-page refresh when the user submits a form, which is the user
+experience that our users expect from modern web applications. This drastically
+complicates things because now we have to worry about state management in the
+client to keep the UI up-to-date. But it's worth the work. Can you image every
+time you like a tweet you get a full-page refresh? What a disaster _that_ would
+be!
+
+This can be a real challenge... Unless you're using a Progressively Enhanced
+Single Page App framework like Remix 😉
+
+## In Remix
+
+Remix has mutation capabilities built-in the framework and it's entirely based
+on the browser behavior for `<form>`s. Remix is a "browser emulator" which
+simply means it prevents the full-page refresh, but still makes it so you don't
+have to worry about revalidation because Remix will revalidate all your data
+when the form submission is successful.
+
+The API for mutations in your UI code is _just_ like a regular `<form>`, except
+you use
+[Remix's `<Form>` component](https://remix.run/docs/en/main/components/form).
+
+Because Remix is a full-stack application framework, it also has a server-side
+API for handling the form's submission. It looks very similar to the `loader`
+API. In your route module, you export
+[an async `action` function](https://remix.run/docs/en/main/route/action) and
+receive the `request` and `params`, and you're expected to return a `Response`
+(remember, if the form submission is successful, you should return a redirect):
+
+```tsx filename=app/routes/sandwiches.chooser.tsx
+import { Form, redirect } from '@remix-run/react'
+import { type DataFunctionArgs } from '@remix-run/node'
+
+export async function action({ request, params }: DataFunctionArgs) {
+	const formData = await request.formData()
+	const sandwichType = formData.get('sandwichType')
+
+	// do something with the sandwichType
+
+	return redirect('/sandwiches')
+}
+
+export default function SandwichChooser() {
+	return (
+		<Form method="post">
+			<label>
+				Type: <input name="sandwichType" />
+			</label>
+			<button type="submit">Create Sandwich</button>
+		</Form>
+	)
+}
+```
+
+<callout-info class="aside">
+	`action`s are called for non-GET requests, and `loaders` are called for GET
+	request, so if your form does not specify a method or specifies
+	`method="get"`, then your loader will be called instead of the action.
+</callout-info>
+
+Again, once your form has been submitted, Remix will revalidate all your data so
+you don't have to worry about state management in the client.
+
+<callout-info class="aside">
+	It's important to know that on the web and in Remix, there can only be one
+	"navigational" form submission at a time. You definitely can submit multiple
+	forms back-to-back, but the last one will always "win" in the event of a
+	redirect.
+</callout-info>
+
+In Remix there's also a mechanism for programmatically submitting data without
+user interaction (using a hook called
+[`useFetcher`](https://remix.run/docs/en/main/hooks/use-fetcher)). This is a bit
+more advanced than we'll get in this workshop though so we'll save it for later.

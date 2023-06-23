@@ -1,0 +1,138 @@
+# Data Loading
+
+## The web
+
+When a user goes to a URL, the browser makes a request to the server. The server
+then sends back a response, which is usually HTML. The browser then renders the
+HTML into a page. The HTML can contain references to other resources, such as
+images, CSS, and JavaScript. The browser will make requests for these resources
+and process them as well.
+
+That initial request for HTML normally comes with all the information the user
+expects to see. However, users of modern web applications expect to be able to
+interact with the page without reloading it. So, to keep the data that's on the
+page up-to-date as the user makes changes and navigates around, the application
+also needs to make requests to the server for data. Around 2006, a new
+technology was developed for this purpose called AJAX. AJAX stands for
+Asynchronous JavaScript and XML. It's a way of making requests to the server
+without reloading the page.
+
+These days, web applications typically use a newer web standard called
+[`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). Among
+other things, this API allows the browser to make requests to a server without
+triggering a full page refresh. There are various parts to this API, but two
+critical objects are called
+[`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) and
+[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+
+We can use this API to make requests to our servers to get data. Normally, a
+request for data will return a JSON object which is a string that looks like a
+JavaScript object. We can use the `JSON.parse` function to convert this string
+into a JavaScript object, but this is so common, that the `fetch` `Response`
+object has a special method (called
+[`.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/json)) to
+parse the JSON response for us.
+
+It's important to know that much of the `fetch` API is asynchronous and
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)-based,
+so it will be very useful to understand promises when using the `fetch` API.
+
+On the server side, most modern JavaScript runtime environments support the
+`fetch` API out of the box.
+
+Even though we're not requesting HTML from the server, we still make `fetch`
+requests to URLs. Typically a server will have a router that is responsible for
+routing these URL requests to the appropriate "handler" (or code that handles
+that "resource"). The handler will then do whatever work is necessary to get the
+data and return a response to the client.
+
+When the server sends the response, it can include special "metadata" that goes
+along with the response that tells the browser how to handle the response. This
+is in the form of
+[`Headers`](https://developer.mozilla.org/en-US/docs/Web/API/Headers). We won't
+dive very deep into headers in this workshop, but they are a very important part
+of the `fetch` API that you should be aware of.
+
+## In Remix
+
+Remix is built around the `fetch` API. In a Remix application, you work directly
+with the `Request` and `Response` objects. Even if the server-side framework has
+bespoke APIs for handling requests and responses, your remix adapter will
+convert those to and from web standard `Request` and `Response` objects for you.
+
+In our application, we're using the popular [`express`](https://npm.im/express)
+web framework for handling our traffic and the `@remix-run/express` adapter to
+convert the `express` requests and responses to and from `Request` and
+`Response` objects.
+
+Remix has built-in support for loading data for both the initial page load (the
+"document" request) and for subsequent data requests (the "data" requests). One
+cool part about Remix is that you typically don't need to worry about whether
+the data is being loaded as a document request or a data request. Your code to
+load the data will be the same, as will the code to render the UI.
+
+The data loading is a part of the route module in Remix. Each route module in
+the `app/routes` directory can export an `async` function called a
+[`loader`](https://remix.run/docs/en/1.14.3/route/loader). This function is run
+only on the server and therefore has access to your database, APIs, private
+environment variables, etc. It receives the `Request` object and `params` object
+and should return a `Response` object. For example:
+
+```tsx
+import { type DataFunctionArgs } from '@remix-run/node'
+
+export async function loader({ request, params }: DataFunctionArgs) {
+	const dataString = JSON.stringify({ hello: 'world' })
+	return new Response(dataString, {
+		headers: { 'content-type': 'application/json' },
+	})
+}
+```
+
+Because the most common use case for loaders is returning JSON data, Remix also
+exports a utility called `json` which allows you to more easily create a JSON
+object:
+
+```tsx
+import {
+	json,
+	type DataFunctionArgs,
+	type V2_MetaFunction,
+} from '@remix-run/node'
+
+export async function loader({ request, params }: DataFunctionArgs) {
+	return json({ hello: 'world' })
+}
+```
+
+Then the UI code can use the
+[`useLoaderData`](https://remix.run/docs/en/1.14.3/hooks/use-loader-data) hook
+from `@remix-run/react` which will return the data from the `loader` function.
+
+```tsx
+import {
+	json,
+	type DataFunctionArgs,
+	type V2_MetaFunction,
+} from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
+
+export async function loader({ request, params }: DataFunctionArgs) {
+	return json({ hello: 'world' })
+}
+
+export default function MyRoute() {
+	const data = useLoaderData<typeof loader>()
+	return (
+		<div>
+			<h1>{data.hello}</h1>
+		</div>
+	)
+}
+```
+
+Finally, you can control the `headers` with remix's `json` utility by passing a
+second argument to `json` which allows you to set things like cache headers for
+example. And of course, if you want full control you can always create the
+response object yourself instead of using the utility. Remix exposes the full
+web platform to you.
