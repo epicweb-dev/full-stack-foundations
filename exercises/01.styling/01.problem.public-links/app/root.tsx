@@ -1,4 +1,5 @@
 import { LiveReload } from '@remix-run/react'
+import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 
 // 🐨 export a links function here that adds the favicon
 // 💰 It should have the following properties:
