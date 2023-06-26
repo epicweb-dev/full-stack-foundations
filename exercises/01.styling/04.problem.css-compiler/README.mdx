@@ -1,3 +1,40 @@
 # Compiling CSS
 
-👨‍💼 TODO: Write about Compiling CSS problem
+👨‍💼 Even though most of our users are using modern browsers, there are some CSS
+features that not all of our users' browsers support. To make sure that our
+styles work for everyone, we need to compile our CSS using
+[a tool called PostCSS](https://postcss.org/).
+
+Support for this tool is built-in to Remix. As soon as Remix finds configuration
+for PostCSS, it will automatically compile the CSS files you import for you as
+part of the build process.
+
+🧝‍♂️ I've already added configuration for PostCSS to the project in
+the <InlineFile file="postcss.config.js" /> file. You'll notice that we also
+have a <InlineFile file="tailwind.config.ts" /> file. This is where we configure
+[Tailwind](https://tailwindcss.com), a CSS framework that we'll be using to
+style our app. Our PostCSS configuration includes the Tailwind plugin so, we can
+use the Tailwind directives in our css files to get the Tailwind stylesheet on
+the page. 📜 You can read more about configuring Tailwind with PostCSS in
+[the Tailwind docs](https://tailwindcss.com/docs/using-with-preprocessors).
+
+👨‍💼 Now all that's left is for you to create
+a <InlineFile file="app/styles/tailwind.css" /> file and put in the Tailwind
+directives:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Then, using the knowledge you've gained from the previous steps, import this
+file and include a link tag for it in the <InlineFile file="app/root.tsx" />
+file.
+
+Finally, to test that this worked, you can style the "Hello World" to have a
+Tailwind class name like `p-8 text-xl`. If you see the text get bigger and more
+spaced, you're all set!
+
+- 📜 [Remix PostCSS Docs](https://remix.run/docs/en/1.18.0/guides/styling#postcss)
+- 📜 [Remix TailwindCSS Docs](https://remix.run/docs/en/1.18.0/guides/styling#tailwind-css)
