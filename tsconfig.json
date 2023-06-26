@@ -23,10 +23,16 @@
       "path": "exercises/01.styling/03.solution.global-styles"
     },
     {
-      "path": "exercises/01.styling/04.problem.css-compiler"
+      "path": "exercises/01.styling/04.problem.compiling-css"
     },
     {
-      "path": "exercises/01.styling/04.solution.css-compiler"
+      "path": "exercises/01.styling/04.solution.compiling-css"
+    },
+    {
+      "path": "exercises/01.styling/05.problem.bundling-css"
+    },
+    {
+      "path": "exercises/01.styling/05.solution.bundling-css"
     }
   ]
 }
