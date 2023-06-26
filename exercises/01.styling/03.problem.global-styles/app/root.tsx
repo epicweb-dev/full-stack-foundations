@@ -1,5 +1,6 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload } from '@remix-run/react'
+import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 import faviconAssetUrl from './assets/favicon.svg'
 
 export const links: LinksFunction = () => {
@@ -15,6 +16,7 @@ export default function App() {
 			<body>
 				<p>Hello World</p>
 				<LiveReload />
+				<KCDShopIFrameSync />
 			</body>
 		</html>
 	)

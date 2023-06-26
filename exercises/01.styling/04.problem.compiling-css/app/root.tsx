@@ -1,5 +1,6 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload } from '@remix-run/react'
+import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
 // 🐨 Import the tailwind stylesheet here
@@ -25,6 +26,7 @@ export default function App() {
 				*/}
 				<p>Hello World</p>
 				<LiveReload />
+				<KCDShopIFrameSync />
 			</body>
 		</html>
 	)

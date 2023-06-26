@@ -13,6 +13,7 @@ export default function App() {
 			<body>
 				<p>Hello World</p>
 				<LiveReload />
+				<KCDShopIFrameSync />
 			</body>
 		</html>
 	)
