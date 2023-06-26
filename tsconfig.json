@@ -21,6 +21,12 @@
     },
     {
       "path": "exercises/01.styling/03.solution.global-styles"
+    },
+    {
+      "path": "exercises/01.styling/04.problem.css-compiler"
+    },
+    {
+      "path": "exercises/01.styling/04.solution.css-compiler"
     }
   ]
 }
