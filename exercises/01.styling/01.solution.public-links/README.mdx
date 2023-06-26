@@ -1,17 +1,10 @@
 # Links to Public Files
 
-👨‍💼 We're super excited about this awesome new app! First off, we've got an
-awesome favicon for our site in the `public` directory. Browsers will request
-the `/favicon.ico` by default, but we've got a
-✨ responsive ✨ <InlineFile file="public/favicon.svg" /> that will look good in
-light and dark mode (you find a media query embedded in the SVG itself). Let's
-get that on the page.
+👨‍💼 Awesome work.
 
-To do this, we'll need to add a `<link>` to <InlineFile file="app/root.tsx" />.
-
-> 🦉 Remember, check the `Files` section at the bottom of these instructions for
-> links that will open your editor to the right file you need to alter. My other
-> emoji friends will be waiting there for you to guide you through this task.
-
-🦉 Tip: Check the network tab in the app on the home page. You'll know you got
-it right when you see the `favicon.svg` file loaded.
+🦉 You may be wondering why we're using the `links` export with the `<Links />`
+component instead of just adding a `<link>` tag directly inside our `<head>`. It
+would definitely work that way, however it's a good idea to get in the habit of
+using the `links` export because you'll get a little more help from TypeScript
+and when you're in other routes, you can't just add a `<link>` to the `<head>`
+because it's not there. We'll get into this more later.

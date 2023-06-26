@@ -18,6 +18,8 @@ module.exports = {
 				fixStyle: 'inline-type-imports',
 			},
 		],
+		'@typescript-eslint/ban-ts-comment': 'off',
+		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/no-duplicate-imports': 'warn',
 	},
 	overrides: [

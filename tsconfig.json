@@ -9,6 +9,18 @@
     },
     {
       "path": "exercises/01.styling/01.solution.public-links"
+    },
+    {
+      "path": "exercises/01.styling/02.problem.asset-imports"
+    },
+    {
+      "path": "exercises/01.styling/02.solution.asset-imports"
+    },
+    {
+      "path": "exercises/01.styling/03.problem.global-styles"
+    },
+    {
+      "path": "exercises/01.styling/03.solution.global-styles"
     }
   ]
 }

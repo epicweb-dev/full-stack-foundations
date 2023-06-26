@@ -1,0 +1,34 @@
+# Asset Imports
+
+👨‍💼 Unfortunately, we never know when we're going to want to change our favicon,
+so our caching strategy has to reflect that. We can't just tell the browser to
+cache it forever, so every hour or so the browser has to download the favicon
+again even if it is unchanged.
+
+One solution would be to cache it for a long time and then whenever we change
+the icon, we could add something to the query string to "bust the cache." Like
+this:
+
+```html
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+```
+
+But that is annoying and error prone. Wouldn't it be cool if a tool did that for
+us? Yes, it would. And Remix can do that.
+
+So, instead of hard-coding the URL for the favicon, we can "import" the asset
+and Remix will take care of getting it into our `public` directory and give us
+the URL to it. As a part of this process it will add a piece to the filename
+that "fingerprints" the file. So, if we change the favicon, the URL will change
+and the browser will download the new one. And we don't have to think about it!
+
+Let's do this. So first you'll need to move the `favicon.svg`
+from <InlineFile file="public/favicon.svg" /> to <InlineFile file="app/assets/favicon.svg" />.
+
+Then, in <InlineFile file="app/root.tsx" />, we can import it like this:
+
+```tsx
+import faviconAssetUrl from './assets/favicon.svg'
+```
+
+And use `faviconAssetUrl` instead of the hard-coded URL.
