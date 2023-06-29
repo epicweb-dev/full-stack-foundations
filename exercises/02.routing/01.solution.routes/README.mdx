@@ -11,3 +11,21 @@ The key concepts are:
 
 Once you nail those two concepts, then routing in Remix will be much more
 straightforward.
+
+## Route Module Exports
+
+There are a number of things we can export from each of these routes. You will
+recall from the last exercise that we exported a `links` function from
+the <InlineFile file="app/root.tsx" /> file. We can export that from each of
+these routes as well. This has the benefit of allowing us to provide specific
+links to render when the route is active which will later be removed when the
+user navigates away.
+
+This has great implications for CSS that you want applied only on specific
+pages. Both in the sense that we can reduce the amount of CSS loaded on
+individual pages, but also in the sense that CSS can be scoped to specific
+routes greatly reducing unexpected clashes and making everything much more
+predictable.
+
+Remix also has the ability to preload everything in our links if we want to
+preload a page as the user uses the site, but we'll get to that later.
