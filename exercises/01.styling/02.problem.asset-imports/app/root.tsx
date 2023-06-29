@@ -1,6 +1,6 @@
+import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
-import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 // 🐨 import the svg favicon here (use a default import)
 
 export const links: LinksFunction = () => {

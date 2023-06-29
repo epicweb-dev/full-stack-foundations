@@ -1,0 +1,42 @@
+# Bundling CSS
+
+👨‍💼 While we build out our application, we'll probably have some need to use a
+component library that requires some CSS be added to the application. One or two
+of these are not a big deal, but our `root.tsx` `links` export could get pretty
+big if we do this for a lot of components like this.
+
+So, Remix allows you to import CSS files that are bundled automatically. It's
+pretty simple:
+
+```tsx
+import stylesheetUrl from './styles1.css' // <-- you use the URL in the links export
+import './styles2.css' // <-- this will be bundled
+```
+
+So, if you just import the CSS file without an "import clause" (the
+`stylesheetUrl` variable in the example above), it will be bundled for you.
+
+However, we are still responsible for everything on the page between the
+`<html>` and the `</html>` tags, so if we want the bundled CSS file on the page
+then we need to make sure we add it to the links. Remix gives us access to that
+URL through a special package called `@remix-run/css-bundle`:
+
+```tsx
+import './styles2.css'
+import './styles3.css'
+import { cssBundleHref } from '@remix-run/css-bundle'
+```
+
+The contents of `styles2.css` and `styles3.css` will appear within the file that
+is referenced by `cssBundleHref`. So, we can add that to our `links` export.
+
+<callout-info>
+	If you don't have any such imports, then `cssBundleHref` will (correctly) be
+	`undefined` so the browser doesn't load an empty file, so you'll want to
+	handle that case.
+</callout-info>
+
+🧝‍♂️ I've added an import to a static CSS file just to test that things work in
+this exercise.
+
+📜 [Remix Styling Docs for CSS Bundling](https://remix.run/docs/en/main/guides/styling#css-bundling)
