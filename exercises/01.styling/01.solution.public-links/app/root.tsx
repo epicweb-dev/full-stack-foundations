@@ -1,5 +1,5 @@
 import { type LinksFunction } from '@remix-run/node'
-import { Links, LiveReload } from '@remix-run/react'
+import { Links, LiveReload, Scripts } from '@remix-run/react'
 import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 
 export const links: LinksFunction = () => {
@@ -14,8 +14,9 @@ export default function App() {
 			</head>
 			<body>
 				<p>Hello World</p>
-				<LiveReload />
+				<Scripts />
 				<KCDShopIFrameSync />
+				<LiveReload />
 			</body>
 		</html>
 	)

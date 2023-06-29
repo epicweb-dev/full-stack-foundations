@@ -1,4 +1,4 @@
-import { LiveReload } from '@remix-run/react'
+import { LiveReload, Scripts } from '@remix-run/react'
 import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 
 // 🐨 export a links function here that adds the favicon
@@ -10,11 +10,12 @@ import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
 export default function App() {
 	return (
 		<html lang="en">
-			{/* 🐨 Create a <head> here and put Remix's <Links /> in it */}
+			<head>{/* 🐨 Put Remix's <Links /> in here */}</head>
 			<body>
 				<p>Hello World</p>
-				<LiveReload />
+				<Scripts />
 				<KCDShopIFrameSync />
+				<LiveReload />
 			</body>
 		</html>
 	)
