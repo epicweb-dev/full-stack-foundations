@@ -1,0 +1,206 @@
+# Routes
+
+<callout-muted class="aside">
+	🧝‍♂️ I've made a few improvements to the app's home page which you'll notice
+	since you were last in here.
+</callout-muted>
+
+👨‍💼 We got our first user! His name is "Kody" 🐨 so we're going to build Kody's
+user profile page and his notes pages (his username is "kody"). Users in this
+app have profile pages and can make notes. So, we want to have the following
+routes:
+
+1.  `/users/kody` - Kody's profile page
+2.  `/users/kody/notes` - Kody's list of notes
+3.  `/users/kody/notes/some-note-id` - A specific note
+
+These pages will get more interesting in the future, but for now, let's just
+focus on the routing portion. Your job is to create four route files.
+
+From a layout perspective, we want the profile page to take up the full screen.
+The notes page should also take up the full screen, but the specific note should
+be nested inside the notes page.
+
+It could be useful to run the solution app and see what the final result looks
+like by clicking on the "Solution" tab and running that app.
+
+<callout-success>
+	It's not very important that you memorize the route convention. This is
+	something you will become familiar with over time and you can always refer
+	back to the
+	[`remix-flat-routes`](https://github.com/kiliman/remix-flat-routes)
+	documentation any time you need a refresher.
+</callout-success>
+
+Let's start with the profile page. Following the route convention, we have a
+choice of where we can place the file. We can either put it in
+`routes/users.kody.tsx` or `routes/users+/kody.tsx`.
+
+Let's talk about what these special characters mean for `remix-flat-routes`.
+The `.` in `users.kody` tells `remix-flat-routes` to separate the `users` and
+`kody` by a `/`. So `users.kody` becomes `users/kody`. The `+` in
+`users+/kody` does the same thing, except it allows you to use a folder
+instead of an extra-long filename. That's the only difference. In this
+exercise we're going to go with the `+/` here, but we'll use the `.` in
+another route.
+
+In this case, because we know we're going to have several routes under the
+`/users` path, I think it makes the most sense to use the `users+/` directory
+approach.
+
+<InlineFile file="app/routes/users+/kody.tsx">
+	🐨 Click here to create <code>app/routes/users+/kody.tsx</code>
+</InlineFile>
+
+🐨 In this file, create a component and export it as the default export. You can
+start that component out by returning a with a title like this:
+
+```tsx
+export default function KodyProfileRoute() {
+	return (
+		<div className="flex h-full pb-12">
+			<h1 className="text-h1">Kody</h1>
+		</div>
+	)
+}
+```
+
+🐨 Once you've got that, open <LinkToApp to="/users/kody" />.
+
+"Kody" should be displayed on the page. One fun fact, you'll also notice the
+Epic Notes logo in the header and the footer are on the page as well, even
+though you didn't render those yourself. That's because you're actually
+**already using nested routing!** The route you just created is nested
+inside <InlineFile file="app/root.tsx" line="35" />!
+
+Now, let's create the notes parent route. All the notes will be "URL Nested"
+inside `/users/kody`, but they won't be "Layout Nested," so we'll need to add an
+underscore (`_`) to the filename. Also, since we'll have several of these, we'll
+use the `+` convention to allow us to put them all in a folder instead of having
+to have a really long filename.
+
+So let's create the file for the `/users/kody/notes` route.
+
+<InlineFile file="app/routes/users+/kody_+/notes.tsx">
+	🐨 Click here to create <code>app/routes/users+/kody\_+/notes.tsx</code>
+</InlineFile>
+
+Inside of this one, let's start with:
+
+```tsx
+export default function NotesRoute() {
+	return (
+		<div className="flex h-full pb-12">
+			<h1 className="text-h1">Notes</h1>
+		</div>
+	)
+}
+```
+
+🐨 Now you can go to <LinkToApp to="/users/kody/notes" />.
+
+The `<h1>` of "Notes" should be displayed on the page, but the "Kody" from the
+previous route should not be displayed. That's because we're not using layout
+nesting here thanks to the `_` in the filename.
+
+Great, now let's create the route for a specific note. This one will be nested
+inside the notes route. For this, I don't think it's very useful to have another
+folder of nesting, so instead of the `+/` syntax for a directory, we'll just add
+`notes.` to the filename.
+
+<InlineFile file="app/routes/users+/kody_+/notes.some-note-id.tsx">
+	🐨 Click here to create{' '}
+	<code>app/routes/users+/kody\_+/notes.some-note-id.tsx</code>
+</InlineFile>
+
+Inside of this one, let's go with:
+
+```tsx
+export default function SomeNoteId() {
+	return <h2 className="text-h2">Some Note</h2>
+}
+```
+
+Super, now let's go to <LinkToApp to="/users/kody/notes/some-note-id" />.
+
+Uh oh! We still just have "Notes" on the screen!? But the URL has our
+`/some-note-id` in it.
+
+If you like, you can cd into `playground` and run `npx remix routes`. If you do
+that, it'll print this:
+
+```tsx lines=6-9 nonumber
+<Routes>
+	<Route file="root.tsx">
+		<Route index file="routes/index.tsx" />
+		<Route path="users/kody" file="routes/users+/kody.tsx" />
+		<Route path="users/kody/notes" file="routes/users+/kody_+/notes.tsx">
+			<Route
+				path="some-note-id"
+				file="routes/users+/kody_+/notes.some-note-id.tsx"
+			/>
+		</Route>
+	</Route>
+</Routes>
+```
+
+So the routes are definitely right there. What's going on? Well, remember that
+we're _nesting_ our routes. And we wouldn't want Remix to just stick the UI for
+each nested route one below the other. As the developer, we want to control
+where the nesting actually happens. The parent contains the child which contains
+the grandchild etc. So what we need is to have the parent (`/users/kody/notes`)
+to tell Remix where to put the child (`/users/kody/notes/some-note-id`). And we
+do this using the `<Outlet />` component.
+
+Here's a quick example of how this works:
+
+```tsx filename=app/routes/parent.tsx
+export default function Parent() {
+	return (
+		<div>
+			<h1>Parent</h1>
+			<Outlet />
+		</div>
+	)
+}
+```
+
+```tsx filename=app/routes/parent.child.tsx
+export default function Child() {
+	return <h2>Child</h2>
+}
+```
+
+With that, when you navigate to `/parent/child`, you'll see "Parent" above
+"Child". If we swap the `<h1>` and `<Outlet />` in the parent, then the child
+will be above the parent. The parent gets to decide where it's child goes.
+
+🐨 So go ahead and open the <InlineFile file="app/routes/users+/kody_+/notes.tsx" line={4} column={99} /> file and
+get the `<Outlet />` component from `@remix-run/react`, then render it below the
+`<h1>` we put in there earlier.
+
+Great! Now when we're on <LinkToApp to="/users/kody/notes/some-note-id" />, it shows the
+"Kody" title and the "User Host" text! 🎉
+
+Another thing that will be really useful for us is to have some default content
+that shows up on the `/users/kody/notes` page when we're not on a specific note.
+Something like "please select a note" or something. We can do that by adding an
+`index` route to the notes route. We'll create that right next to our
+`some-note-id` route.
+
+<InlineFile file="app/routes/users+/kody_+/notes.index.tsx">
+	🐨 Click here to create <code>app/routes/users+/kody\_+/notes.index.tsx</code>
+</InlineFile>
+
+Stick this in there:
+
+```tsx
+export default function NotesIndexRoute() {
+	return <p>Select a note</p>
+}
+```
+
+Now if we navigate to <LinkToApp to="/users/kody/notes" />, we'll see the
+"Select a note" text.
+
+Sweet! You've got nested routing working. 🎉

@@ -29,6 +29,7 @@
   "dependencies": {
     "@kentcdodds/workshop-app": "^1.43.0",
     "@prisma/client": "^4.16.1",
+    "esbuild": "^0.17.19",
     "prisma": "^4.16.1"
   },
   "eslintIgnore": [

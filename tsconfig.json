@@ -33,6 +33,12 @@
     },
     {
       "path": "exercises/01.styling/05.solution.bundling-css"
+    },
+    {
+      "path": "exercises/02.routing/01.problem.routes"
+    },
+    {
+      "path": "exercises/02.routing/01.solution.routes"
     }
   ]
 }
