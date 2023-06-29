@@ -39,6 +39,12 @@
     },
     {
       "path": "exercises/02.routing/01.solution.routes"
+    },
+    {
+      "path": "exercises/02.routing/02.problem.links"
+    },
+    {
+      "path": "exercises/02.routing/02.solution.links"
     }
   ]
 }
