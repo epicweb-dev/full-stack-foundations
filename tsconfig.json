@@ -51,6 +51,12 @@
     },
     {
       "path": "exercises/02.routing/03.solution.params"
+    },
+    {
+      "path": "exercises/03.loading/01.problem.loader"
+    },
+    {
+      "path": "exercises/03.loading/01.solution.loader"
     }
   ]
 }

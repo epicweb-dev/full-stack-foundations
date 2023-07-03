@@ -21,7 +21,9 @@
     "address": "^1.2.2",
     "chalk": "^5.3.0",
     "chokidar": "^3.5.3",
+    "class-variance-authority": "^0.6.1",
     "close-with-grace": "^1.2.0",
+    "clsx": "^1.2.1",
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "get-port": "^7.0.0",
@@ -30,6 +32,7 @@
     "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.13.2",
     "tailwindcss": "^3.3.2",
     "tailwindcss-animate": "^1.0.6"
   },

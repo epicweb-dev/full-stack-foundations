@@ -94,11 +94,7 @@ exports a utility called `json` which allows you to more easily create a JSON
 object:
 
 ```tsx
-import {
-	json,
-	type DataFunctionArgs,
-	type V2_MetaFunction,
-} from '@remix-run/node'
+import { json, type DataFunctionArgs } from '@remix-run/node'
 
 export async function loader({ request, params }: DataFunctionArgs) {
 	return json({ hello: 'world' })
@@ -110,11 +106,7 @@ Then the UI code can use the
 from `@remix-run/react` which will return the data from the `loader` function.
 
 ```tsx
-import {
-	json,
-	type DataFunctionArgs,
-	type V2_MetaFunction,
-} from '@remix-run/node'
+import { json, type DataFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
 export async function loader({ request, params }: DataFunctionArgs) {
