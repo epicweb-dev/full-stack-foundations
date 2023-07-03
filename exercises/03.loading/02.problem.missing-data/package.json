@@ -1,5 +1,5 @@
 {
-  "name": "exercises__sep__03.loading__sep__01.solution.loader",
+  "name": "exercises__sep__03.loading__sep__02.problem.missing-data",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@mswjs/data": "^0.13.0",
-    "@remix-run/css-bundle": "^1.18.0",
-    "@remix-run/node": "^1.18.0",
-    "@remix-run/react": "^1.18.0",
-    "@remix-run/serve": "^1.18.0",
+    "@remix-run/css-bundle": "^1.18.1",
+    "@remix-run/node": "^1.18.1",
+    "@remix-run/react": "^1.18.1",
+    "@remix-run/serve": "^1.18.1",
     "address": "^1.2.2",
     "chalk": "^5.3.0",
     "chokidar": "^3.5.3",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.35.1",
-    "@remix-run/dev": "^1.18.0",
-    "@remix-run/eslint-config": "^1.18.0",
+    "@remix-run/dev": "^1.18.1",
+    "@remix-run/eslint-config": "^1.18.1",
     "@total-typescript/ts-reset": "^0.4.2",
     "@types/compression": "^1.7.2",
     "@types/express": "^4.17.17",

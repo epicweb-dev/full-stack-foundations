@@ -54,6 +54,47 @@ export const db = singleton('db', () => {
 			content:
 				"Although you may have heard people call them koala 'bears', these awesome animals aren’t bears at all – they are in fact marsupials. A group of mammals, most marsupials have pouches where their newborns develop.",
 		},
+
+		{
+			title: 'Snowboarding Adventure',
+			content:
+				"Today was an epic day on the slopes! Shredded fresh powder with my friends, caught some sick air, and even attempted a backflip. Can't wait for the next snowy adventure!",
+		},
+		{
+			title: 'Onewheel Tricks',
+			content:
+				"Mastered a new trick on my Onewheel today called '180 Spin'. It's exhilarating to carve through the streets while pulling off these rad moves. Time to level up and learn more!",
+		},
+		{
+			title: 'Coding Dilemma',
+			content:
+				"Stuck on a bug in my latest coding project. Need to figure out why my function isn't returning the expected output. Time to dig deep, debug, and conquer this challenge!",
+		},
+		{
+			title: 'Coding Mentorship',
+			content:
+				"Had a fantastic coding mentoring session today with Sarah. Helped her understand the concept of recursion, and she made great progress. It's incredibly fulfilling to help others improve their coding skills.",
+		},
+		{
+			title: 'Koala Fun Facts',
+			content:
+				"Did you know that koalas sleep for up to 20 hours a day? It's because their diet of eucalyptus leaves doesn't provide much energy. But when I'm awake, I enjoy munching on leaves, chilling in trees, and being the cuddliest koala around!",
+		},
+		{
+			title: 'Skiing Adventure',
+			content:
+				'Spent the day hitting the slopes on my skis. The fresh powder made for some incredible runs and breathtaking views. Skiing down the mountain at top speed is an adrenaline rush like no other!',
+		},
+		{
+			title: 'Code Jam Success',
+			content:
+				'Participated in a coding competition today and secured the first place! The adrenaline, the challenging problems, and the satisfaction of finding optimal solutions—it was an amazing experience. Feeling proud and motivated to keep pushing my coding skills further!',
+		},
+		{
+			title: 'Koala Conservation Efforts',
+			content:
+				"Joined a local conservation group to protect koalas and their habitats. Together, we're planting more eucalyptus trees, raising awareness about their endangered status, and working towards a sustainable future for these adorable creatures. Every small step counts!",
+		},
 	]
 	for (const note of kodyNotes) {
 		db.note.create({

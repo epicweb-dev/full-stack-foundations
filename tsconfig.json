@@ -63,6 +63,9 @@
     },
     {
       "path": "exercises/03.loading/02.solution.missing-data"
+    },
+    {
+      "path": "exercises/04.mutations/01.problem.forms"
     }
   ]
 }

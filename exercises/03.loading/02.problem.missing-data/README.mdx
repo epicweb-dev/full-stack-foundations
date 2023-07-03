@@ -33,9 +33,11 @@ response right away. You can even put it into a utility function:
 {/* TODO: add types and make this an assertion function that infers and maintains the typing of sandwich. Possibly even make it generic. */}
 
 ```tsx filename=utils.ts
-function ensureSandwich(sandwich) {
-	if (!sandwich) {
-		throw new Response('Sandwich not found', { status: 404 })
+function assertDefined<Value>(
+	value: Value | null | undefined,
+): asserts value is Value {
+	if (value === undefined || value === null) {
+		throw new Response('Not found', { status: 404 })
 	}
 }
 ```
@@ -46,7 +48,7 @@ export async function loader({ params }) {
 		where: { id: params.id },
 	})
 
-	ensureSandwich(sandwich)
+	assertDefined(sandwich)
 
 	return json({ sandwich })
 }
