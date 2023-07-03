@@ -1,0 +1,60 @@
+# Handle Missing Data
+
+👨‍💼 One of our Quality Assurance folks discovered an issue. If you go to a user
+that does not exist, the app crashes. For example,
+try this one: <LinkToApp to="/users/i-do-not-exist" /> 😬
+
+We had to ignore some TypeScript errors with `// @ts-expect-error` which should
+have tipped us off about this problem... 🦺 Lily the life jacket is not amused.
+
+We need to handle this case. That should be a `404` error. So after trying to
+get the `user` from the database, you're going to need to check whether the
+returned `user` exists. If they don't, then you should throw a `404` error.
+Here's an example how you do that:
+
+```tsx filename=app/routes/sandwiches.$id.tsx
+export async function loader({ params }) {
+	const sandwich = await db.sandwich.findFirst({
+		where: { id: params.id },
+	})
+
+	if (!sandwich) {
+		throw new Response('Sandwich not found', { status: 404 })
+	}
+
+	return json({ sandwich })
+}
+```
+
+Hmmm... `throw` a response!? How weird is that? Well, in Remix it's exactly how
+you solve this problem. It allows you to easily exit code flow and send a
+response right away. You can even put it into a utility function:
+
+{/* TODO: add types and make this an assertion function that infers and maintains the typing of sandwich. Possibly even make it generic. */}
+
+```tsx filename=utils.ts
+function ensureSandwich(sandwich) {
+	if (!sandwich) {
+		throw new Response('Sandwich not found', { status: 404 })
+	}
+}
+```
+
+```tsx filename=app/routes/sandwiches.$id.tsx
+export async function loader({ params }) {
+	const sandwich = await db.sandwich.findFirst({
+		where: { id: params.id },
+	})
+
+	ensureSandwich(sandwich)
+
+	return json({ sandwich })
+}
+```
+
+Remix will handle catching the response for us and send the response we threw
+along. But it does so in a special way which we'll get to in a future exercise.
+For now, just handling the error with a proper status code is enough.
+
+So please handle possible missing data in the loaders of the profile, note list,
+and note routes.

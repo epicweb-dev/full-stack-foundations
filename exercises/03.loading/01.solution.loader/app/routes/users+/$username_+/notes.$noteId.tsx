@@ -9,9 +9,11 @@ export async function loader({ params }: DataFunctionArgs) {
 				equals: params.noteId,
 			},
 		},
-		strict: true,
 	})
-	return json({ note: { title: note.title, content: note.content } })
+	return json({
+		// @ts-expect-error 🦺 we'll fix this next
+		note: { title: note.title, content: note.content },
+	})
 }
 
 export default function NoteRoute() {

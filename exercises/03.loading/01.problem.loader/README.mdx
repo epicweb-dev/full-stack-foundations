@@ -1,3 +1,38 @@
-# Loading Data
+# Loaders
 
-👨‍💼 TODO: write this
+👨‍💼 Now that our routing is all taken care of, Kellie (your coworker 🧝‍♂️) has
+taken some time to make the app look a little bit nicer and now you need to add
+some data loading.
+
+🧝‍♂️ I've also created a temporary fake database for us to use until we get around
+to actually putting together a real database in the future. You can find it in
+the `app/utils/db.server.ts` file if you want to, but don't worry about it
+because Marty (the moneybag 💰) will give you all the code you need to work with
+it as it's not really necessary for what you're learning today.
+
+🧝‍♂️ I've also added a user with some notes in the database by default as well.
+The username is `kody` and I've added a link for Kody's profile on the home page
+in the top right corner to make it easier for you to get to his profile which
+can be found at <LinkToApp to="/users/kody" />.
+
+<callout-muted class="aside">
+	The tool we're using is [@mswjs/data](https://github.com/mswjs/data) which you
+	may find useful in other contexts. But again, don't worry too much about it.
+	We'll get to the real database stuff in another workshop.
+</callout-muted>
+
+👨‍💼 Great, with that out of the way, it's time for us to actually start loading
+data. Based on what you learned in the background for this exercise, you should
+be familiar with the conventions necessary to load data into the UI and the
+emoji will be there to guide you along as you go. We're going to be loading data
+on the profile, list of notes, and note page.
+
+<callout-success>
+	Don't forget you can use the "Files" menu below to open the files necessary
+	for this workshop.
+</callout-success>
+
+<callout-muted class="aside">
+	And if you *really* get stuck, you can always look at the diff tab to see what
+	you're missing.
+</callout-muted>

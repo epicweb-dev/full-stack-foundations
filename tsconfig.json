@@ -57,6 +57,12 @@
     },
     {
       "path": "exercises/03.loading/01.solution.loader"
+    },
+    {
+      "path": "exercises/03.loading/02.problem.missing-data"
+    },
+    {
+      "path": "exercises/03.loading/02.solution.missing-data"
     }
   ]
 }
