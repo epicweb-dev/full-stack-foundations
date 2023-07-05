@@ -27,10 +27,7 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@kentcdodds/workshop-app": "^1.44.2",
-    "@prisma/client": "^4.16.2",
-    "esbuild": "^0.18.11",
-    "prisma": "^4.16.2"
+    "@kentcdodds/workshop-app": "^1.44.2"
   },
   "eslintIgnore": [
     "/node_modules",

@@ -4,8 +4,6 @@ node_modules
 **/public/build/**
 .env
 
-**/prisma/migrations
-
 **/package.json
 **/tsconfig.json
 

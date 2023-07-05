@@ -10,6 +10,5 @@ node_modules
 /playwright/.cache/
 /tests/fixtures/email/*.json
 /coverage
-/prisma/migrations
 
 package-lock.json
