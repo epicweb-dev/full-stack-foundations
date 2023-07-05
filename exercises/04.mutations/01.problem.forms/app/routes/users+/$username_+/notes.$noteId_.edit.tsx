@@ -1,10 +1,5 @@
-import { json, type DataFunctionArgs, redirect } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
-import invariant from 'tiny-invariant'
-import { Button } from '~/components/ui/button.tsx'
-import { Input } from '~/components/ui/input.tsx'
-import { Label } from '~/components/ui/label.tsx'
-import { Textarea } from '~/components/ui/textarea.tsx'
+import { json, type DataFunctionArgs } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 import { db } from '~/utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
@@ -23,44 +18,17 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 }
 
-export async function action({ request, params }: DataFunctionArgs) {
-	const formData = await request.formData()
-	const title = formData.get('title')
-	const content = formData.get('content')
-	invariant(typeof title === 'string', 'Title must be a string')
-	invariant(typeof content === 'string', 'Content must be a string')
-
-	const note = db.note.update({
-		where: { id: { equals: params.noteId } },
-		data: { title, content },
-	})
-	if (!note || !note.owner) {
-		throw new Response('Note not found', { status: 404 })
-	}
-	return redirect(`/users/${note.owner.username}/notes/${note.id}`)
-}
-
 export default function NoteEdit() {
 	const data = useLoaderData<typeof loader>()
 
-	return (
-		<Form method="post" className="flex flex-col gap-8">
-			<div className="flex flex-col gap-4">
-				<div>
-					<Label>Title</Label>
-					<Input name="title" defaultValue={data.note.title} />
-				</div>
-				<div>
-					<Label>Content</Label>
-					<Textarea name="content" defaultValue={data.note.content} />
-				</div>
-			</div>
-			<div className="flex justify-end gap-4">
-				<Button variant="secondary" type="reset">
-					Reset
-				</Button>
-				<Button type="submit">Submit</Button>
-			</div>
-		</Form>
-	)
+	// 💣 remove this so we can return our form instead
+	return <pre>{JSON.stringify(data, null, 2)}</pre>
+
+	// 🐨 render a Remix Form with the method of "post"
+	// 🐨 render an <label> with the text "Title" and an <input> with the name "title" and defaultValue of data.note.title
+	// 🐨 render an <label> with the text "Content" and an <textarea> with the name "content" and defaultValue of data.note.content
+	// 🐨 render a button with the text "Submit"
+
+	// 💯 as extra credit, you can add a reset button (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+	// 💯 as extra credit, you can use the Label, Input, Textarea, and Button components from '~/components/ui/*.tsx'
 }

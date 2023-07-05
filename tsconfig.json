@@ -66,6 +66,33 @@
     },
     {
       "path": "exercises/04.mutations/01.problem.forms"
+    },
+    {
+      "path": "exercises/04.mutations/01.solution.forms"
+    },
+    {
+      "path": "exercises/04.mutations/02.problem.actions"
+    },
+    {
+      "path": "exercises/04.mutations/02.solution.actions"
+    },
+    {
+      "path": "exercises/04.mutations/03.problem.formdata-types"
+    },
+    {
+      "path": "exercises/04.mutations/03.solution.formdata-types"
+    },
+    {
+      "path": "exercises/04.mutations/04.problem.button-forms"
+    },
+    {
+      "path": "exercises/04.mutations/04.solution.button-forms"
+    },
+    {
+      "path": "exercises/04.mutations/05.problem.intent"
+    },
+    {
+      "path": "exercises/04.mutations/05.solution.intent"
     }
   ]
 }
