@@ -2,6 +2,7 @@ import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 import { Button } from '~/components/ui/button.tsx'
 import { db } from '~/utils/db.server.ts'
+import { invariantResponse } from '~/utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -22,15 +23,11 @@ export async function loader({ params }: DataFunctionArgs) {
 export async function action({ request, params }: DataFunctionArgs) {
 	const formData = await request.formData()
 	const intent = formData.get('intent')
-	switch (intent) {
-		case 'delete': {
-			db.note.delete({ where: { id: { equals: params.noteId } } })
-			return redirect(`/users/${params.username}/notes`)
-		}
-		default: {
-			throw new Error(`Invalid intent: ${intent}`)
-		}
-	}
+
+	invariantResponse(intent === 'delete', 'Invalid intent')
+
+	db.note.delete({ where: { id: { equals: params.noteId } } })
+	return redirect(`/users/${params.username}/notes`)
 }
 
 export default function NoteRoute() {

@@ -1,3 +1,20 @@
 # FormData Types
 
-👨‍💼 TODO: write this
+🦉 An important thing to know about `request.formData` is the values stored in
+it can have three different types:
+
+- `null` - the value doesn't exist in the form data at all
+- `string` - This applies to inputs (including checkboxes and radio buttons),
+  textareas, and select elements.
+- `File` - This applies to file inputs.
+
+It's impossible for us to prevent users from submitting invalid data (users can
+change the types in our form using the browser devtools or even submit the form
+using a tool like Postman). But we know that if the data is invalid, we don't
+want to proceed with the form submission, and frankly we can't really offer any
+recourse for the user, so we can simply throw an error which we can handle as
+gracefully as possible.
+
+You can test this out by changing the form to have a typo. Like changing `name`
+of the `title` to `title2` for example. Then submit the request and make sure
+the response is what you expect.

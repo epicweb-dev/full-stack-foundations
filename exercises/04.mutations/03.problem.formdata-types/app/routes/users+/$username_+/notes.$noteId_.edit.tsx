@@ -28,7 +28,8 @@ export async function action({ request, params }: DataFunctionArgs) {
 	const content = formData.get('content')
 	// 🐨 add a check to make certain that title and content are both a string
 	// if they are not, throw an error
-	// 💯 as an extra credit, try using the invariant function from tiny-invariant
+	// 💯 as an extra credit, throw a more descriptive 400 Response instead of an error
+	// 💯 as an extra credit, try using the invariantResponse function from "~/utils/misc.ts"
 
 	db.note.update({
 		where: { id: { equals: params.noteId } },
@@ -46,10 +47,12 @@ export default function NoteEdit() {
 		<Form method="post" className="flex flex-col gap-8">
 			<div className="flex flex-col gap-4">
 				<div>
+					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Title</Label>
 					<Input name="title" defaultValue={data.note.title} />
 				</div>
 				<div>
+					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Content</Label>
 					<Textarea name="content" defaultValue={data.note.content} />
 				</div>

@@ -1,3 +1,15 @@
 # Actions
 
-👨‍💼 TODO: write this
+👨‍💼 Just like our `loader` responds to `GET` requests for data, the `action`
+responds to non-`GET` requests for data. The `action` accepts the same
+parameters as the `loader` and is expected to return a `Response`. It's also
+typically expected to return a `redirect` or a `json` response and can use the
+same utilities.
+
+So now, we want you to get the `formData` from the `request` and use it to
+update the note, and then redirect back to the note's page.
+
+<callout-muted>
+	Don't worry about doing any validation or error handling. We'll cover that
+	later. Additionally, we'll handle the TypeScript errors in the next step.
+</callout-muted>

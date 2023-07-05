@@ -43,10 +43,12 @@ export default function NoteEdit() {
 		<Form method="post" className="flex flex-col gap-8">
 			<div className="flex flex-col gap-4">
 				<div>
+					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Title</Label>
 					<Input name="title" defaultValue={data.note.title} />
 				</div>
 				<div>
+					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Content</Label>
 					<Textarea name="content" defaultValue={data.note.content} />
 				</div>

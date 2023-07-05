@@ -1,3 +1,18 @@
 # Intent
 
-👨‍💼 TODO: write this
+👨‍💼 Our `action` for the delete button is pretty simple. In the future we'll
+probably add a "favorite" button where users can mark a note as a favorite, but
+our `action` only handles deleting a note.
+
+To help us to distinguish the user's preferred action, we'll use a common
+pattern of adding a `name` and `value` to the delete button:
+
+```html
+<button type="submit" name="intent" value="delete">Delete</button>
+```
+
+🤯 yes, it's true. Submit buttons are form controls, just like inputs, and can
+therefore have names and values. From there you can get the intent from the
+request form data and handle it accordingly.
+
+Doing things this way will also ensure the request is performed properly.

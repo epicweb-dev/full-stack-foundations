@@ -1,4 +1,4 @@
-import { json, type DataFunctionArgs, redirect } from '@remix-run/node'
+import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 import { Button } from '~/components/ui/button.tsx'
 import { db } from '~/utils/db.server.ts'
@@ -23,7 +23,8 @@ export async function action({ params }: DataFunctionArgs) {
 	// 🐨 get the formData from the request
 	// 🐨 get the intent from the formData
 	// 🐨 if the intent is "delete" then proceed
-	// 🐨 if the intent is not, then throw an error
+	// 🐨 if the intent is not, then throw a 400 Response
+	// 💰 you can use invariantResponse from '~/utils/misc.ts' for this
 	db.note.delete({ where: { id: { equals: params.noteId } } })
 	return redirect(`/users/${params.username}/notes`)
 }

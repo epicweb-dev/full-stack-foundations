@@ -1,3 +1,44 @@
 # Button Forms
 
-👨‍💼 TODO: write this
+🦉 Folks who are used to building client-side focused applications may be
+familiar with a button triggering a fetch request:
+
+```tsx
+function DeployTheSocks() {
+	return (
+		<button
+			onClick={() => {
+				fetch('/api/deploy-the-socks', { method: 'POST' })
+			}}
+		>
+			Deploy the socks!
+		</button>
+	)
+}
+```
+
+This works, but of course there are a lot of considerations you need to take
+into account. For example:
+
+- What if the user clicks the button twice?
+- What if the user clicks the button while the request is still in flight?
+- What if the user clicks the button while the request is still in flight, and
+  then navigates away from the page?
+- What if the request fails?
+- What if the user clicks the button twice, but the second response returns
+  first?
+
+The edge cases are... numerous. Once you've factored all that in, you're left
+with code that's tricky to manage.
+
+There's a better way. Make the button a form, and let the browser (or your
+browser emulator, Remix (we'll talk about this more soon)) handle the edge cases
+for you. It's a nice and declarative API.
+
+👨‍💼 We want to make the Delete button functional. So you're going to need to wrap
+the button in a form and add an action.
+
+<callout-warning>
+	We don't have a way to create new notes yet, so if you delete all the notes,
+	you can stop and start the server again and all the notes will be back.
+</callout-warning>
