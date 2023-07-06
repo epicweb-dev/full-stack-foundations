@@ -1,0 +1,34 @@
+# Scroll Restoration
+
+👨‍💼 Now that we've got JavaScript running on the page, our customers are noticing
+that their scroll position is not where they expect it to be. For example, if
+you're on the notes list page and you're scrolled down a bit, then clicking the
+"Edit" link leaves you where you are when it should scroll the user to the top
+of the page so they can edit the note. This is because the browser is no longer
+responsible for navigations, so the role of scroll restoration lies in our
+hands!
+
+Luckily, Remix has a
+[📜 `ScrollRestoration`](https://remix.run/docs/en/main/components/scroll-restoration)
+component we can use to fix this. Please use that component!
+
+Once you've done that, come back here, I've got another task for you.
+
+You got it done? Ok, great! Now I actually need you to "undo" the scroll
+restoration for a particular navigation. If you're scrolled down a bit on the
+list of notes, then change notes, it's jarring to have the page scroll to the
+top. So for those links, we don't actually want to scroll the user to the top.
+Oh what to do? 😱
+
+Luckily, Remix allows you to control this scroll restoration behavior on a
+per-link basis using the
+[📜 `preventScrollReset`](https://reactrouter.com/en/main/components/link#preventscrollreset)
+prop (through React Router):
+
+```tsx
+<Link preventScrollReset to="host">
+	Host
+</Link>
+```
+
+Go ahead and add the `preventScrollReset` prop to those links.

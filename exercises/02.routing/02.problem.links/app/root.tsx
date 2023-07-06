@@ -29,7 +29,7 @@ export async function loader() {
 export default function App() {
 	const data = useLoaderData<typeof loader>()
 	return (
-		<html lang="en" className="h-full">
+		<html lang="en" className="h-full overflow-x-hidden">
 			<head>
 				<Links />
 			</head>

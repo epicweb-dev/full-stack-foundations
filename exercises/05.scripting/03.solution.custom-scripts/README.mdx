@@ -1,0 +1,73 @@
+# Custom Scripts
+
+<callout-info>
+	Please note that the learning objective for this part of the exercise is the
+	use of custom inline scripts. The specific script used is to expose
+	environment variables following a pattern I still need to write an article
+	about. If you struggle to follow the pattern, don't worry about that. Focus on
+	what it takes to get a custom inline script running.
+</callout-info>
+
+👨‍💼 In our app, we've got some runtime environment variables we want to expose to
+the client-side app. You may be used to using `process.env` to access
+environment variables, but the browser doesn't have access to our server's
+`process.env` (thank goodness). Instead, we need to explicitly provide those
+variable's values to our app using <InlineFile file="app/root.tsx" />'s loader.
+
+🧝‍♂️ I added a <InlineFile file="app/utils/env.server.ts" /> file which is
+responsible for ensuring we have the right environment variables in our server
+and makes it easy to get the environment variables that are public and should be
+accessible to our UI code.
+
+Remember that UI code runs both on the server and the client. So what we want is
+something that allows us to have a common global variable that has all the
+environment variables that are public and should be accessible to our UI code.
+For example:
+
+```tsx filename=app/routes/connect-discord.tsx lines=7
+function ConnectDiscord() {
+	return <a href={getDiscordAuthorizeURL()}>Connect to Discord</a>
+}
+
+function getDiscordAuthorizeURL(domainUrl: string) {
+	const url = new URL('https://discord.com/api/oauth2/authorize')
+	url.searchParams.set('client_id', ENV.DISCORD_CLIENT_ID)
+	url.searchParams.set('redirect_uri', `https://example.com/discord/callback`)
+	url.searchParams.set('response_type', 'code')
+	url.searchParams.set('scope', 'identify guilds.join email guilds')
+	return url.toString()
+}
+```
+
+🧝‍♂️ To do this, I've also created a
+custom <InlineFile file="app/entry.server.tsx" /> file which overrides the
+default entry file for the server in Remix. That way, we can take care of the
+server-side of setting this global variable which I have done on line 6 with:
+
+```tsx lines=6 start=4
+import { getEnv } from './utils/env.server.ts'
+
+global.ENV = getEnv()
+```
+
+The `env.server.ts` file we have sets up TypeScript to auto-complete the `ENV`
+global variable.
+
+👨‍💼 In this part of the exercise, we need to set the global `ENV` variable on the
+client. So when our code hydrates we have access to runtime environment
+variables using the same global variable in either environment (server or
+client).
+
+Right now, all we need in our app is a `MODE` environment variable which is
+`development` or `production`.
+
+Effectively, what we need is a script that does this:
+
+```js
+window.ENV = { MODE: 'development' }
+```
+
+We can do this in <InlineFile file="app/root.tsx" /> and then we'll use that
+`ENV.MODE` variable in <InlineFile file="app/entry.client.tsx" /> to dynamically
+load some devtools (found in <InlineFile file="app/utils/devtools.tsx" />) when
+we're in development mode (`ENV.MODE === 'development'`).

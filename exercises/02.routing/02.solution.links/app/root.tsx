@@ -1,5 +1,6 @@
 import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
-import { type LinksFunction, json } from '@remix-run/node'
+import { cssBundleHref } from '@remix-run/css-bundle'
+import { json, type LinksFunction } from '@remix-run/node'
 import {
 	Link,
 	Links,
@@ -8,11 +9,10 @@ import {
 	Scripts,
 	useLoaderData,
 } from '@remix-run/react'
-import { cssBundleHref } from '@remix-run/css-bundle'
+import os from 'node:os'
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
-import os from 'node:os'
 
 export const links: LinksFunction = () => {
 	return [
@@ -30,7 +30,7 @@ export async function loader() {
 export default function App() {
 	const data = useLoaderData<typeof loader>()
 	return (
-		<html lang="en" className="h-full">
+		<html lang="en" className="h-full overflow-x-hidden">
 			<head>
 				<Links />
 			</head>

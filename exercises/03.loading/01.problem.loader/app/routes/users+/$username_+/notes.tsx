@@ -34,37 +34,41 @@ export default function NotesRoute() {
 	const navLinkDefaultClassName =
 		'line-clamp-2 block rounded-l-full py-2 pl-8 pr-6 text-base lg:text-xl'
 	return (
-		<div className="flex h-full justify-center pb-12">
-			<div className="mx-auto grid w-full flex-grow grid-cols-4 bg-muted pl-2 md:container md:mx-2 md:rounded-3xl md:pr-0">
-				<div className="col-span-1 py-12">
-					<Link
-						// 🐨 we can get the username from the loader data instead
-						to={`/users/${params.username}`}
-						className="mb-4 flex flex-col items-center justify-center gap-2 pl-8 pr-4 lg:flex-row lg:justify-start lg:gap-4"
-					>
-						<h1 className="text-center text-base font-bold md:text-lg lg:text-left lg:text-2xl">
-							{ownerDisplayName}'s Notes
-						</h1>
-					</Link>
-					<ul>
-						{/*
+		<div className="container flex h-full min-h-[400px] pb-12">
+			<div className="grid w-full flex-grow grid-cols-4 bg-muted pl-2 md:container md:mx-2 md:rounded-3xl md:pr-0">
+				<div className="relative col-span-1">
+					<div className="absolute inset-0 overflow-y-auto overflow-x-hidden [&>:last-child]:pb-12">
+						<Link
+							// 🐨 we can get the username from the loader data instead
+							to={`/users/${params.username}`}
+							className="mb-4 flex flex-col items-center justify-center gap-2 pl-8 pr-4 lg:flex-row lg:justify-start lg:gap-4"
+						>
+							<h1 className="text-center text-base font-bold md:text-lg lg:text-left lg:text-2xl">
+								{ownerDisplayName}'s Notes
+							</h1>
+						</Link>
+						<ul>
+							{/*
 							🐨 instead of hard coding the note, create one <li> for each note
 							in the database with data.notes.map
 						*/}
-						<li>
-							<NavLink
-								to="some-note-id"
-								className={({ isActive }) =>
-									cn(navLinkDefaultClassName, isActive && 'bg-accent')
-								}
-							>
-								Some Note
-							</NavLink>
-						</li>
-					</ul>
+							<li>
+								<NavLink
+									to="some-note-id"
+									className={({ isActive }) =>
+										cn(navLinkDefaultClassName, isActive && 'bg-accent')
+									}
+								>
+									Some Note
+								</NavLink>
+							</li>
+						</ul>
+					</div>
 				</div>
-				<main className="col-span-3 bg-accent px-10 py-12 md:rounded-r-3xl">
-					<Outlet />
+				<main className="relative col-span-3 bg-accent md:rounded-r-3xl">
+					<div className="absolute inset-0 overflow-y-auto px-10 py-12">
+						<Outlet />
+					</div>
 				</main>
 			</div>
 		</div>

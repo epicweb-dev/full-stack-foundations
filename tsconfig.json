@@ -93,6 +93,24 @@
     },
     {
       "path": "exercises/04.mutations/05.solution.intent"
+    },
+    {
+      "path": "exercises/05.scripting/01.problem.scripts"
+    },
+    {
+      "path": "exercises/05.scripting/01.solution.scripts"
+    },
+    {
+      "path": "exercises/05.scripting/02.problem.scroll-restoration"
+    },
+    {
+      "path": "exercises/05.scripting/02.solution.scroll-restoration"
+    },
+    {
+      "path": "exercises/05.scripting/03.problem.custom-scripts"
+    },
+    {
+      "path": "exercises/05.scripting/03.solution.custom-scripts"
     }
   ]
 }
