@@ -111,6 +111,18 @@
     },
     {
       "path": "exercises/05.scripting/03.solution.custom-scripts"
+    },
+    {
+      "path": "exercises/05.scripting/04.problem.prefetching"
+    },
+    {
+      "path": "exercises/05.scripting/04.solution.prefetching"
+    },
+    {
+      "path": "exercises/05.scripting/05.problem.pending"
+    },
+    {
+      "path": "exercises/05.scripting/05.solution.pending"
     }
   ]
 }

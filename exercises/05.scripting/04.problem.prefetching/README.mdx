@@ -1,0 +1,27 @@
+# Prefetching
+
+👨‍💼 Now that we have client-side JavaScript, we can start doing cool things to
+improve the user experience. Thanks to the way Remix has us structure our code,
+Remix knows exactly the code and data needed for every route just by looking at
+the URL. So when we render a link like this:
+
+```html
+<a href="/users/kody/notes">Kody's Notes</a>
+```
+
+Remix knows the code and data needed to render that page just by looking at the
+URL. So when it appears that the user is going to click on that link, Remix can
+start loading the code and data for that page in the background. This is called
+**prefetching**. When the user clicks on the link, the page will be rendered
+instantly because the code and data is already loaded!
+
+Checkout
+[📜 the Link prefetch docs](https://remix.run/docs/en/main/components/link#prefetch)
+for more info on how to take advantage of this. We don't want to add this as a
+default to all links because that would probably be overkill, but we definitely
+want it on the links on the user profile page. Could you do that please?
+
+Let's also add it to each of the note links in the list of notes.
+
+To test it out, open up the network tab and/or the elements, and see what
+happens when you hover over the link you add these props to.
