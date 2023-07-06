@@ -22,13 +22,13 @@ const problemApps = allApps.filter(isProblemApp)
 console.log(
 	'🎭 installing playwright for testing... This may require sudo (or admin) privileges and may ask for your password.',
 )
-const playwrightResult = await $({
-	all: true,
-})`npx playwright install chromium --with-deps`
-if (playwrightResult.exitCode === 0) {
+try {
+	await $({
+		all: true,
+	})`npx playwright install chromium --with-deps`
 	console.log('✅ playwright installed')
-} else {
-	console.log(playwrightResult.all)
+} catch (playwrightErrorResult) {
+	console.log(playwrightErrorResult.all)
 	throw new Error('❌  playwright install failed')
 }
 
