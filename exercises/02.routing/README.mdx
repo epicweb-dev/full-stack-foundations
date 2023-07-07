@@ -100,52 +100,95 @@ use it, open your terminal in a Remix project, and run:
 npx remix routes
 ```
 
-<details>
-  <summary>Click here's for an example of the output:</summary>
+Here's an example of the output in a bigger application:
 
 ```tsx
 <Routes>
 	<Route file="root.tsx">
-		<Route path="admin/users/list" file="routes/admin.users.list.tsx" />
-		<Route path="forgot-password" file="routes/forgot-password.tsx" />
-		<Route path="images/:fileId" file="routes/images_+/$fileId.tsx" />
-		<Route index file="routes/index.tsx" />
-		<Route path="login" file="routes/login.tsx" />
-		<Route path="logout" file="routes/logout.tsx" />
+		<Route
+			path="forgot-password"
+			file="routes/_auth+/forgot-password/index.tsx"
+		/>
+		<Route
+			path="forgot-password/verify"
+			file="routes/_auth+/forgot-password_.verify.tsx"
+		/>
+		<Route path="login" file="routes/_auth+/login.tsx" />
+		<Route path="logout" file="routes/_auth+/logout.tsx" />
+		<Route path="onboarding" file="routes/_auth+/onboarding.tsx" />
+		<Route path="reset-password" file="routes/_auth+/reset-password.tsx" />
+		<Route path="signup" file="routes/_auth+/signup/index.tsx" />
+		<Route path="signup/verify" file="routes/_auth+/signup_.verify.tsx" />
+		<Route path="about" file="routes/_marketing+/about.tsx" />
+		<Route index file="routes/_marketing+/index.tsx" />
+		<Route path="privacy" file="routes/_marketing+/privacy.tsx" />
+		<Route path="support" file="routes/_marketing+/support.tsx" />
+		<Route path="tos" file="routes/_marketing+/tos.tsx" />
+		<Route path="admin/cache" file="routes/admin+/cache.tsx" />
+		<Route
+			path="admin/cache/lru/:cacheKey"
+			file="routes/admin+/cache_.lru.$cacheKey.ts"
+		/>
+		<Route path="admin/cache/sqlite" file="routes/admin+/cache_.sqlite.tsx">
+			<Route path=":cacheKey" file="routes/admin+/cache_.sqlite.$cacheKey.ts" />
+		</Route>
 		<Route path="me" file="routes/me.tsx" />
-		<Route path="onboarding" file="routes/onboarding.tsx" />
-		<Route path="reset-password" file="routes/reset-password.tsx" />
-		<Route
-			path="resources/create-host"
-			file="routes/resources+/create-host.tsx"
-		/>
-		<Route
-			path="resources/create-renter"
-			file="routes/resources+/create-renter.tsx"
-		/>
 		<Route
 			path="resources/delete-image"
 			file="routes/resources+/delete-image.tsx"
+		/>
+		<Route
+			path="resources/delete-note"
+			file="routes/resources+/delete-note.tsx"
+		/>
+		<Route
+			path="resources/file/:fileId"
+			file="routes/resources+/file.$fileId.tsx"
+		/>
+		<Route
+			path="resources/healthcheck"
+			file="routes/resources+/healthcheck.tsx"
 		/>
 		<Route
 			path="resources/image-upload"
 			file="routes/resources+/image-upload.tsx"
 		/>
 		<Route path="resources/login" file="routes/resources+/login.tsx" />
+		<Route
+			path="resources/note-editor"
+			file="routes/resources+/note-editor.tsx"
+		/>
+		<Route path="resources/theme" file="routes/resources+/theme/index.tsx" />
+		<Route path="resources/verify" file="routes/resources+/verify.tsx" />
 		<Route path="settings/profile" file="routes/settings+/profile.tsx">
 			<Route path="photo" file="routes/settings+/profile.photo.tsx" />
+			<Route path="two-factor" file="routes/settings+/profile.two-factor.tsx">
+				<Route index file="routes/settings+/profile.two-factor.index.tsx" />
+				<Route
+					path="verify"
+					file="routes/settings+/profile.two-factor.verify.tsx"
+				/>
+			</Route>
 		</Route>
-		<Route path="signup" file="routes/signup.tsx" />
-		<Route path="users/:username" file="routes/users_+/$username.tsx">
-			<Route path="host" file="routes/users_+/$username.host.tsx" />
-			<Route path="renter" file="routes/users_+/$username.renter.tsx" />
-			<Route index file="routes/users_+/$username.index.tsx" />
+		<Route path="users/:username" file="routes/users+/$username.tsx" />
+		<Route
+			path="users/:username/notes"
+			file="routes/users+/$username_+/notes.tsx"
+		>
+			<Route
+				path=":noteId"
+				file="routes/users+/$username_+/notes.$noteId.tsx"
+			/>
+			<Route
+				path=":noteId/edit"
+				file="routes/users+/$username_+/notes.$noteId_.edit.tsx"
+			/>
+			<Route index file="routes/users+/$username_+/notes.index.tsx" />
+			<Route path="new" file="routes/users+/$username_+/notes.new.tsx" />
 		</Route>
 	</Route>
 </Routes>
 ```
-
-</details>
 
 Because sometimes you need to reach outside the conventions (for example the
 file system can be a bit limited on the types of characters we can have in our
@@ -180,6 +223,12 @@ improves upon the browser's handling of forms. We'll dive deeper into that in a
 future exercise.
 
 ### The Route Convention
+
+<callout-danger>
+	It's important for you to know that we're not using the built-in Remix file
+	routing convention. If you go into this thinking we are then you will be
+	surprised. **Read this section.**
+</callout-danger>
 
 Remix originally shipped with a route convention, but Remix v2 will be shipping
 a new one that enables better colocation of related files (which helps with

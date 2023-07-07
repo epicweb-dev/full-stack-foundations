@@ -8,10 +8,10 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import { cssBundleHref } from '@remix-run/css-bundle'
+import os from 'node:os'
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
-import os from 'node:os'
 
 export const links: LinksFunction = () => {
 	return [

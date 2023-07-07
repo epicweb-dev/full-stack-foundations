@@ -34,31 +34,34 @@ export default function App() {
 			<head>
 				<Links />
 			</head>
-			<body className="flex h-full flex-col justify-between bg-background text-foreground">
-				<header className="container mx-auto py-6">
-					<nav className="flex justify-between">
+			<body className="bg-background text-foreground">
+				<div className="flex h-screen flex-col justify-between">
+					<header className="container mx-auto py-6">
+						<nav className="flex justify-between">
+							<Link to="/">
+								<div className="font-light">epic</div>
+								<div className="font-bold">notes</div>
+							</Link>
+							<Link className="underline" to="users/kody">
+								Kody
+							</Link>
+						</nav>
+					</header>
+
+					<div className="flex-1">
+						<Outlet />
+					</div>
+
+					<div className="container mx-auto flex justify-between">
 						<Link to="/">
 							<div className="font-light">epic</div>
 							<div className="font-bold">notes</div>
 						</Link>
-						<Link className="underline" to="users/kody">
-							Kody
-						</Link>
-					</nav>
-				</header>
-
-				<div className="flex-1">
-					<Outlet />
+						<p>Built with ♥️ by {data.username}</p>
+					</div>
+					<div className="h-5" />
 				</div>
-
-				<div className="container mx-auto flex justify-between">
-					<Link to="/">
-						<div className="font-light">epic</div>
-						<div className="font-bold">notes</div>
-					</Link>
-					<p>Built with ♥️ by {data.username}</p>
-				</div>
-				<div className="h-5" />
+				{/* 🐨 Add ScrollRestoration from '@remix-run/react' here */}
 				<Scripts />
 				<KCDShopIFrameSync />
 				<LiveReload />
