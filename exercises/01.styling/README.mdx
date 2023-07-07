@@ -57,40 +57,6 @@ directory of a Remix app is a route which can define a set of `link` elements.
 Also, you should know that the `app/root.tsx` file is the root route of your
 entire application and will be rendered on every page.
 
-Here's an example of what that convention looks like:
-
-```tsx filename=app/root.tsx
-// ...
-import { type LinksFunction } from '@remix-run/node'
-
-export const links: LinksFunction = () => {
-	return [
-		{
-			rel: 'stylesheet',
-			href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css',
-		},
-		{
-			rel: 'stylesheet',
-			href: 'https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css',
-		},
-	]
-}
-
-//...
-```
-
-The links configured above will be rendered in the `<head>` of the HTML document
-that is sent to the browser. Again, you can define any links you like, but we're
-focusing on `stylesheet` links.
-
-It's important for you to know that Remix puts all the responsibility of what
-appears in the document on you. The `app/root.tsx` component you export is
-responsible for everything that appears between `<html>` and `</html>` and that
-includes the `<head>` element which contains the links that routes define. So
-you need to render the
-[`<Links />`](https://remix.run/docs/en/1.14.3/components/links) element in that
-component.
-
 Additionally, Remix has a special way to colocate your CSS stylesheets within
 your application allowing you to `import` a `.css` file. We'll explain these
 methods further in the exercise steps, but here are some of the built-in

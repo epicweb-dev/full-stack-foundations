@@ -9,9 +9,57 @@ get that on the page.
 
 To do this, we'll need to add a `<link>` to <InlineFile file="app/root.tsx" />.
 
+In Remix, you add links to the page by exporting a `links` function:
+
+```tsx filename=app/root.tsx
+// ...
+import { type LinksFunction } from '@remix-run/node'
+
+export const links: LinksFunction = () => {
+	return [
+		{
+			rel: 'stylesheet',
+			// all files in the public directory are served at the root of the site
+			href: '/my-stylesheet.css',
+		},
+	]
+}
+
+//...
+```
+
+It's important for you to know that Remix puts all the responsibility of what
+appears in the document on you. The `app/root.tsx` component you export is
+responsible for everything that appears between `<html>` and `</html>` and that
+includes the `<head>` element which contains the links that routes define. So
+you need to render the
+[`<Links />`](https://remix.run/docs/en/main/components/links) element in that
+component:
+
+```tsx filename=app/root.tsx lines=10
+// ...
+import { Links } from '@remix-run/react'
+
+// ...
+
+export default function App() {
+	return (
+		<html>
+			<head>
+				<Links />
+			</head>
+			{/* ... */}
+		</html>
+	)
+}
+```
+
 > 🦉 Remember, check the `Files` section at the bottom of these instructions for
 > links that will open your editor to the right file you need to alter. My other
 > emoji friends will be waiting there for you to guide you through this task.
 
 🦉 Tip: Check the network tab in the app on the home page. You'll know you got
 it right when you see the `favicon.svg` file loaded.
+
+- [📜 `links` export](https://remix.run/docs/en/main/route/links)
+- [📜 `<Links />`](https://remix.run/docs/en/main/components/links)

@@ -9,16 +9,52 @@ Support for this tool is built-in to Remix. As soon as Remix finds configuration
 for PostCSS, it will automatically compile the CSS files you import for you as
 part of the build process.
 
-🧝‍♂️ I've already added configuration for PostCSS to the project in
-the <InlineFile file="postcss.config.js" /> file. You'll notice that we also
-have a <InlineFile file="tailwind.config.ts" /> file. This is where we configure
-[Tailwind](https://tailwindcss.com), a CSS framework that we'll be using to
-style our app. Our PostCSS configuration includes the Tailwind plugin so, we can
-use the Tailwind directives in our css files to get the Tailwind stylesheet on
-the page. 📜 You can read more about configuring Tailwind with PostCSS in
+🐨 First, <InlineFile file="postcss.config.js">Click here to create the `postcss.config.js` file</InlineFile>
+
+And stick this config in there:
+
+```js filename=postcss.config.js
+export default {
+	plugins: {
+		'tailwindcss/nesting': {},
+		tailwindcss: {},
+		autoprefixer: {},
+	},
+}
+```
+
+🐨 Next, <InlineFile file="tailwind.config.ts">Click here to create the `tailwind.config.ts` file</InlineFile>
+
+And stick this config in there:
+
+```ts filename=tailwind.config.ts
+import { type Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme.js'
+
+export default {
+	content: ['./app/**/*.{ts,tsx,jsx,js}'],
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: [
+					'Nunito Sans',
+					'Nunito Sans Fallback',
+					...defaultTheme.fontFamily.sans,
+				],
+			},
+		},
+	},
+} satisfies Config
+```
+
+This is where we configure [Tailwind](https://tailwindcss.com), a CSS framework
+that we'll be using to style our app. Our PostCSS configuration includes the
+Tailwind plugin so, we can use the Tailwind directives in our css files to get
+the Tailwind stylesheet on the page. 📜 You can read more about configuring
+Tailwind with PostCSS in
 [the Tailwind docs](https://tailwindcss.com/docs/using-with-preprocessors).
 
-👨‍💼 Now all that's left is for you to create
+🐨 Now all that's left is for you to create
 a <InlineFile file="app/styles/tailwind.css" /> file and put in the Tailwind
 directives:
 
