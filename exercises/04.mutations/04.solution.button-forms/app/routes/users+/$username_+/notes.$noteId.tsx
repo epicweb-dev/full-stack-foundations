@@ -28,12 +28,12 @@ export default function NoteRoute() {
 	const data = useLoaderData<typeof loader>()
 
 	return (
-		<div className="flex h-full flex-col overflow-y-auto overflow-x-hidden">
-			<div className="flex-grow">
-				<h2 className="mb-2 text-h2 lg:mb-6">{data.note.title}</h2>
+		<div className="absolute inset-0 flex flex-col px-10">
+			<h2 className="mb-2 pt-12 text-h2 lg:mb-6">{data.note.title}</h2>
+			<div className="overflow-y-auto pb-12">
 				<p className="text-sm md:text-lg">{data.note.content}</p>
 			</div>
-			<div className="flex justify-end gap-4">
+			<div className="floating-toolbar justify-end">
 				<Form method="post">
 					<Button type="submit" variant="destructive">
 						Delete

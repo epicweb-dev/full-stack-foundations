@@ -63,5 +63,12 @@
   },
   "engines": {
     "node": "18"
-  }
+  },
+  "eslintIgnore": [
+    "/node_modules",
+    "/build",
+    "/public/build",
+    "/playwright-report",
+    "/server-build"
+  ]
 }

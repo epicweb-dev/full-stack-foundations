@@ -32,4 +32,5 @@ export default function NoteEdit() {
 	// 💯 as extra credit, you can add a reset button (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
 	// 💯 as extra credit, you can use the Label, Input, Textarea, and Button components from '~/components/ui/*.tsx'
 	// 💯 as extra credit, style it nicely with some tailwind classes to give it some space.
+	// 💯 if you *really* have extra time, you can wrap the submit and reset buttons in a div with "floating-toolbar" and make that look nice.
 }

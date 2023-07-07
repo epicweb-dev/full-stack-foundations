@@ -18,11 +18,11 @@ export default function NoteRoute() {
 	const params = useParams()
 	// 🐨 get the data from the loader using useLoaderData
 	return (
-		<div className="flex h-full flex-col overflow-y-auto overflow-x-hidden">
-			<div className="flex-grow">
-				<h2 className="mb-2 text-h2 lg:mb-6">
-					{params.noteId} (🐨 replace this with the title)
-				</h2>
+		<div className="absolute inset-0 flex flex-col px-10">
+			<h2 className="mb-2 pt-12 text-h2 lg:mb-6">
+				{params.noteId} (🐨 replace this with the title)
+			</h2>
+			<div className="overflow-y-auto pb-12">
 				<p className="text-sm md:text-lg">🐨 Note content goes here...</p>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ declare global {
 }
 
 for (const env of requiredServerEnvs) {
-	if (process.env[env]) {
+	if (!process.env[env]) {
 		throw new Error(`${env} is required`)
 	}
 }

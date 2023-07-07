@@ -1,11 +1,11 @@
 import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
+import { cssBundleHref } from '@remix-run/css-bundle'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
-import { cssBundleHref } from '@remix-run/css-bundle'
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
-import tailwindStylesheetUrl from './styles/tailwind.css'
 import './styles/global.css'
+import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {
 	return [

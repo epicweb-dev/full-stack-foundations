@@ -54,7 +54,10 @@ export default function NoteEdit() {
 		navigation.formAction === formAction
 
 	return (
-		<Form method="post" className="flex flex-col gap-8">
+		<Form
+			method="post"
+			className="flex h-full flex-col gap-y-4 overflow-x-hidden px-10 pb-28 pt-12"
+		>
 			<div className="flex flex-col gap-4">
 				<div>
 					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
@@ -67,8 +70,8 @@ export default function NoteEdit() {
 					<Textarea name="content" defaultValue={data.note.content} />
 				</div>
 			</div>
-			<div className="flex justify-end gap-4">
-				<Button variant="secondary" type="reset">
+			<div className="floating-toolbar justify-end">
+				<Button variant="destructive" type="reset">
 					Reset
 				</Button>
 				<StatusButton

@@ -4,10 +4,10 @@ import { Links, LiveReload, Scripts } from '@remix-run/react'
 // 🐨 Import the cssBundleHref here
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
-import tailwindStylesheetUrl from './styles/tailwind.css'
 // 🧝‍♂️ I imported the CSS file for you. When you have it working, it'll be obvious
 // ... I promise... 😈
 import './styles/global.css'
+import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {
 	return [

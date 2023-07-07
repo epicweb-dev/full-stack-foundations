@@ -43,7 +43,10 @@ export default function NoteEdit() {
 	// 🐨 determine whether this form is submitting
 
 	return (
-		<Form method="post" className="flex flex-col gap-8">
+		<Form
+			method="post"
+			className="flex h-full flex-col gap-y-4 overflow-x-hidden px-10 pb-28 pt-12"
+		>
 			<div className="flex flex-col gap-4">
 				<div>
 					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
@@ -57,7 +60,7 @@ export default function NoteEdit() {
 				</div>
 			</div>
 			<div className="flex justify-end gap-4">
-				<Button variant="secondary" type="reset">
+				<Button variant="destructive" type="reset">
 					Reset
 				</Button>
 				{/* 🐨 disable this button when the form is submitting */}
