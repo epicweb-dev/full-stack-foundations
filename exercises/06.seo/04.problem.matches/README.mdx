@@ -1,0 +1,59 @@
+# Parent Data
+
+👨‍💼 Let's go deeper. When the user shares their notes page (like `/kody/notes`),
+it should show something like this:
+
+- **Title**: Kody's Notes | Epic Notes
+- **Description**: Checkout Kody's 11 notes on Epic Notes
+
+For this, we'll need to add a meta export to
+the <InlineFile file="app/routes/users+/$username_+/notes.index.tsx" /> route.
+
+And then let's say we've got a note like this:
+
+```json
+{
+	"title": "Not bears",
+	"content": "Although you may have heard people call them koala 'bears', these awesome animals aren’t bears at all – they are in fact marsupials. A group of mammals, most marsupials have pouches where their newborns develop."
+}
+```
+
+When we're on that not's page, it should have:
+
+- **Title**: Not bears | Kody's Notes | Epic Notes
+- **Description**: Although you may have heard people call them koala "bears", these awesome animals aren’t bears at...
+
+For this, we'll need to add a meta export to
+the <InlineFile file="app/routes/users+/$username_+/notes.$noteId.tsx" /> route.
+
+The challenge here is those routes don't load enough data for that. The index
+route doesn't load any data at all and the note route only loads the note, not
+the owner information.
+
+We could definitely add more data in the loader, but even better would be to
+access the data that's already there. Here's how you do that:
+
+```tsx filename=app/routes/projects+/$pid.$tid.tsx
+// borrowed and modified from the remix docs
+import { type loader as projectDetailsLoader } from './$pid'
+
+export async function loader({ params }: LoaderArgs) {
+	return json({ task: await getTask(params.tid) })
+}
+
+export const meta: V2_MetaFunction<
+	typeof loader,
+	{ 'routes/project/$pid': typeof projectDetailsLoader }
+> = ({ data, matches }) => {
+	const project = matches.find(
+		match => match.id === 'routes/project/$pid',
+	).project
+	const task = data.task
+	return [{ title: `${project.name}: ${task.name}` }]
+}
+```
+
+Let's add some great meta exports for these routes and access our parent's data
+to do it.
+
+- [📜 `meta` export](https://remix.run/docs/en/main/route/meta-v2)

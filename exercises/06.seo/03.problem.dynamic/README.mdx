@@ -1,0 +1,27 @@
+# Dynamic meta export
+
+👨‍💼 For our user profile page, we want our users to be excited to share their
+profile on social media and have their profiles show up nicely in search
+results. So their name should appear in the title and description.
+
+We also want their notes page to show how many notes they have. And the
+individual notes pages should show the note title in the title and the first
+part of the note in the description. You know. Stuff like that. Let's make these
+pages awesome.
+
+Here's an example of how you access data from a route in the meta export:
+
+```tsx
+// borrowed and modified from the remix docs
+export async function loader({ params }: DataFunctionArgs) {
+	return json({
+		task: await getTask(params.projectId, params.taskId),
+	})
+}
+
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
+	return [{ title: data.task.name }]
+}
+```
+
+- [📜 `meta` export](https://remix.run/docs/en/main/route/meta-v2)

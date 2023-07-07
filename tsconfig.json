@@ -123,6 +123,30 @@
     },
     {
       "path": "exercises/05.scripting/05.solution.pending"
+    },
+    {
+      "path": "exercises/06.seo/01.problem.static"
+    },
+    {
+      "path": "exercises/06.seo/01.solution.static"
+    },
+    {
+      "path": "exercises/06.seo/02.problem.nested"
+    },
+    {
+      "path": "exercises/06.seo/02.solution.nested"
+    },
+    {
+      "path": "exercises/06.seo/03.problem.dynamic"
+    },
+    {
+      "path": "exercises/06.seo/03.solution.dynamic"
+    },
+    {
+      "path": "exercises/06.seo/04.problem.matches"
+    },
+    {
+      "path": "exercises/06.seo/04.solution.matches"
     }
   ]
 }
