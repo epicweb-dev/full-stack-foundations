@@ -62,7 +62,7 @@ export default function NoteEdit() {
 				<div>
 					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Title</Label>
-					<Input name="title" defaultValue={data.note.title} />
+					<Input name="title" defaultValue={data.note.title} autoFocus />
 				</div>
 				<div>
 					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}

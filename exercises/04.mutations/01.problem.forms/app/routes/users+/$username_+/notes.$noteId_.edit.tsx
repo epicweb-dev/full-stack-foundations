@@ -29,6 +29,7 @@ export default function NoteEdit() {
 	// 🐨 render an <label> with the text "Content" and an <textarea> with the name "content" and defaultValue of data.note.content
 	// 🐨 render a button with the text "Submit"
 
+	// 💯 as extra credit, you can autoFocus the title input
 	// 💯 as extra credit, you can add a reset button (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
 	// 💯 as extra credit, you can use the Label, Input, Textarea, and Button components from '~/components/ui/*.tsx'
 	// 💯 as extra credit, style it nicely with some tailwind classes to give it some space.
