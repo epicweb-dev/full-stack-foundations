@@ -1,0 +1,25 @@
+# Error Abstraction
+
+👨‍💼 To keep things consistent, Kellie (🧝‍♂️) has made a handy abstraction for error
+boundaries. You can find it in <InlineFile file="app/components/error-boundary.tsx" />.
+Here's how you use it:
+
+```tsx
+export function ErrorBoundary() {
+	return (
+		<GeneralErrorBoundary
+			statusHandlers={{
+				403: ({ params }) => (
+					<p>You're not authorized to look at {params.sandwichId}</p>
+				),
+			}}
+		/>
+	)
+}
+```
+
+You can specify any status code you want, and the error boundary will render
+whatever you return in your callback.
+
+We'd like you to update the `ErrorBoundary` you've got already to use this,
+and now we can add it to several of the `/users/:userId/notes` routes as well.

@@ -153,6 +153,24 @@
     },
     {
       "path": "exercises/07.error-handling/01.solution.route-errors"
+    },
+    {
+      "path": "exercises/07.error-handling/02.problem.thrown-response"
+    },
+    {
+      "path": "exercises/07.error-handling/02.solution.thrown-response"
+    },
+    {
+      "path": "exercises/07.error-handling/03.problem.error-abstraction"
+    },
+    {
+      "path": "exercises/07.error-handling/03.solution.error-abstraction"
+    },
+    {
+      "path": "exercises/07.error-handling/04.problem.root-boundary"
+    },
+    {
+      "path": "exercises/07.error-handling/04.solution.root-boundary"
     }
   ]
 }

@@ -1,0 +1,21 @@
+# Error Abstraction
+
+👨‍💼 Great! Now we've got really nice consistency with our errors!
+
+<callout-success class="important">
+	Also, thanks to nested routing, our errors for the notes are contextual!
+</callout-success>
+
+Go ahead and add this to the
+loader in <InlineFile file="app/routes/users+/$username_+/notes.$noteId.tsx" />:
+
+```tsx
+if (Math.random() > 0.5) {
+	throw new Error('Oh no!')
+}
+```
+
+You'll notice that even though the note loader itself threw an error, the rest
+of the app is completely functional. Very good UX!
+
+But we just realized one major issue we need to deal with next...

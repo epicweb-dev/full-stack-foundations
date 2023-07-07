@@ -1,0 +1,51 @@
+# Root ErrorBoundary
+
+👨‍💼 We don't currently have an `ErrorBoundary` component for our root route. This
+is a problem for two reasons:
+
+1. If we add more routes and they don't have an `ErrorBoundary`, those errors have
+   nowhere to bubble up to.
+2. If there's an error in our root route, we don't have a way to catch it.
+
+So we need you to export an `ErrorBoundary` from the root route. But it's not
+quite that simple like the other routes... You'll see in a bit.
+
+First, add a simple `ErrorBoundary` to the root route. Then uncomment one of
+Kody's errors in the component or the loader. You'll notice that when you
+refresh the page, none of the styles appear. If you look at the source of the
+HTML, you'll see something like this:
+
+```html
+<!DOCTYPE html>
+<div
+	class="container mx-auto flex h-full w-full items-center justify-center rounded-xl bg-destructive p-20 text-h2 text-destructive-foreground"
+>
+	<p>🐨 root loader error</p>
+</div>
+```
+
+What happened to our... well... everything? Why is it just the contents of our
+error boundary?
+
+Well, remember that our root component is responsible fore rendering everything
+between the `<html>` and `</html>`. So if there's an error rendering that, then
+we won't have any of that stuff in our HTML. All we get is what's rendered in
+the `ErrorBoundary`.
+
+So we're going to need to make sure our error boundary renders the basic
+"Document" stuff we need for our HTML document.
+
+We'll do this by turning lots of what's in our `App` component into a `Document`
+component that can be used by both the `App` and the `ErrorBoundary`.
+
+So when you're all done, it should look something like this:
+
+```tsx filename=app/root.tsx
+export default function App() {
+	return <Document>{/* app stuff */}</Document>
+}
+
+export function ErrorBoundary() {
+	return <Document>{/* error stuff */}</Document>
+}
+```

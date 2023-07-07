@@ -1,0 +1,144 @@
+# Handle Thrown Responses
+
+🦉 As mentioned earlier, Remix allows you to `throw new Response` from you
+loaders and actions so you can control the status code and other information
+sent in the response. For example:
+
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx lines=14,17,22
+import {
+	json,
+	type DataFunctionArgs,
+	type V2_MetaFunction,
+} from '@remix-run/node'
+import { invariantResponse } from '~/utils/misc.ts'
+import { getUser } from '~/utils/auth.server'
+import { getSandwich } from '~/utils/sandwiches.server'
+
+export async function loader({ request, params }: DataFunctionArgs) {
+	const user = await getUser(request)
+	if (!user) {
+		// this response will be handled by our error boundary
+		throw new Response('Unauthorized', { status: 401 })
+	}
+	// this invariant with throw an error which our error boundary will handle as well
+	invariantResponse(params.sandwichId, 'sandwichId is required')
+
+	const sandwich = await getSandwich(params.sandwichId)
+	if (!sandwich) {
+		// this response will be handled by our error boundary
+		throw new Response('Not Found', { status: 404 })
+	}
+	return json({ sandwich })
+}
+```
+
+When you throw a `Response` from a loader or action, Remix will catch it and
+render your `ErrorBoundary` component instead of the regular route component. In
+that case, the `error` you get from `useRouteError` will be the response object
+that was thrown.
+
+Because it's impossible to know what error was thrown, it can be difficult to
+display the correct error message to the user. Which is why Remix also exports a
+`isRouteErrorResponse` utility which checks whether the error is a Response. If
+it is, then you can access the `.status` property to know the status code and
+render the right message based on that. Your response can also have a body if
+you want the error message to be determined by the server.
+
+Here's an example of handling a response error:
+
+```tsx
+export function ErrorBoundary() {
+	const error = useRouteError()
+	if (isRouteErrorResponse(error)) {
+		if (error.status === 404) {
+			return <p>Not Found</p>
+		}
+		if (error.status === 401) {
+			return <p>Unauthorized</p>
+		}
+	}
+	return <p>Something went wrong</p>
+}
+```
+
+This mechanism of throwing responses is quite powerful because it allows us to
+build really nice abstractions. It's exactly what we're doing with the
+`invariantResponse` utility. As another example, if we didn't like having to do
+that `user` check everywhere, we could create an abstraction that does it for
+us:
+
+```tsx
+export async function requireUser(request: Request) {
+	const user = await getUser(request)
+	if (!user) {
+		throw new Response('Unauthorized', { status: 401 })
+	}
+	return user
+}
+```
+
+And now we know that if we get the user from `requireUser` they are in fact
+logged in! On top of that, you can throw more than just 400s, you could even
+throw a redirect!
+
+```tsx
+export async function requireUser(request: Request) {
+	const user = await getUser(request)
+	if (!user) {
+		throw new Response(null, { status: 302, headers: { Location: '/login' } })
+	}
+	return user
+}
+```
+
+Remix has a handy utility for redirects as well:
+
+```tsx
+import { redirect } from '@remix-run/node'
+
+export async function requireUser(request: Request) {
+	const user = await getUser(request)
+	if (!user) {
+		throw redirect('/login')
+	}
+	return user
+}
+```
+
+This is a great way to make nice utilities that make the regular application
+code much easier to write and read:
+
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=7,12-16
+import {
+	json,
+	type DataFunctionArgs,
+	type V2_MetaFunction,
+} from '@remix-run/node'
+import { invariantResponse } from '~/utils/misc.ts'
+import { getUser } from '~/utils/auth.server'
+import { requireUser } from '~/utils/auth.server'
+import { getSandwich } from '~/utils/sandwiches.server'
+
+export async function loader({ request, params }: DataFunctionArgs) {
+	const user = await getUser(request)
+	if (!user) {
+		// this response will be handled by our error boundary
+		throw new Response('Unauthorized', { status: 401 })
+	}
+	const user = await requireUser(request)
+	// this invariant with throw an error which our error boundary will handle as well
+	invariantResponse(params.sandwichId, 'sandwichId is required')
+
+	const sandwich = await getSandwich(params.sandwichId)
+	if (!sandwich) {
+		// this response will be handled by our error boundary
+		throw new Response('Not Found', { status: 404 })
+	}
+	return json({ sandwich })
+}
+```
+
+👨‍💼 Great, with all that knowledge, now I'd like you to upgrade our error
+boundary in <InlineFile file="app/routes/users_+/$username.tsx" /> to handle
+a 404. Once you're done, you should be able to go to <LinkToApp to="/users/not_kody" />
+and see a nice error message there.

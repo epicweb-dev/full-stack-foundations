@@ -1,16 +1,34 @@
 # Handle Route Errors
 
 👨‍💼 If you open <InlineFile file="app/routes/users+/$username.tsx" /> and
-comment in one of the errors 🐨 added for you,
+comment in one of the errors Kody 🐨 added for you,
 then try loading <LinkToApp to="/settings/profile" />, you'll notice the error
 looks pretty bad. We definitely want to customize that!
 
-Could you please add an `ErrorBoundary` component to both <InlineFile file="app/routes/settings+/profile.tsx" />
-and <InlineFile file="app/routes/users_+/$username.tsx" /> so we can handle errors that
-happen in our app?
+Could you please add an `ErrorBoundary` component
+to <InlineFile file="app/routes/users_+/$username.tsx" /> so we can handle
+errors that happen there in our app?
 
 Please make sure to log the error in the console with `console.error` so we can
 see what's going on in our debugging.
 
-Note: 🐨 Kody added a couple commented out errors for you to test things out in
-different places throughout <InlineFile file="app/routes/settings+/profile.tsx" />.
+As a reminder, here's an example of what an error boundary looks like:
+
+```tsx filename=app/routes/errors-oh-no.tsx
+import { useRouteError } from '@remix-run/react'
+
+export function ErrorBoundary() {
+	const error = useRouteError()
+	console.error(error)
+
+	return (
+		<div>
+			<h1>Oh no!</h1>
+			<p>Something bad happened! Sorry!</p>
+		</div>
+	)
+}
+```
+
+- [📜 `ErrorBoundary` export](https://remix.run/docs/en/main/route/error-boundary-v2)
+- [📜 `useRouteError()` hook](https://remix.run/docs/en/main/hooks/use-route-error)
