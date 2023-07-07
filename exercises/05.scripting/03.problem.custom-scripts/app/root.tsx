@@ -13,7 +13,6 @@ import {
 import os from 'node:os'
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
-import './styles/global.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {

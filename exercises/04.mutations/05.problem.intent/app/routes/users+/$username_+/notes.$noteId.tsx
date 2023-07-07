@@ -1,5 +1,6 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, Link, useLoaderData } from '@remix-run/react'
+import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
 import { Button } from '~/components/ui/button.tsx'
 import { db } from '~/utils/db.server.ts'
 
@@ -36,9 +37,11 @@ export default function NoteRoute() {
 		<div className="absolute inset-0 flex flex-col px-10">
 			<h2 className="mb-2 pt-12 text-h2 lg:mb-6">{data.note.title}</h2>
 			<div className="overflow-y-auto pb-12">
-				<p className="text-sm md:text-lg">{data.note.content}</p>
+				<p className="whitespace-break-spaces text-sm md:text-lg">
+					{data.note.content}
+				</p>
 			</div>
-			<div className="floating-toolbar justify-end">
+			<div className={floatingToolbarClassName}>
 				<Form method="post">
 					<Button
 						type="submit"

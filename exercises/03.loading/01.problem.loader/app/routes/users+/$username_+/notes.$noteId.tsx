@@ -23,7 +23,9 @@ export default function NoteRoute() {
 				{params.noteId} (🐨 replace this with the title)
 			</h2>
 			<div className="overflow-y-auto pb-12">
-				<p className="text-sm md:text-lg">🐨 Note content goes here...</p>
+				<p className="whitespace-break-spaces text-sm md:text-lg">
+					🐨 Note content goes here...
+				</p>
 			</div>
 		</div>
 	)

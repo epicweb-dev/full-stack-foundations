@@ -63,7 +63,7 @@ component can access the error it's handling via
 [the `useRouteError()` hook](https://remix.run/docs/en/main/hooks/use-route-error).
 
 ```tsx filename=app/routes/errors-oh-no.tsx
-import { useRouteError } from 'remix'
+import { useRouteError } from '@remix-run/react'
 
 export function ErrorBoundary() {
 	const error = useRouteError()
@@ -83,7 +83,7 @@ allows fairly fine-grained control over where errors appear in the UI and how
 they are displayed. It allows much of the application to still be functional if
 only a part of the nested layout is affected.
 
-Additionally, if a route module does not export an ErrorBoundary, then Remix
+Additionally, if a route module does not export an `ErrorBoundary`, then Remix
 will find its nearest ancestor that does and render that one in place of that
 ancestor. We call this "error bubbling".
 

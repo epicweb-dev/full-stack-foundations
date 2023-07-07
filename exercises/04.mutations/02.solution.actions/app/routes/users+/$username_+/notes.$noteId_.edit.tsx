@@ -1,5 +1,6 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
+import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
 import { Button } from '~/components/ui/button.tsx'
 import { Input } from '~/components/ui/input.tsx'
 import { Label } from '~/components/ui/label.tsx'
@@ -56,7 +57,7 @@ export default function NoteEdit() {
 					<Textarea name="content" defaultValue={data.note.content} />
 				</div>
 			</div>
-			<div className="floating-toolbar justify-end">
+			<div className={floatingToolbarClassName}>
 				<Button variant="destructive" type="reset">
 					Reset
 				</Button>

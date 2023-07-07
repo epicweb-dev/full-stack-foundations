@@ -147,6 +147,12 @@
     },
     {
       "path": "exercises/06.seo/04.solution.matches"
+    },
+    {
+      "path": "exercises/07.error-handling/01.problem.route-errors"
+    },
+    {
+      "path": "exercises/07.error-handling/01.solution.route-errors"
     }
   ]
 }
