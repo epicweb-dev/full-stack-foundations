@@ -1,0 +1,21 @@
+# Disable Default Validation
+
+👨‍💼 Now that we have nice looking error messages we manage ourselves, we want to
+disable the built-in browser errors because they go counter to our design
+aesthetic.
+
+But we don't want to disable them completely, just once our JavaScript has
+loaded to enhance the user experience. Until that time, the browser's built-in
+client-side validation is ok. So, we'll use a little trick to disable them only
+after our React app has hydrated:
+
+```tsx
+function useHydrated() {
+	const [hydrated, setHydrated] = useState(false)
+	useEffect(() => setHydrated(true), [])
+	return hydrated
+}
+```
+
+We effectively only need to assign the return value of that hook to the
+`noValidate` prop of our form and we're good to go.

@@ -1,0 +1,134 @@
+# Server Validation
+
+👨‍💼 Sadly, browser only validation is not enough. User's can easily change the
+DOM using the browser devtools or even POST to our server directly. You _always_
+must validate on the server side. And you'll also want to render the errors from
+the server.
+
+The `action` can do some validation, whatever validation it likes (even `async`
+validation), and if there are errors it can send them back in a JSON response.
+You get what the `action` returns using a hook called `useActionData` which is
+very similar to `useLoaderData` with the exception that it will return
+`undefined` until the `action` has been called. Here's an example of that:
+
+```tsx filename=app/routes/subscribe.tsx lines=2,4-9,15-36,44,46-47,54-60
+import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
+import { useActionData } from '@remix-run/react'
+
+type ActionErrors = {
+	formErrors: Array<string>
+	fieldErrors: {
+		email: Array<string>
+	}
+}
+
+export async function action({ request }: DataFunctionArgs) {
+	const formData = await request.formData()
+	const email = formData.get('email')
+
+	const errors: ActionErrors = {
+		formErrors: [],
+		fieldErrors: {
+			email: [],
+		},
+	}
+	if (email.length < 3 && !email.includes('@')) {
+		errors.fieldErrors.email.push('Invalid email')
+	}
+	const hasErrors =
+		errors.formErrors.length ||
+		Object.values(errors.fieldErrors).some(fieldErrors => fieldErrors.length)
+	if (hasErrors) {
+		return json(
+			{
+				status: 'error',
+				errors,
+				// 🦺 the as const is here to help with our TypeScript inference
+			} as const,
+			{ status: 400 },
+		)
+	}
+
+	// subscribe the user to the newsletter
+
+	return redirect('/success')
+}
+
+export default function Subscribe() {
+	const actionData = useActionData<typeof action>()
+
+	const fieldErrors =
+		actionData?.status === 'error' ? actionData.errors.fieldErrors : null
+
+	return (
+		<Form method="post">
+			<label>
+				Email <input required type="email" />
+			</label>
+			{fieldErrors?.email?.length ? (
+				<ul>
+					{fieldErrors.email.map(e => (
+						<li key={e}>{e}</li>
+					))}
+				</ul>
+			) : null}
+			<button type="submit">Subscribe</button>
+		</Form>
+	)
+}
+```
+
+The structure of the `action` response is up to you, but I recommend you use the
+structure I have laid out above as it handles multiple errors per field and
+form-wide errors with the `formErrors`.
+
+Keep in mind that because `useActionData` returns the `action` data, it could be
+undefined until the form has been submitted.
+
+To help you out a bit, you can even use this component if you'd like:
+
+```tsx
+function ErrorList({ errors }: { errors?: Array<string> | null }) {
+	return errors?.length ? (
+		<ul className="flex flex-col gap-1">
+			{errors.map((error, i) => (
+				<li key={i} className="text-foreground-danger text-[10px]">
+					{error}
+				</li>
+			))}
+		</ul>
+	) : null
+}
+```
+
+This will make it easy to just render a list of errors, and you can give it a
+little space too like this:
+
+```tsx
+<div className="min-h-[32px] px-4 pb-3 pt-1">
+	<ErrorList errors={fieldErrors?.email} />
+</div>
+```
+
+Doing things this way will reduce the amount of jumpiness in the UI when the
+errors load which is a nicer UX.
+
+<callout-info class="aside">
+	You could definitely put that `div` in the `ErrorList` component, but I prefer
+	to limit the amount of spacing styles that are external to the component
+	itself. Otherwise you'll find yourself needing to customize this in other
+	places.
+</callout-info>
+
+🐨 Please add some server-side validation to the `action` function and display
+any errors returned from that in the form.
+
+<callout-danger>
+	To test out the server validation, you'll need to temporarily disable the form
+	validation. This is easily done by adding a `noValidate` attribute on the
+	form. We'll improve this next.
+</callout-danger>
+
+Your emoji friends will guide you! Thanks!
+
+- [📜 `useActionData`](https://remix.run/docs/en/main/hooks/use-action-data)

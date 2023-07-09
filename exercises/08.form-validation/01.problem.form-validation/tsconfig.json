@@ -1,0 +1,31 @@
+{
+  "include": ["**/*.ts", "**/*.tsx"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "target": "ES2022",
+    "strict": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"],
+      "tests/*": ["./tests/*"]
+    },
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
+    // Referenced project must have setting "composite": true.
+    "composite": true,
+    "disableReferencedProjectLoad": true,
+    "disableSolutionSearching": true,
+    "disableSourceOfProjectReferenceRedirect": true
+  }
+}

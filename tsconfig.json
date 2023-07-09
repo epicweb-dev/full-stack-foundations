@@ -171,6 +171,24 @@
     },
     {
       "path": "exercises/07.error-handling/04.solution.root-boundary"
+    },
+    {
+      "path": "exercises/08.form-validation/01.problem.form-validation"
+    },
+    {
+      "path": "exercises/08.form-validation/01.solution.form-validation"
+    },
+    {
+      "path": "exercises/08.form-validation/02.problem.server-validation"
+    },
+    {
+      "path": "exercises/08.form-validation/02.solution.server-validation"
+    },
+    {
+      "path": "exercises/08.form-validation/03.problem.no-validate"
+    },
+    {
+      "path": "exercises/08.form-validation/03.solution.no-validate"
     }
   ]
 }
