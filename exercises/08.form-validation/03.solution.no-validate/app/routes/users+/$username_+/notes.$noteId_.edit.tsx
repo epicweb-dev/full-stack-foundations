@@ -6,6 +6,7 @@ import {
 	useLoaderData,
 	useNavigation,
 } from '@remix-run/react'
+import { useEffect, useState } from 'react'
 import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
 import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
 import { Button } from '~/components/ui/button.tsx'
