@@ -1,0 +1,23 @@
+# Field Labels
+
+👨‍💼 We need to update the accessibility of our note edit form. The current
+implementation is not accessible because the `<label>` and the `<input />` are
+not associated with each other. So it should be something like this:
+
+```tsx
+<div>
+	<label htmlFor="color">Favorite Color</label>
+	<input id="color" type="text" />
+</div>
+```
+
+Please find Kody in <InlineFile file="app/routes/users+/$username_+/notes.$noteId_.edit.tsx" />
+and make sure the label and input have an association via the `id` and `htmlFor`
+props.
+
+You can test out whether your changes fixed the problem by clicking on the label
+text inside the input. If the input is focused, then you've done it! If not,
+then there's still more work to do.
+
+- [📜 `for` attribute on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for)
+- [📜 `htmlFor` attribute in React](https://react.dev/reference/react-dom/components/common#common-props)

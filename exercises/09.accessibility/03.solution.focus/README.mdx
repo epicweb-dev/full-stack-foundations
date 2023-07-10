@@ -1,0 +1,14 @@
+# Focus Management
+
+👨‍💼 Great work! This is a much more pleasant form to work with. That code you
+wrote looks pretty nice and reusable.
+
+💯 Hmmm... If you have some extra time, try to move the `useEffect` hook into
+a reusable `useFocusInvalid` hook. I should be able to use it like this:
+
+```tsx
+useFocusInvalid(
+	formRef.current,
+	actionData?.status === 'error' ? actionData.errors : null,
+)
+```

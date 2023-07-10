@@ -28,6 +28,7 @@ module.exports = {
 			files: ['**/*.mdx'],
 			options: {
 				proseWrap: 'preserve',
+				htmlWhitespaceSensitivity: 'ignore',
 			},
 		},
 	],

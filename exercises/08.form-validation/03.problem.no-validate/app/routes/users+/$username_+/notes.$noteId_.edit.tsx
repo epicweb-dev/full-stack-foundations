@@ -114,6 +114,8 @@ export default function NoteEdit() {
 
 	const fieldErrors =
 		actionData?.status === 'error' ? actionData.errors.fieldErrors : null
+	const formErrors =
+		actionData?.status === 'error' ? actionData.errors.formErrors : null
 
 	// 🐨 here's a good place for the isHydrated variable you get from useHydrated
 
@@ -123,7 +125,7 @@ export default function NoteEdit() {
 			method="post"
 			className="flex h-full flex-col gap-y-4 overflow-x-hidden px-10 pb-28 pt-12"
 		>
-			<div className="flex flex-col gap-4">
+			<div className="flex flex-col gap-1">
 				<div>
 					{/* 🦉 NOTE: this is not an accessible label, we'll get to that in the accessibility exercises */}
 					<Label>Title</Label>
@@ -153,11 +155,7 @@ export default function NoteEdit() {
 					</div>
 				</div>
 			</div>
-			<ErrorList
-				errors={
-					actionData?.status === 'error' ? actionData.errors.formErrors : null
-				}
-			/>
+			<ErrorList errors={formErrors} />
 			<div className={floatingToolbarClassName}>
 				<Button variant="destructive" type="reset">
 					Reset

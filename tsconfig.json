@@ -195,6 +195,24 @@
     },
     {
       "path": "exercises/08.form-validation/03.solution.no-validate"
+    },
+    {
+      "path": "exercises/09.accessibility/01.problem.labels"
+    },
+    {
+      "path": "exercises/09.accessibility/01.solution.labels"
+    },
+    {
+      "path": "exercises/09.accessibility/02.problem.aria"
+    },
+    {
+      "path": "exercises/09.accessibility/02.solution.aria"
+    },
+    {
+      "path": "exercises/09.accessibility/03.problem.focus"
+    },
+    {
+      "path": "exercises/09.accessibility/03.solution.focus"
     }
   ]
 }

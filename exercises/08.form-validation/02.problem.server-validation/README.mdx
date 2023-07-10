@@ -59,6 +59,8 @@ export default function Subscribe() {
 
 	const fieldErrors =
 		actionData?.status === 'error' ? actionData.errors.fieldErrors : null
+	const formErrors =
+		actionData?.status === 'error' ? actionData.errors.formErrors : null
 
 	return (
 		<Form method="post">

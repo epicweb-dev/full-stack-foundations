@@ -1,0 +1,81 @@
+# Validation aria attributes
+
+👨‍💼 Have you heard the first rule of ARIA? Don't use ARIA. If you can use native
+HTML, do it. If you can't, then use ARIA.
+
+That's the case for our error messages. So, we need to add `aria-invalid="true"`
+and `aria-describedby="error-id"` to the input if there is an error. Otherwise,
+those attributes should not appear (so you'll set them to `undefined` in that
+case). So when the `title` looks good, it should render HTML like this:
+
+```html
+<div>
+	<label class="..." for="note-title">Title</label>
+	<input
+		class="..."
+		id="note-title"
+		name="title"
+		required=""
+		minlength="1"
+		maxlength="100"
+		value="Basic Koala Facts"
+	/>
+	<div class="..."></div>
+</div>
+```
+
+And when the `title` has an error, it should render HTML like this:
+
+```html lines=11,12
+<div>
+	<label class="..." for="note-title">Title</label>
+	<input
+		class="..."
+		id="note-title"
+		name="title"
+		required=""
+		minlength="1"
+		maxlength="100"
+		value="Basic Koala Facts"
+		aria-invalid="true"
+		aria-describedby="title-error"
+	/>
+	<div class="...">
+		<ul id="title-error" class="...">
+			<li class="...">Title must be at least 1 character</li>
+		</ul>
+	</div>
+</div>
+```
+
+Note that `aria-invalid` and `aria-describedby` are not present unless there is
+an error. To accomplish this, you can pass `undefined` as their values if there
+is no error, for example:
+
+```tsx
+<input
+	aria-invalid={hasErrors || undefined}
+	aria-invalid={hasErrors ? 'id' : undefined}
+/>
+```
+
+The emoji will give you some tips on creating variables to make this easier.
+
+🦉 Another thing you may notice is in both cases we're rendering the `div`
+responsible for rendering the error messages. This to ensure the UI doesn't
+bounce around when an error shows up.
+
+And we do this for more than just the `input`, we'll want this for the `<form>`
+as well. Let's jump in!
+
+<callout-info class="aside">
+	Note that there is also `aria-errormessage`, however screen reader support is
+	unfortunately very poor for that attribute. We just need to do the best we
+	can.
+</callout-info>
+
+<callout-warning>
+	We don't currently have any form-level errors, but we're going to put this in
+	place anyway for learning purposes. Eventually we'll have some errors like
+	that.
+</callout-warning>
