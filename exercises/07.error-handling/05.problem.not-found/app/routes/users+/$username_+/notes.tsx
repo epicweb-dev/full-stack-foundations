@@ -1,5 +1,6 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
+import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
 import { db } from '~/utils/db.server.ts'
 import { cn } from '~/utils/misc.ts'
 
@@ -72,4 +73,14 @@ export default function NotesRoute() {
 	)
 }
 
-// 🐨 add an error boundary here that uses GeneralErrorBoundary and a statusHandler for 404
+export function ErrorBoundary() {
+	return (
+		<GeneralErrorBoundary
+			statusHandlers={{
+				404: ({ params }) => (
+					<p>No user with the username "{params.username}" exists</p>
+				),
+			}}
+		/>
+	)
+}

@@ -5,6 +5,7 @@ import {
 	useLoaderData,
 	useNavigation,
 } from '@remix-run/react'
+import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
 import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
 import { Button } from '~/components/ui/button.tsx'
 import { Input } from '~/components/ui/input.tsx'
@@ -87,4 +88,14 @@ export default function NoteEdit() {
 	)
 }
 
-// 🐨 add an error boundary here that uses GeneralErrorBoundary and a statusHandler for 404
+export function ErrorBoundary() {
+	return (
+		<GeneralErrorBoundary
+			statusHandlers={{
+				404: ({ params }) => (
+					<p>No note with the id "{params.noteId}" exists</p>
+				),
+			}}
+		/>
+	)
+}

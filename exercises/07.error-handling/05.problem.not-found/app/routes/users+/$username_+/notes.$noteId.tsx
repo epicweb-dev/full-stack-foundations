@@ -10,6 +10,7 @@ import { Button } from '~/components/ui/button.tsx'
 import { db } from '~/utils/db.server.ts'
 import { invariantResponse } from '~/utils/misc.ts'
 import { type loader as notesLoader } from './notes.tsx'
+import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -89,4 +90,14 @@ export const meta: V2_MetaFunction<
 	]
 }
 
-// 🐨 add an error boundary here that uses GeneralErrorBoundary and a statusHandler for 404
+export function ErrorBoundary() {
+	return (
+		<GeneralErrorBoundary
+			statusHandlers={{
+				404: ({ params }) => (
+					<p>No note with the id "{params.noteId}" exists</p>
+				),
+			}}
+		/>
+	)
+}

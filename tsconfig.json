@@ -173,6 +173,12 @@
       "path": "exercises/07.error-handling/04.solution.root-boundary"
     },
     {
+      "path": "exercises/07.error-handling/05.problem.not-found"
+    },
+    {
+      "path": "exercises/07.error-handling/05.solution.not-found"
+    },
+    {
       "path": "exercises/08.form-validation/01.problem.form-validation"
     },
     {
