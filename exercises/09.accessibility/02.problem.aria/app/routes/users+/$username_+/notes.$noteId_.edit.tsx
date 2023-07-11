@@ -115,7 +115,7 @@ export default function NoteEdit() {
 	const formAction = useFormAction()
 	const isSubmitting =
 		navigation.state !== 'idle' &&
-		navigation.formMethod === 'post' &&
+		navigation.formMethod === 'POST' &&
 		navigation.formAction === formAction
 
 	const fieldErrors =
