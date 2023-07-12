@@ -21,6 +21,7 @@
 
 - Some
   [experience with JavaScript](https://kentcdodds.com/blog/javascript-to-know-for-react)
+- Some [experience with TypeScript](https://www.totaltypescript.com/tutorials)
 - Some [experience with React](https://kcd.im/beginner-react)
 - Some [experience with Node.js](https://nodejs.dev/en/learn)
 
