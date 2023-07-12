@@ -53,6 +53,12 @@
       "path": "exercises/02.routing/03.solution.params"
     },
     {
+      "path": "exercises/02.routing/04.problem.resources"
+    },
+    {
+      "path": "exercises/02.routing/04.solution.resources"
+    },
+    {
       "path": "exercises/03.loading/01.problem.loader"
     },
     {
@@ -177,42 +183,6 @@
     },
     {
       "path": "exercises/07.error-handling/05.solution.not-found"
-    },
-    {
-      "path": "exercises/08.form-validation/01.problem.form-validation"
-    },
-    {
-      "path": "exercises/08.form-validation/01.solution.form-validation"
-    },
-    {
-      "path": "exercises/08.form-validation/02.problem.server-validation"
-    },
-    {
-      "path": "exercises/08.form-validation/02.solution.server-validation"
-    },
-    {
-      "path": "exercises/08.form-validation/03.problem.no-validate"
-    },
-    {
-      "path": "exercises/08.form-validation/03.solution.no-validate"
-    },
-    {
-      "path": "exercises/09.accessibility/01.problem.labels"
-    },
-    {
-      "path": "exercises/09.accessibility/01.solution.labels"
-    },
-    {
-      "path": "exercises/09.accessibility/02.problem.aria"
-    },
-    {
-      "path": "exercises/09.accessibility/02.solution.aria"
-    },
-    {
-      "path": "exercises/09.accessibility/03.problem.focus"
-    },
-    {
-      "path": "exercises/09.accessibility/03.solution.focus"
     }
   ]
 }

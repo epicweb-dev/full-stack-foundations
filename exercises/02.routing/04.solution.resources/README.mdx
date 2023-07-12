@@ -1,0 +1,22 @@
+# Resource Routes
+
+👨‍💼 Great! Now we have a good place to put additional "health check" code that
+will allow us to put in an automated check on the status of our database
+connection and other things in the future.
+
+🦉 Remember, Remix doesn't have any opinion on which routes in your folder
+structure are "resource routes" and which ones aren't. So, even though we put
+ours under `app/routes/resources+/`, that's not a requirement.
+
+And you can send _any_ response you like. We're sending a plaintext response,
+but you can stream audio or video, generate a PDF, generate an `og:image` for
+SEO, or anything else that can be done over HTTP. You could use resource routes
+to create a REST or GraphQL API. Whatever you can do with HTTP, you can do with
+resource routes. (We'll get to how to handle non-GET requests soon).
+
+Also, Remix doesn't care whether you export anything else in your resource route
+either. I've taken advantage of this by exporting functions and components that
+use the resource route directly in the same file. This level of colocation is
+brilliant. Feel free to read more about this on
+[EpicWeb.dev](https://epicweb.dev) in
+["Full Stack Components"](https://www.epicweb.dev/full-stack-components).

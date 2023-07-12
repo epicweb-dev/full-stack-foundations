@@ -1,0 +1,74 @@
+# Resource Routes
+
+🦉 So far, every HTTP request we make to our app's routes will result in UI:
+
+- `/` - Home page
+- `/users/kody` - Profile page
+- `/users/kody/notes` - Notes page
+- `/users/kody/notes/noteId` - Note page
+
+But there are lots of use cases for URLs that don't return UI. For example:
+
+- `/api/users` - Get a list of users
+- `/healthcheck` - Get a report of the health of the application
+- `/images/some-image-id` - Get an image
+
+For these, the HTTP request and response is a little different from our UI
+routes. Instead of the request expecting an HTML response, it expects JSON, or
+plaintext, or an image. In some cases these requests could be non-GET requests
+as well.
+
+In Remix, these routes are known as
+["Resource Routes"](https://remix.run/docs/en/main/guides/resource-routes) and
+they are pretty simple. Here's the rule that determines whether a route is a
+resource route or not:
+
+<callout-success>
+	A <strong>Resource Route</strong> is like a regular route, but it doesn't have
+	a `default` export.
+</callout-success>
+
+That's it. Just don't have a default export and you're working in a resource
+route.
+
+The behavior of a resource route is what you might expect. For regular routes,
+the entire nested routing structure is called and rendered to get the final
+result. For resource routes, only the route that matches the request is called.
+So, with a resource route, the `loader` in the `app/root.tsx` will not be run.
+
+👨‍💼 We'd like you to create a resource route for a healthcheck for our
+application. We can put this route at any URL we like (`/healthcheck`, or `/hc`,
+etc.), but we're going to put it at `/resources/healthcheck`.
+
+Our application is pretty simple, so for now, we'll keep the resource route
+simple as well. We'll just return a plaintext response with the text
+`"OK"`.
+
+So create a file at<InlineFile file="app/routes/resources+/healthcheck.tsx" />,
+and create a loader that returns a plaintext response with the text `"OK"`.
+
+<details>
+
+<summary>💰 The loader</summary>
+
+If you need the extra help, here's what the loader code should look like:
+
+```tsx
+export async function loader() {
+	return new Response('OK')
+}
+```
+
+</details>
+
+You'll know you got it when you go to: <LinkToApp to="/resources/healthcheck" reloadDocument />
+and all you see is "OK".
+
+<callout-warning>
+	<strong>Warning</strong>: You may notice that doing a client-side navigation to
+  a resource route breaks the app. This is because that route doesn't exist in
+  a UI context. So you need to make sure if you link to a resource route, you
+  either use a regular `<a>` or add the `reloadDocument` prop to the Link.
+</callout-warning>
+
+- [📜 Resource Routes](https://remix.run/docs/en/1.18.1/guides/resource-routes)
