@@ -8,7 +8,7 @@
     "build:remix": "remix build --sourcemap",
     "build:server": "tsx ./other/build-server.ts",
     "dev": "remix dev -c \"node ./server/dev-server.js\" --no-restart",
-    "test": "playwrite test",
+    "test": "playwright test",
     "start": "remix-serve build",
     "lint": "eslint .",
     "typecheck": "tsc"
