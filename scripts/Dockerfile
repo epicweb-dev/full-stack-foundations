@@ -9,6 +9,8 @@ ENV KCDSHOP_DEPLOYED="true"
 ENV FLY="true"
 ENV PORT="8080"
 ENV NODE_ENV="production"
+ENV SKIP_PLAYGROUND="true"
+ENV SKIP_PLAYWRIGHT="true"
 
 WORKDIR /myapp
 
