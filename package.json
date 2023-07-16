@@ -3,6 +3,7 @@
   "private": true,
   "kcd-workshop": {
     "title": "Full Stack Foundations 🔭",
+    "githubRoot": "https://github.com/epicweb-dev/full-stack-foundations/blob/main",
     "root": true
   },
   "type": "module",
@@ -27,7 +28,7 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@kentcdodds/workshop-app": "^1.46.6"
+    "@kentcdodds/workshop-app": "^1.47.0"
   },
   "eslintIgnore": [
     "/node_modules",
