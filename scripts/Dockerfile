@@ -3,6 +3,8 @@
 # base node image
 FROM node:18-bookworm-slim as base
 
+RUN apt-get update && apt-get install -y git
+
 ENV KCDSHOP_DEPLOYED="true"
 ENV FLY="true"
 ENV PORT="8080"
