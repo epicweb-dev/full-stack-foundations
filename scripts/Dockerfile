@@ -5,16 +5,18 @@ FROM node:18-bookworm-slim as base
 
 RUN apt-get update && apt-get install -y git
 
+WORKDIR /myapp
+
+ADD . .
+
+ENV SKIP_PLAYGROUND="true"
+ENV SKIP_PLAYWRIGHT="true"
+
+RUN node setup.js
+
 ENV KCDSHOP_DEPLOYED="true"
 ENV FLY="true"
 ENV PORT="8080"
 ENV NODE_ENV="production"
-ENV SKIP_PLAYGROUND="true"
-ENV SKIP_PLAYWRIGHT="true"
-
-WORKDIR /myapp
-
-ADD . .
-RUN node setup.js
 
 CMD ["npm", "start"]
