@@ -11,6 +11,20 @@
 
 <hr />
 
+<div align="center">
+  <a
+    alt="Epic Web logo with the words Deployed Version"
+    href="https://epicweb-dev-full-stack-foundations.fly.dev/"
+  >
+    <img
+      width="300px"
+      src="https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/254000390-447a3559-e7b9-4918-947a-1b326d239771.png"
+    />
+  </a>
+</div>
+
+<hr />
+
 <!-- prettier-ignore-start -->
 [![Build Status][build-badge]][build]
 [![GPL 3.0 License][license-badge]][license]
