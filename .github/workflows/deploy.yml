@@ -52,13 +52,6 @@ jobs:
           mv ./scripts/Dockerfile ./Dockerfile
           mv ./scripts/.dockerignore ./.dockerignore
 
-      - name: 👀 Read app name
-        uses: SebRollen/toml-action@v1.0.2
-        id: app_name
-        with:
-          file: 'fly.toml'
-          field: 'app'
-
       - name: 🚀 Deploy Production
         uses: superfly/flyctl-actions@1.3
         with:
