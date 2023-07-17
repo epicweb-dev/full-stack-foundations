@@ -183,8 +183,8 @@ Thank you! https://kcd.im/rmx-workshop-ws-feedback
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/github/actions/workflow/status/epicweb-dev/full-stack-foundations/validate.yml?branch=main&logo=github&style=flat-square
-[build]: https://github.com/epicweb-dev/full-stack-foundations/actions?query=workflow%3Avalidate
+[build-badge]: https://img.shields.io/github/actions/workflow/status/epicweb-dev/full-stack-foundations/deploy.yml?branch=main&logo=github&style=flat-square
+[build]: https://github.com/epicweb-dev/full-stack-foundations/actions?query=workflow%3Adeploy
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/epicweb-dev/full-stack-foundations/blob/main/LICENSE
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
