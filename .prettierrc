@@ -8,7 +8,7 @@
 	"insertPragma": false,
 	"jsxSingleQuote": false,
 	"printWidth": 80,
-	"proseWrap": "preserve",
+	"proseWrap": "always",
 	"quoteProps": "as-needed",
 	"requirePragma": false,
 	"semi": false,
@@ -16,5 +16,20 @@
 	"singleQuote": true,
 	"tabWidth": 2,
 	"trailingComma": "all",
-	"useTabs": true
+	"useTabs": true,
+	"overrides": [
+		{
+			"files": ["**/*.json"],
+			"options": {
+				"useTabs": false
+			}
+		},
+		{
+			"files": ["**/*.mdx"],
+			"options": {
+				"proseWrap": "preserve",
+				"htmlWhitespaceSensitivity": "ignore"
+			}
+		}
+	]
 }

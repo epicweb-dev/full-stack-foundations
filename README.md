@@ -110,9 +110,9 @@ The application has several buttons which will launch your editor to the right
 file. There are a lot of files in this workshop so you'll be using this feature
 a lot to get to the right place at the right time.
 
-This should just work™️ (it looks at your currently running processes and chooses
-the editor based on that). If it doesn't guess correctly, create a `.env` file
-in the root of this project and add an environment variable called
+This should just work™️ (it looks at your currently running processes and
+chooses the editor based on that). If it doesn't guess correctly, create a
+`.env` file in the root of this project and add an environment variable called
 `KCDSHOP_EDITOR` with the value being set to the path to your editor's
 executable. For example, if you're using VS Code on Windows, you'd add this to
 your `.env` file:
