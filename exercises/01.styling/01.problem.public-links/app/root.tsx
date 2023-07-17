@@ -1,5 +1,5 @@
 import { LiveReload, Scripts } from '@remix-run/react'
-import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
+import { KCDShop } from './kcdshop.tsx'
 
 // 🐨 export a links function here that adds the favicon
 // 💰 It should have the following properties:
@@ -14,7 +14,7 @@ export default function App() {
 			<body>
 				<p>Hello World</p>
 				<Scripts />
-				<KCDShopIFrameSync />
+				<KCDShop />
 				<LiveReload />
 			</body>
 		</html>

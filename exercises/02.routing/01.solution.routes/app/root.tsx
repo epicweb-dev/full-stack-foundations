@@ -1,4 +1,4 @@
-import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
+import { KCDShop } from './kcdshop.tsx'
 import { type LinksFunction, json } from '@remix-run/node'
 import {
 	Links,
@@ -56,7 +56,7 @@ export default function App() {
 				</div>
 				<div className="h-5" />
 				<Scripts />
-				<KCDShopIFrameSync />
+				<KCDShop />
 				<LiveReload />
 			</body>
 		</html>

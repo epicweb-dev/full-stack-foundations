@@ -54,7 +54,7 @@ export default function App() {
 				{/* 🐨 add the <Scripts /> component from '@remix-run/react' */}
 
 				{/* To improve the development experience, we've got some components we can render here as well: */}
-				{/* 💯 add the <KCDShopIFrameSync /> component from '@kentcdodds/workshop-app/iframe-sync' */}
+				{/* 💯 add the <KCDShop /> component from '@kentcdodds/workshop-app/iframe-sync' */}
 				{/* This is responsible for keeping the iframe in sync with the KCD Workshop App */}
 
 				{/* 💯 add the <LiveReload /> component from '@remix-run/react' */}

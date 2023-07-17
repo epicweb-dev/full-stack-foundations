@@ -1,4 +1,4 @@
-import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
+import { KCDShop } from './kcdshop.tsx'
 import { cssBundleHref } from '@remix-run/css-bundle'
 import { json, type LinksFunction } from '@remix-run/node'
 import {
@@ -63,7 +63,7 @@ export default function App() {
 				</div>
 				{/* 🐨 Add ScrollRestoration from '@remix-run/react' here */}
 				<Scripts />
-				<KCDShopIFrameSync />
+				<KCDShop />
 				<LiveReload />
 			</body>
 		</html>

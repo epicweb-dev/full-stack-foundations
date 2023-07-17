@@ -1,4 +1,4 @@
-import { KCDShopIFrameSync } from '@kentcdodds/workshop-app/iframe-sync'
+import { KCDShop } from './kcdshop.tsx'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
@@ -22,7 +22,7 @@ export default function App() {
 			<body>
 				<p className="p-8 text-xl">Hello World</p>
 				<Scripts />
-				<KCDShopIFrameSync />
+				<KCDShop />
 				<LiveReload />
 			</body>
 		</html>
