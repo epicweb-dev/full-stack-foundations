@@ -14,6 +14,8 @@ import { Link, useParams } from '@remix-run/react'
 // 🦺 TypeScript will complain about the user being possibly undefined, we'll
 // fix that in the next section
 // 💯 as extra credit, try to do it with new Response instead of using the json util just for fun
+// 🦉 Note, you should definitely use the json helper as it's easier and works better with TypeScript
+// but feel free to try it with new Response if you want to see how it works.
 
 export default function ProfileRoute() {
 	// 💣 we no longer need to get the params in the UI, delete this:
