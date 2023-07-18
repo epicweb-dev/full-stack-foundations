@@ -9,7 +9,12 @@ On the <LinkToApp to="/users/kody" /> page, we want to link to the user's notes
 route.
 
 On the <LinkToApp to="/users/kody/notes" /> route, we should link back to the
-`/users/kody` page. We should also link to the `/users/kody/notes/some-note-id`
+`/users/kody` page. 💰 Tip, you can use a relative path (`..`), but you'll need
+to learn about
+[the `relative` prop](https://reactrouter.com/en/main/components/link#relative)
+on the `Link` component.
+
+On the notes route, We should also link to the `/users/kody/notes/some-note-id`
 route.
 
 The `Link` component in Remix is a wrapper around the `Link` component from
@@ -24,3 +29,14 @@ Also, look into the
 [`NavLink`](https://reactrouter.com/en/main/components/nav-link) component so
 you can highlight the link to the `some-note-id` route when that child route is
 active. You can use the `bg-accent` class name when the link is active.
+
+<callout-info>
+	Remix is built on top of React Router, so you'll often find it beneficial to
+	read the React Router docs. Remix also provides a few extra features on top of
+	React Router, so you'll want to read the Remix docs as well.
+</callout-info>
+
+- [📜 Remix `Link` docs](https://remix.run/docs/en/main/components/link)
+- [📜 Remix `NavLink` docs](https://remix.run/docs/en/main/components/nav-link)
+- [📜 React Router `Link` docs](https://reactrouter.com/en/main/components/link)
+- [📜 React Router `NavLink` docs](https://reactrouter.com/en/main/components/nav-link)

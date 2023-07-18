@@ -1,6 +1,6 @@
-import { KCDShop } from './kcdshop.tsx'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
+import { KCDShop } from './kcdshop.tsx'
 // 🐨 import the svg favicon here (use a default import)
 
 export const links: LinksFunction = () => {

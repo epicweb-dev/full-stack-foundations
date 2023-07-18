@@ -1,5 +1,5 @@
-import { KCDShop } from './kcdshop.tsx'
-import { type LinksFunction, json } from '@remix-run/node'
+import { cssBundleHref } from '@remix-run/css-bundle'
+import { json, type LinksFunction } from '@remix-run/node'
 import {
 	Links,
 	LiveReload,
@@ -7,9 +7,9 @@ import {
 	Scripts,
 	useLoaderData,
 } from '@remix-run/react'
-import { cssBundleHref } from '@remix-run/css-bundle'
 import os from 'node:os'
 import faviconAssetUrl from './assets/favicon.svg'
+import { KCDShop } from './kcdshop.tsx'
 import fontStylestylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 

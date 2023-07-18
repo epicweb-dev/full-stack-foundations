@@ -1,7 +1,7 @@
-import { KCDShop } from './kcdshop.tsx'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
+import { KCDShop } from './kcdshop.tsx'
 // 🐨 get the fontStylestylesheetUrl from the ./styles/font.css file
 
 export const links: LinksFunction = () => {

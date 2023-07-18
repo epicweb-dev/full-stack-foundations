@@ -1,6 +1,6 @@
-import { KCDShop } from './kcdshop.tsx'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
+import { KCDShop } from './kcdshop.tsx'
 // 🐨 Import the cssBundleHref here
 import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
