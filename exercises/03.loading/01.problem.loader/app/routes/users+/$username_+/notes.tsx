@@ -10,7 +10,6 @@ import { cn } from '~/utils/misc.ts'
 // 	where: {
 // 		username: { equals: username, },
 // 	},
-// 	strict: true,
 // })
 // const notes = db.note
 // 	.findMany({
@@ -21,7 +20,9 @@ import { cn } from '~/utils/misc.ts'
 // 		},
 // 	})
 // 🐨 return the necessary data using Remix's json util
-// 💯 as extra credit, try to do it with new Response instead of using the json util
+// 🦺 TypeScript will complain about the owner being possibly undefined, we'll
+// fix that in the next section
+// 💯 as extra credit, try to do it with new Response instead of using the json util just for fun
 
 export default function NotesRoute() {
 	// 💣 we no longer need the params, delete this

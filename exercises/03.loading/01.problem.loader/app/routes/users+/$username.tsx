@@ -9,10 +9,11 @@ import { Link, useParams } from '@remix-run/react'
 // 	where: {
 // 		username: { equals: username },
 // 	},
-// 	strict: true,
 // })
 // 🐨 Return the necessary user data using Remix's json util
-// 💯 as extra credit, try to do it with new Response instead of using the json util
+// 🦺 TypeScript will complain about the user being possibly undefined, we'll
+// fix that in the next section
+// 💯 as extra credit, try to do it with new Response instead of using the json util just for fun
 
 export default function ProfileRoute() {
 	// 💣 we no longer need to get the params in the UI, delete this:
