@@ -67,7 +67,7 @@ network connection before running the setup and grab a snack.
 Follow these steps to get this set up:
 
 ```sh
-git clone https://github.com/epicweb-dev/full-stack-foundations.git
+git clone --depth 1 https://github.com/epicweb-dev/full-stack-foundations.git
 cd full-stack-foundations
 npm run setup
 ```
