@@ -9,4 +9,13 @@ browser for us, and the browser would have completely refreshed the page which
 effectively gives us the latest data. This is a really powerful feature of
 Remix and we'll discuss it more later.
 
+Another important thing to note is that this form works without any client-side
+JavaScript. That's actually how we get away with not needing to manage state!
+This is a huge boost to developer productivity and user experience. Take a look
+at YouTube.com sometime on a throttled network and notice that the input field
+is not rendered until after a huge amount of JavaScript shows up, and even when
+it is rendered, it doesn't work until even more JavaScript shows up. This is
+a really bad UX that could be avoided if they simply leveraged the platform for
+the search input.
+
 For now, let's tidy it up a bit.
