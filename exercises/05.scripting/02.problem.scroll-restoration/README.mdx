@@ -12,6 +12,11 @@ Luckily, Remix has a
 [📜 `ScrollRestoration`](https://remix.run/docs/en/main/components/scroll-restoration)
 component we can use to fix this. Please use that component!
 
+<callout-info class="aside">
+	Tip: To test this out, make your browser window short so that your page is
+	scrolling, then scroll to the bottom and click the Edit button.
+</callout-info>
+
 Once you've done that, come back here, I've got another task for you.
 
 You got it done? Ok, great! Now I actually need you to "undo" the scroll
@@ -26,10 +31,15 @@ per-link basis using the
 prop (through React Router):
 
 ```tsx
-<Link preventScrollReset to="host">
-	Host
+<Link preventScrollReset to="candy">
+	Candy
 </Link>
 ```
+
+<callout-info class="aside">
+	Tip: To test this out, make your browser window short so that your page is
+	scrolling, then scroll to the bottom and click different notes.
+</callout-info>
 
 Go ahead and add the `preventScrollReset` prop to those links.
 
