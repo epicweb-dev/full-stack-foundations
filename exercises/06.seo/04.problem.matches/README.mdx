@@ -53,7 +53,16 @@ export const meta: V2_MetaFunction<
 }
 ```
 
+<callout-info>
+	It may be helpful to you to add a `console.log(matches)` in the `meta` before
+	changing much else so you get an idea of what that object looks like. It's
+	especially helpful to find the ID of the route you're looking for.
+</callout-info>
+
 Let's add some great meta exports for these routes and access our parent's data
 to do it.
 
 - [📜 `meta` export](https://remix.run/docs/en/main/route/meta-v2)
+- [📜 `useMatches` hook](https://remix.run/docs/en/main/hooks/use-matches) - How
+  you get that `matches` in components. We don't need it in this exercise
+  but it may be interesting to you for further exploration.
