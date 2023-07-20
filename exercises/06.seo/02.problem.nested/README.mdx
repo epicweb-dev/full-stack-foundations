@@ -7,5 +7,18 @@ title "Profile | Epic Notes" and the description should be
 Remix's conventional `meta` export for nested routes in combination with its
 `<Meta />` component.
 
+As a reminder, here's what the API looks like:
+
+```tsx filename=app/routes/sandwiches.tsx
+import { type V2_MetaFunction } from '@remix-run/node'
+
+export const meta: V2_MetaFunction = () => {
+	return [
+		{ title: 'Sandwich Shop' },
+		{ name: 'description', content: 'Fill your tummy with something yummy' },
+	]
+}
+```
+
 - [📜 `<Meta />`](https://remix.run/docs/en/main/components/meta)
 - [📜 `meta` export](https://remix.run/docs/en/main/route/meta-v2)

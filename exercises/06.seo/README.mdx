@@ -125,7 +125,7 @@ similar in some ways to the `links` export, but instead, when a route defines a
 `meta` export, the `meta` tags from ancestor routes are ignored and must be
 manually merged. This avoids conflicts between routes that might have the same
 `meta` tags. However, you do have access to the parent metas in the `meta`
-function so you can merge them yourself if you so desire (you do).
+function so you can merge them yourself if you so desire.
 
 ```tsx filename=app/routes/sandwiches.tsx
 import { type V2_MetaFunction } from '@remix-run/node'
@@ -133,8 +133,6 @@ import { type V2_MetaFunction } from '@remix-run/node'
 export const meta: V2_MetaFunction = () => {
 	return [
 		{ title: 'Sandwich Shop' },
-		{ charSet: 'utf-8' },
-		{ name: 'viewport', content: 'width=device-width,initial-scale=1' },
 		{ name: 'description', content: 'Fill your tummy with something yummy' },
 	]
 }
