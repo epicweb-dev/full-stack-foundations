@@ -28,7 +28,7 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@kentcdodds/workshop-app": "^2.3.2"
+    "@kentcdodds/workshop-app": "^2.5.0"
   },
   "eslintIgnore": [
     "/node_modules",
