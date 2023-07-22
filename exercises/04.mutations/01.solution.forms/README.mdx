@@ -1,7 +1,11 @@
 # Forms
 
 👨‍💼 Great! With the form in place (and preloaded with the existing note's data)
-you can submit the form and
+you can submit the form and you'll get a Remix error telling you that you've
+need an `action` before you can submit.
+
+I'll mention also that if you use a `<form>` instead of a `<Form>`, the
+form will submit, but
 [you get a 405 (Method Not Allowed) status code](https://mdn.io/405). That
 response is given to us from Remix because our route doesn't support handling
 anything but `GET` requests. That's where actions come into play!
