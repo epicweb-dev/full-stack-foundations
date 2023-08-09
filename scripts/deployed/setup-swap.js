@@ -10,7 +10,7 @@ console.log('setting up swapfile...')
 if (swapExists) {
 	console.log('swapfile already exists')
 } else {
-	await $`fallocate -l 512M /swapfile`
+	await $`fallocate -l 128M /swapfile`
 	await $`chmod 0600 /swapfile`
 	await $`mkswap /swapfile`
 	await writeFile('/proc/sys/vm/swappiness', '10')
