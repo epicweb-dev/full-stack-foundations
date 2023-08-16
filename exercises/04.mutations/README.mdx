@@ -126,8 +126,8 @@ receive the `request` and `params`, and you're expected to return a `Response`
 (remember, if the form submission is successful, you should return a redirect):
 
 ```tsx filename=app/routes/sandwiches.chooser.tsx
-import { Form, redirect } from '@remix-run/react'
-import { type DataFunctionArgs } from '@remix-run/node'
+import { Form } from '@remix-run/react'
+import { type DataFunctionArgs, redirect } from '@remix-run/node'
 
 export async function action({ request, params }: DataFunctionArgs) {
 	const formData = await request.formData()
