@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useParams } from '@remix-run/react'
-import { cn } from '../../../utils/misc.ts'
+import { cn } from '#app/utils/misc.ts'
 
 export default function NotesRoute() {
 	const params = useParams()

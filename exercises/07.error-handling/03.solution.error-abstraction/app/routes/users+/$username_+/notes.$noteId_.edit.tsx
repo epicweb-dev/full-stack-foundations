@@ -1,14 +1,14 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
-import { GeneralErrorBoundary } from '../../../components/error-boundary.tsx'
-import { floatingToolbarClassName } from '../../../components/floating-toolbar.tsx'
-import { Button } from '../../../components/ui/button.tsx'
-import { Input } from '../../../components/ui/input.tsx'
-import { Label } from '../../../components/ui/label.tsx'
-import { StatusButton } from '../../../components/ui/status-button.tsx'
-import { Textarea } from '../../../components/ui/textarea.tsx'
-import { db } from '../../../utils/db.server.ts'
-import { invariantResponse, useIsSubmitting } from '../../../utils/misc.ts'
+import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
+import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
+import { Button } from '#app/components/ui/button.tsx'
+import { Input } from '#app/components/ui/input.tsx'
+import { Label } from '#app/components/ui/label.tsx'
+import { StatusButton } from '#app/components/ui/status-button.tsx'
+import { Textarea } from '#app/components/ui/textarea.tsx'
+import { db } from '#app/utils/db.server.ts'
+import { invariantResponse, useIsSubmitting } from '#app/utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

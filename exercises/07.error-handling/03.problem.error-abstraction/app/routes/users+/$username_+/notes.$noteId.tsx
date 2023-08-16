@@ -5,10 +5,10 @@ import {
 	useLoaderData,
 	type V2_MetaFunction,
 } from '@remix-run/react'
-import { floatingToolbarClassName } from '../../../components/floating-toolbar.tsx'
-import { Button } from '../../../components/ui/button.tsx'
-import { db } from '../../../utils/db.server.ts'
-import { invariantResponse } from '../../../utils/misc.ts'
+import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
+import { Button } from '#app/components/ui/button.tsx'
+import { db } from '#app/utils/db.server.ts'
+import { invariantResponse } from '#app/utils/misc.ts'
 import { type loader as notesLoader } from './notes.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {

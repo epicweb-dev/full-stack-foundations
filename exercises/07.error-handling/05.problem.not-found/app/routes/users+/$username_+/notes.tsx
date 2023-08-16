@@ -1,8 +1,8 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
-import { GeneralErrorBoundary } from '../../../components/error-boundary.tsx'
-import { db } from '../../../utils/db.server.ts'
-import { cn } from '../../../utils/misc.ts'
+import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
+import { db } from '#app/utils/db.server.ts'
+import { cn } from '#app/utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const owner = db.user.findFirst({

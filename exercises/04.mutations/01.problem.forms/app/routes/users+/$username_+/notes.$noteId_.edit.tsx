@@ -1,6 +1,6 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { db } from '../../../utils/db.server.ts'
+import { db } from '#app/utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -30,7 +30,7 @@ export default function NoteEdit() {
 	// 🐨 render a button with the text "Submit"
 
 	// 💯 as extra credit, you can add a reset button (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
-	// 💯 as extra credit, you can use the Label, Input, Textarea, and Button components from '../../../components/ui/*.tsx'
+	// 💯 as extra credit, you can use the Label, Input, Textarea, and Button components from '#app/components/ui/*.tsx'
 	// 💯 as extra credit, style it nicely with some tailwind classes to give it some space.
-	// 💯 if you *really* have extra time, you can wrap the submit and reset buttons in a div with floatingToolbarClassName from '../../../components/floating-toolbar.tsx' and make that look nice.
+	// 💯 if you *really* have extra time, you can wrap the submit and reset buttons in a div with floatingToolbarClassName from '#app/components/floating-toolbar.tsx' and make that look nice.
 }
