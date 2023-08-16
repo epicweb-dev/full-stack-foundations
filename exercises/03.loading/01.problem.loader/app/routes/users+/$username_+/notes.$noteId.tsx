@@ -1,6 +1,6 @@
 import { useParams } from '@remix-run/react'
 // 🐨 get the db utility using:
-// import { db } from '~/utils/db.server.ts'
+// import { db } from '../../../utils/db.server.ts'
 
 // 🐨 export a loader function here
 // 💰 Here's how you get the note from the database:

@@ -5,14 +5,14 @@ import {
 	useLoaderData,
 	useNavigation,
 } from '@remix-run/react'
-import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
-import { Button } from '~/components/ui/button.tsx'
-import { Input } from '~/components/ui/input.tsx'
-import { Label } from '~/components/ui/label.tsx'
-import { StatusButton } from '~/components/ui/status-button.tsx'
-import { Textarea } from '~/components/ui/textarea.tsx'
-import { db } from '~/utils/db.server.ts'
-import { invariantResponse } from '~/utils/misc.ts'
+import { floatingToolbarClassName } from '../../../components/floating-toolbar.tsx'
+import { Button } from '../../../components/ui/button.tsx'
+import { Input } from '../../../components/ui/input.tsx'
+import { Label } from '../../../components/ui/label.tsx'
+import { StatusButton } from '../../../components/ui/status-button.tsx'
+import { Textarea } from '../../../components/ui/textarea.tsx'
+import { db } from '../../../utils/db.server.ts'
+import { invariantResponse } from '../../../utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

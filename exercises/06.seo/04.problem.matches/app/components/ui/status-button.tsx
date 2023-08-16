@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { cn } from '../../utils/misc.ts'
 import { Button, type ButtonProps } from './button.tsx'
-import { cn } from '~/utils/misc.ts'
 
 export const StatusButton = React.forwardRef<
 	HTMLButtonElement,

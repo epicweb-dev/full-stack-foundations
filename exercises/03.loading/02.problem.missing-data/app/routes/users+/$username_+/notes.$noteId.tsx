@@ -1,6 +1,6 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { db } from '~/utils/db.server.ts'
+import { db } from '../../../utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

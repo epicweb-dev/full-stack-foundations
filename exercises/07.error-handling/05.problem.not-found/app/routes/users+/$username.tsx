@@ -1,7 +1,7 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
 import { Link, useLoaderData, type V2_MetaFunction } from '@remix-run/react'
-import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
-import { db } from '~/utils/db.server.ts'
+import { GeneralErrorBoundary } from '../../components/error-boundary.tsx'
+import { db } from '../../utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const user = db.user.findFirst({

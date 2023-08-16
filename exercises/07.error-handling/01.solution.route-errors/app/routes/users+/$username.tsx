@@ -5,7 +5,7 @@ import {
 	useRouteError,
 	type V2_MetaFunction,
 } from '@remix-run/react'
-import { db } from '~/utils/db.server.ts'
+import { db } from '../../utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	// throw new Error('🐨 Loader error')

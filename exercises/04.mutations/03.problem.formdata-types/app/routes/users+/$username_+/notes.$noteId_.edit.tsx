@@ -1,11 +1,11 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
-import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
-import { Button } from '~/components/ui/button.tsx'
-import { Input } from '~/components/ui/input.tsx'
-import { Label } from '~/components/ui/label.tsx'
-import { Textarea } from '~/components/ui/textarea.tsx'
-import { db } from '~/utils/db.server.ts'
+import { floatingToolbarClassName } from '../../../components/floating-toolbar.tsx'
+import { Button } from '../../../components/ui/button.tsx'
+import { Input } from '../../../components/ui/input.tsx'
+import { Label } from '../../../components/ui/label.tsx'
+import { Textarea } from '../../../components/ui/textarea.tsx'
+import { db } from '../../../utils/db.server.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -30,7 +30,7 @@ export async function action({ request, params }: DataFunctionArgs) {
 	// 🐨 add a check to make certain that title and content are both a string
 	// if they are not, throw an error
 	// 💯 as an extra credit, throw a more descriptive 400 Response instead of an error
-	// 💯 as an extra credit, try using the invariantResponse function from "~/utils/misc.ts"
+	// 💯 as an extra credit, try using the invariantResponse function from "../../../utils/misc.ts"
 
 	db.note.update({
 		where: { id: { equals: params.noteId } },

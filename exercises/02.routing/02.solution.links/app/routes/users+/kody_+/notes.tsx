@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from '@remix-run/react'
-import { cn } from '~/utils/misc.ts'
+import { cn } from '../../../utils/misc.ts'
 
 export default function NotesRoute() {
 	return (

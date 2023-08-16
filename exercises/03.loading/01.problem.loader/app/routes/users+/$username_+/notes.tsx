@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet, useParams } from '@remix-run/react'
-import { cn } from '~/utils/misc.ts'
+import { cn } from '../../../utils/misc.ts'
 // 🐨 get the db utility using:
-// import { db } from '~/utils/db.server.ts'
+// import { db } from '../../../utils/db.server.ts'
 
 // 🐨 add a `loader` export here which uses the params from the DataFunctionArgs
 // 🐨 you'll get the username from params.username
