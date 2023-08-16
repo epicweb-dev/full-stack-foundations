@@ -18,9 +18,22 @@ module.exports = {
 				fixStyle: 'inline-type-imports',
 			},
 		],
-		'@typescript-eslint/ban-ts-comment': 'off',
-		'@typescript-eslint/no-explicit-any': 'off',
-		'import/no-duplicates': 'warn',
+		'import/no-duplicates': ['warn', { 'prefer-inline': true }],
+		'import/consistent-type-specifier-style': ['warn', 'prefer-inline'],
+		'import/order': [
+			'warn',
+			{
+				alphabetize: { order: 'asc', caseInsensitive: true },
+				groups: [
+					'builtin',
+					'external',
+					'internal',
+					'parent',
+					'sibling',
+					'index',
+				],
+			},
+		],
 	},
 	overrides: [
 		{

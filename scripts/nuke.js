@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+import path from 'node:path'
+import fs from 'node:fs'
 
 const nodeModulesDir = path.join(process.cwd(), 'node_modules')
 const pkgLock = path.join(process.cwd(), 'package-lock.json')

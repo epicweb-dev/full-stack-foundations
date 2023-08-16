@@ -1,8 +1,8 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
+import faviconAssetUrl from './assets/favicon.svg'
 import { KCDShop } from './kcdshop.tsx'
 // 🐨 Import the cssBundleHref here
-import faviconAssetUrl from './assets/favicon.svg'
 import fontStylestylesheetUrl from './styles/font.css'
 // 🧝‍♂️ I imported the CSS file for you. When you have it working, it'll be obvious
 // ... I promise... 😈

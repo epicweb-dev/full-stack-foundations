@@ -5,11 +5,11 @@ import {
 	useLoaderData,
 	type V2_MetaFunction,
 } from '@remix-run/react'
+import { type loader as notesLoader } from './notes.tsx'
 import { floatingToolbarClassName } from '~/components/floating-toolbar.tsx'
 import { Button } from '~/components/ui/button.tsx'
 import { db } from '~/utils/db.server.ts'
 import { invariantResponse } from '~/utils/misc.ts'
-import { type loader as notesLoader } from './notes.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

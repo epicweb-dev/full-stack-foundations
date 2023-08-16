@@ -1,3 +1,4 @@
+import os from 'node:os'
 import { cssBundleHref } from '@remix-run/css-bundle'
 import { json, type LinksFunction } from '@remix-run/node'
 import {
@@ -7,7 +8,6 @@ import {
 	Scripts,
 	useLoaderData,
 } from '@remix-run/react'
-import os from 'node:os'
 import faviconAssetUrl from './assets/favicon.svg'
 import { KCDShop } from './kcdshop.tsx'
 import fontStylestylesheetUrl from './styles/font.css'

@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { spawn } from 'child_process'
 import fsExtra from 'fs-extra'
 import { $ } from 'execa'
@@ -53,6 +53,19 @@ if (!process.env.SKIP_PLAYGROUND) {
 			},
 		)
 	}
+}
+
+if (!process.env.SKIP_PRISMA) {
+	console.log(`🏗  generating prisma client in all ${allApps.length} apps...`)
+	for (const app of allApps) {
+		try {
+			await $({ cwd: app.fullPath, all: true })`prisma generate`
+		} catch (prismaGenerateResult) {
+			console.log(prismaGenerateResult.all)
+			throw new Error(`❌  prisma generate failed in ${app.relativePath}`)
+		}
+	}
+	console.log('✅ prisma client generated')
 }
 
 getWatcher().close()

@@ -1,5 +1,5 @@
 {
-  "name": "deployed-web-auth",
+  "name": "deployed",
   "private": true,
   "type": "module",
   "scripts": {
