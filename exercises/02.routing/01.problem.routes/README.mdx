@@ -80,11 +80,8 @@ underscore (`_`) to the filename. Also, since we'll have several of these, we'll
 use the `+` convention to allow us to put them all in a folder instead of having
 to have a really long filename.
 
-So let's create the file for the `/users/kody/notes` route.
-
-<InlineFile file="app/routes/users+/kody_+/notes.tsx">
-	🐨 Click here to create <code>app/routes/users+/kody\_+/notes.tsx</code>
-</InlineFile>
+So let's create the file for the `/users/kody/notes`
+route. <InlineFile file="app/routes/users+/kody_+/notes.tsx">🐨 Click here to create <code>app/routes/users+/kody\_+/notes.tsx</code></InlineFile>
 
 Inside of this one, let's start with:
 
@@ -107,12 +104,8 @@ nesting here thanks to the `_` in the filename.
 Great, now let's create the route for a specific note. This one will be nested
 inside the notes route. For this, I don't think it's very useful to have another
 folder of nesting, so instead of the `+/` syntax for a directory, we'll just add
-`notes.` to the filename.
-
-<InlineFile file="app/routes/users+/kody_+/notes.some-note-id.tsx">
-	🐨 Click here to create{' '}
-	<code>app/routes/users+/kody\_+/notes.some-note-id.tsx</code>
-</InlineFile>
+`notes.` to the
+filename. <InlineFile file="app/routes/users+/kody_+/notes.some-note-id.tsx">🐨 Click here to create<code>app/routes/users+/kody\_+/notes.some-note-id.tsx</code></InlineFile>
 
 Inside of this one, let's go with:
 
@@ -187,11 +180,8 @@ Another thing that will be really useful for us is to have some default content
 that shows up on the `/users/kody/notes` page when we're not on a specific note.
 Something like "please select a note" or something. We can do that by adding an
 `index` route to the notes route. We'll create that right next to our
-`some-note-id` route.
-
-<InlineFile file="app/routes/users+/kody_+/notes.index.tsx">
-	🐨 Click here to create <code>app/routes/users+/kody\_+/notes.index.tsx</code>
-</InlineFile>
+`some-note-id`
+route. <InlineFile file="app/routes/users+/kody_+/notes.index.tsx">🐨 Click here to create <code>app/routes/users+/kody\_+/notes.index.tsx</code></InlineFile>
 
 Stick this in there:
 
