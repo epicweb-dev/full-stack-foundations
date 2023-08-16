@@ -3,6 +3,8 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "neotan.vscode-auto-restart-typescript-eslint-servers"
+    "neotan.vscode-auto-restart-typescript-eslint-servers",
+    "prisma.prisma",
+    "qwtel.sqlite-viewer"
   ]
 }
