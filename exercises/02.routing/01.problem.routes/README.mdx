@@ -59,12 +59,17 @@ start that component out by returning a `<div>` with a title like this:
 ```tsx
 export default function KodyProfileRoute() {
 	return (
-		<div className="container mb-48 mt-36">
+		<div className="container mb-48 mt-36 border-4 border-green-500">
 			<h1 className="text-h1">Kody</h1>
 		</div>
 	)
 }
 ```
+
+<callout-muted class="aside">
+	🐨 I'm adding some borders to make it easier for you to notice the
+	relationships between the routes.
+</callout-muted>
 
 🐨 Once you've got that, open <LinkToApp to="/users/kody" />.
 
@@ -91,7 +96,7 @@ Inside of this one, let's start with:
 ```tsx
 export default function NotesRoute() {
 	return (
-		<div className="flex h-full justify-center pb-12">
+		<div className="flex h-full justify-between pb-12 border-8 border-blue-500">
 			<h1 className="text-h1">Notes</h1>
 		</div>
 	)
@@ -118,7 +123,11 @@ Inside of this one, let's go with:
 
 ```tsx
 export default function SomeNoteId() {
-	return <h2 className="text-h2">Some Note</h2>
+	return (
+		<div className="container pt-12 border-8 border-red-500">
+			<h2 className="text-h2">Some Note</h2>
+		</div>
+	)
 }
 ```
 
@@ -180,8 +189,8 @@ will be above the parent. The parent gets to decide where it's child goes.
 get the `<Outlet />` component from `@remix-run/react`, then render it below the
 `<h1>` we put in there earlier.
 
-Great! Now when we're on <LinkToApp to="/users/kody/notes/some-note-id" />, it shows the
-"Notes" title and the "Some Note" text! 🎉
+Great! Now when we're on <LinkToApp to="/users/kody/notes/some-note-id" />,
+it shows the "Notes" title and the "Some Note" text! 🎉
 
 Another thing that will be really useful for us is to have some default content
 that shows up on the `/users/kody/notes` page when we're not on a specific note.
@@ -198,7 +207,7 @@ Stick this in there:
 ```tsx
 export default function NotesIndexRoute() {
 	return (
-		<div className="container pt-12">
+		<div className="container pt-12 border-8 border-purple-500">
 			<p className="text-body-md">Select a note</p>
 		</div>
 	)

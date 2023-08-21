@@ -48,7 +48,7 @@ export default function NotesRoute() {
 						</Link>
 						<ul className="h-full overflow-y-auto">
 							{data.notes.map(note => (
-								<li key={note.id}>
+								<li key={note.id} className="p-1 pr-0">
 									<NavLink
 										to={note.id}
 										className={({ isActive }) =>

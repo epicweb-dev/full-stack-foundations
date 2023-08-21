@@ -55,7 +55,7 @@ export default function NotesRoute() {
 							🐨 instead of hard coding the note, create one <li> for each note
 							in the database with data.notes.map
 						*/}
-							<li>
+							<li className="p-1 pr-0">
 								<NavLink
 									to="some-note-id"
 									className={({ isActive }) =>

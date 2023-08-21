@@ -48,7 +48,7 @@ export default function NotesRoute() {
 						</Link>
 						<ul className="overflow-y-auto overflow-x-hidden pb-12">
 							{data.notes.map(note => (
-								<li key={note.id}>
+								<li key={note.id} className="p-1 pr-0">
 									<NavLink
 										to={note.id}
 										preventScrollReset
