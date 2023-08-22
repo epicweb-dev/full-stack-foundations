@@ -22,7 +22,7 @@ export async function loader({ params }: DataFunctionArgs) {
 }
 
 // 🐨 export an action function that uses the params from the DataFunctionArgs
-//  🐨 delete the note from the database
+//  🐨 delete the note from the database (💰 db.note.delete({ where: { id: { equals: params.noteId } } }))
 //  🐨 return a redirect to the user's notes page
 
 export default function NoteRoute() {
