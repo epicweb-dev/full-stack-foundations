@@ -42,7 +42,7 @@ export default function App() {
 							<div className="font-bold">notes</div>
 						</Link>
 						<Link className="underline" to="users/kody/notes/d27a197e">
-							Kody
+							Kody's Notes
 						</Link>
 					</nav>
 				</header>
