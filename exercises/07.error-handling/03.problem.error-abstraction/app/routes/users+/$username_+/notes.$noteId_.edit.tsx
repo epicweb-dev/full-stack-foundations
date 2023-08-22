@@ -46,7 +46,7 @@ export default function NoteEdit() {
 
 	return (
 		<Form
-			method="post"
+			method="POST"
 			className="flex h-full flex-col gap-y-4 overflow-x-hidden px-10 pb-28 pt-12"
 		>
 			<div className="flex flex-col gap-1">

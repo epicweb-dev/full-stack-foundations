@@ -28,7 +28,7 @@ This is great for search pages for example, but it would be really bad for a
 login form (you wouldn't want someone looking over your shoulder to see your
 password in the URL would you?), which is why the `<form>` element also allows
 you to specify a `method` attribute to switch from the default `GET` request to
-a `POST` request: `<form method="post">`.
+a `POST` request: `<form method="POST">`.
 
 <callout-warning class="aside">
 	Even though `GET` and `POST` are not the only methods available in HTTP, they
@@ -140,7 +140,7 @@ export async function action({ request, params }: DataFunctionArgs) {
 
 export default function SandwichChooser() {
 	return (
-		<Form method="post">
+		<Form method="POST">
 			<label>
 				Type: <input name="sandwichType" />
 			</label>
@@ -153,7 +153,7 @@ export default function SandwichChooser() {
 <callout-info class="aside">
 	`action`s are called for non-GET requests, and `loaders` are called for GET
 	request, so if your form does not specify a method or specifies
-	`method="get"`, then your loader will be called instead of the action.
+	`method="GET"`, then your loader will be called instead of the action.
 </callout-info>
 
 Again, once your form has been submitted, Remix will revalidate all your data so
