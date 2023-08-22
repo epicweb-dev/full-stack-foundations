@@ -46,7 +46,7 @@ export default function NotesRoute() {
 								{ownerDisplayName}'s Notes
 							</h1>
 						</Link>
-						<ul className="h-full overflow-y-auto">
+						<ul className="overflow-y-auto overflow-x-hidden pb-12">
 							{data.notes.map(note => (
 								<li key={note.id} className="p-1 pr-0">
 									<NavLink
