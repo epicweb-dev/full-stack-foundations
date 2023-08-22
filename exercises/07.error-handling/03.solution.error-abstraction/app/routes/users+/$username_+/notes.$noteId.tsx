@@ -20,9 +20,9 @@ export async function loader({ params }: DataFunctionArgs) {
 			},
 		},
 	})
-	if (!note) {
-		throw new Response('Note note found', { status: 404 })
-	}
+
+	invariantResponse(note, 'Note not found', { status: 404 })
+
 	return json({
 		note: { title: note.title, content: note.content },
 	})

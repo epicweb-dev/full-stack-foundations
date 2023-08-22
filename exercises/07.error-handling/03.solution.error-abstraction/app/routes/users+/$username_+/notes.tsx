@@ -2,7 +2,7 @@ import { json, type DataFunctionArgs } from '@remix-run/node'
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { db } from '#app/utils/db.server.ts'
-import { cn } from '#app/utils/misc.ts'
+import { cn, invariantResponse } from '#app/utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const owner = db.user.findFirst({
@@ -12,9 +12,9 @@ export async function loader({ params }: DataFunctionArgs) {
 			},
 		},
 	})
-	if (!owner) {
-		throw new Response('Owner not found', { status: 404 })
-	}
+
+	invariantResponse(owner, 'Owner not found', { status: 404 })
+
 	const notes = db.note
 		.findMany({
 			where: {
@@ -69,7 +69,7 @@ export default function NotesRoute() {
 					<Outlet />
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
 

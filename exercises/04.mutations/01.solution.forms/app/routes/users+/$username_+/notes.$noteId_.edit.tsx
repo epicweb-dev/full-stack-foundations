@@ -6,6 +6,7 @@ import { Input } from '#app/components/ui/input.tsx'
 import { Label } from '#app/components/ui/label.tsx'
 import { Textarea } from '#app/components/ui/textarea.tsx'
 import { db } from '#app/utils/db.server.ts'
+import { invariantResponse } from '#app/utils/misc.ts'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -15,9 +16,9 @@ export async function loader({ params }: DataFunctionArgs) {
 			},
 		},
 	})
-	if (!note) {
-		throw new Response('Note note found', { status: 404 })
-	}
+
+	invariantResponse(note, 'Note not found', { status: 404 })
+
 	return json({
 		note: { title: note.title, content: note.content },
 	})

@@ -65,6 +65,6 @@ export default function NotesRoute() {
 					<Outlet />
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }

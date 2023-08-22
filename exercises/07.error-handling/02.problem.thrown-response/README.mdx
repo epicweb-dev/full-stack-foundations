@@ -32,6 +32,12 @@ export async function loader({ request, params }: DataFunctionArgs) {
 }
 ```
 
+<callout-info>
+	We've got a handy `invariantResponse` which we use to throw responses for us
+	more easily which works just the same way, but for the sake of clarity, these
+	examples throw raw responses.
+</callout-info>
+
 When you throw a `Response` from a loader or action, Remix will catch it and
 render your `ErrorBoundary` component instead of the regular route component. In
 that case, the `error` you get from `useRouteError` will be the response object

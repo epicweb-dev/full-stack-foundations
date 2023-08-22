@@ -13,6 +13,9 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 	// 🐨 add an if statement here to check whether the owner exists and throw an
 	// appropriate 404 response if not.
+	// 💯 as an extra credit, you can try using the invariantResponse utility from
+	// "#app/utils/misc.ts" to do this in a single line of code (just make sure to
+	// supply the proper status code)
 	// 🦺 then you can remove both of the @ts-expect-errors below 🎉
 	const notes = db.note
 		.findMany({
@@ -68,6 +71,6 @@ export default function NotesRoute() {
 					<Outlet />
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
