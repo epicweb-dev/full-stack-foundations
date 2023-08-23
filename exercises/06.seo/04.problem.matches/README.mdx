@@ -41,7 +41,7 @@ export async function loader({ params }: LoaderArgs) {
 	return json({ task: await getTask(params.tid) })
 }
 
-export const meta: V2_MetaFunction<
+export const meta: MetaFunction<
 	typeof loader,
 	{ 'routes/project/$pid': typeof projectDetailsLoader }
 > = ({ data, matches }) => {

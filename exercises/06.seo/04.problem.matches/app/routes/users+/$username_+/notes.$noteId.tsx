@@ -1,5 +1,5 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
-import { Form, Link, useLoaderData } from '@remix-run/react'
+import { Form, Link, useLoaderData, type MetaFunction } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
@@ -61,21 +61,37 @@ export default function NoteRoute() {
 	)
 }
 
-// 🐨 Create a meta export here
+// 🦺 check the note below for making this type safe
+export const meta: MetaFunction<typeof loader> = ({
+	data,
+	params,
+	matches,
+}) => {
+	// 🐨 use matches to find the route for notes by that ID
+	// 💰 matches.find(m => m.id === 'routes/users+/$username_+/notes')
+
+	// 🐨 use the data from our loader and our parent's loader to create a title
+	// and description that show the note title, user's name, and the first part of
+	// the note's content.
+	const displayName = params.username
+
+	const noteTitle = data?.note.title ?? 'Note'
+	const noteContentsSummary =
+		data && data.note.content.length > 100
+			? data?.note.content.slice(0, 97) + '...'
+			: 'No content'
+	return [
+		{ title: `${noteTitle} | ${displayName}'s Notes | Epic Notes` },
+		{
+			name: 'description',
+			content: noteContentsSummary,
+		},
+	]
+}
 
 // 🦺 If you want it to be typed, then add a type for the loaders to the
-// V2_MetaFunction generic. You can use typeof loader for the first argument.
+// MetaFunction generic. You can use typeof loader for the first argument.
 // And for the second, you use an object mapping the ID to that route's loader's
 // type. It's ID is `routes/users+/$username_+/notes` and you can import the
 // notes loader from the parent route `./notes.tsx`
 // 💰 { 'routes/users+/$username_+/notes': typeof notesLoader }
-
-// 🐨 use the matches from the parameters to find the route for notes by that ID
-// 💰 matches.find(m => m.id === 'routes/users+/$username_+/notes')
-
-// 🐨 use the data from our loader and our parent's loader to create a title
-// and description that show the note title, user's name, and the first part of
-// the note's content.
-
-// 💯 handle the case where the note doesn't have contet.
-// 💯 handle the case where the note is too long and add a "..." if necessary

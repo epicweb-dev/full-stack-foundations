@@ -1,5 +1,5 @@
 import { json, type DataFunctionArgs } from '@remix-run/node'
-import { Link, useLoaderData, type V2_MetaFunction } from '@remix-run/react'
+import { Link, useLoaderData, type MetaFunction } from '@remix-run/react'
 import { db } from '#app/utils/db.server.ts'
 import { invariantResponse } from '#app/utils/misc.ts'
 
@@ -31,7 +31,7 @@ export default function ProfileRoute() {
 	)
 }
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Profile | Epic Notes' },
 		{ name: 'description', content: 'Checkout this Profile on Epic Notes' },

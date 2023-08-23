@@ -23,7 +23,7 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 }
 
-export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [{ title: data.task.name }]
 }
 ```

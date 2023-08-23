@@ -128,9 +128,9 @@ manually merged. This avoids conflicts between routes that might have the same
 function so you can merge them yourself if you so desire.
 
 ```tsx filename=app/routes/sandwiches.tsx
-import { type V2_MetaFunction } from '@remix-run/node'
+import { type MetaFunction } from '@remix-run/node'
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Sandwich Shop' },
 		{ name: 'description', content: 'Fill your tummy with something yummy' },
@@ -158,10 +158,10 @@ so you can dynamically set the title, description, `og:image`, etc for your
 page.
 
 ```tsx filename=app/routes/sandwiches.$sandwichId.tsx
-import { json, type V2_MetaFunction } from '@remix-run/node'
+import { json, type MetaFunction } from '@remix-run/node'
 import { getSandwich } from '../sandwiches.server'
 
-export const meta: V2_MetaFunction<typeof loader> = ({ loaderData }) => {
+export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
 	return [
 		{ title: loaderData.sandwich.name },
 		{ name: 'description', content: loaderData.sandwich.description },

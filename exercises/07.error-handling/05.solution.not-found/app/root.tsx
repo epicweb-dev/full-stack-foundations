@@ -10,7 +10,7 @@ import {
 	Scripts,
 	ScrollRestoration,
 	useLoaderData,
-	type V2_MetaFunction,
+	type MetaFunction,
 } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
@@ -91,7 +91,7 @@ export default function App() {
 	)
 }
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Epic Notes' },
 		{ name: 'description', content: `Your own captain's log` },

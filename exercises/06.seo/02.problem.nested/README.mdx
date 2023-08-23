@@ -14,9 +14,9 @@ Remix's conventional `meta` export for nested routes in combination with its
 As a reminder, here's what the API looks like:
 
 ```tsx filename=app/routes/sandwiches.tsx
-import { type V2_MetaFunction } from '@remix-run/node'
+import { type MetaFunction } from '@remix-run/node'
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Sandwich Shop' },
 		{ name: 'description', content: 'Fill your tummy with something yummy' },
