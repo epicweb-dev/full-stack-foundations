@@ -24,9 +24,9 @@ so we can show our 404 error.
 </callout-info>
 
 As we're following the `remix-flat-routes` convention, to create a route that
-matches `/*`, we'll create a file at <InlineFile file="app/routes/$.tsx" />.
+matches `/*`, 🐨 we'll create a file at <InlineFile file="app/routes/$.tsx" />.
 
-With that file created, you need to create a loader that throws a `404`
+With that file created, you need to 🐨 create a loader that throws a `404`
 response:
 
 ```tsx
@@ -35,7 +35,7 @@ export async function loader() {
 }
 ```
 
-Next, let's export the `ErrorBoundary`:
+Next, let's 🐨 export the `ErrorBoundary`:
 
 ```tsx
 import { Link, useLocation } from '@remix-run/react'
@@ -67,8 +67,8 @@ export function ErrorBoundary() {
 }
 ```
 
-Finally, you'll want to export a default export so Remix treats this route as a
-regular page (otherwise it'll be treated as a
+Finally, you'll want to 🐨 export a default export so Remix treats this route as
+a regular page (otherwise it'll be treated as a
 [Resource Route](https://remix.run/docs/en/main/guides/resource-routes)):
 
 ```tsx

@@ -105,20 +105,21 @@ Here's an example of the output in a bigger application:
 ```tsx
 <Routes>
 	<Route file="root.tsx">
-		<Route
-			path="forgot-password"
-			file="routes/_auth+/forgot-password/index.tsx"
-		/>
-		<Route
-			path="forgot-password/verify"
-			file="routes/_auth+/forgot-password_.verify.tsx"
-		/>
+		<Route path="*" file="routes/$.tsx" />
+		<Route path="auth/:provider" file="routes/_auth+/auth.$provider.ts">
+			<Route path="callback" file="routes/_auth+/auth.$provider.callback.ts" />
+		</Route>
+		<Route path="forgot-password" file="routes/_auth+/forgot-password.tsx" />
 		<Route path="login" file="routes/_auth+/login.tsx" />
 		<Route path="logout" file="routes/_auth+/logout.tsx" />
 		<Route path="onboarding" file="routes/_auth+/onboarding.tsx" />
+		<Route
+			path="onboarding/:provider"
+			file="routes/_auth+/onboarding_.$provider.tsx"
+		/>
 		<Route path="reset-password" file="routes/_auth+/reset-password.tsx" />
-		<Route path="signup" file="routes/_auth+/signup/index.tsx" />
-		<Route path="signup/verify" file="routes/_auth+/signup_.verify.tsx" />
+		<Route path="signup" file="routes/_auth+/signup.tsx" />
+		<Route path="verify" file="routes/_auth+/verify.tsx" />
 		<Route path="about" file="routes/_marketing+/about.tsx" />
 		<Route index file="routes/_marketing+/index.tsx" />
 		<Route path="privacy" file="routes/_marketing+/privacy.tsx" />
@@ -134,35 +135,42 @@ Here's an example of the output in a bigger application:
 		</Route>
 		<Route path="me" file="routes/me.tsx" />
 		<Route
-			path="resources/delete-image"
-			file="routes/resources+/delete-image.tsx"
-		/>
-		<Route
-			path="resources/delete-note"
-			file="routes/resources+/delete-note.tsx"
-		/>
-		<Route
-			path="resources/file/:fileId"
-			file="routes/resources+/file.$fileId.tsx"
+			path="resources/download-user-data"
+			file="routes/resources+/download-user-data.tsx"
 		/>
 		<Route
 			path="resources/healthcheck"
 			file="routes/resources+/healthcheck.tsx"
 		/>
 		<Route
-			path="resources/image-upload"
-			file="routes/resources+/image-upload.tsx"
+			path="resources/note-images/:imageId"
+			file="routes/resources+/note-images.$imageId.tsx"
 		/>
-		<Route path="resources/login" file="routes/resources+/login.tsx" />
 		<Route
-			path="resources/note-editor"
-			file="routes/resources+/note-editor.tsx"
+			path="resources/user-images/:imageId"
+			file="routes/resources+/user-images.$imageId.tsx"
 		/>
-		<Route path="resources/theme" file="routes/resources+/theme/index.tsx" />
-		<Route path="resources/verify" file="routes/resources+/verify.tsx" />
 		<Route path="settings/profile" file="routes/settings+/profile.tsx">
+			<Route
+				path="change-email"
+				file="routes/settings+/profile.change-email.tsx"
+			/>
+			<Route
+				path="connections"
+				file="routes/settings+/profile.connections.tsx"
+			/>
+			<Route index file="routes/settings+/profile.index.tsx" />
+			<Route path="password" file="routes/settings+/profile.password.tsx" />
+			<Route
+				path="password/create"
+				file="routes/settings+/profile.password_.create.tsx"
+			/>
 			<Route path="photo" file="routes/settings+/profile.photo.tsx" />
 			<Route path="two-factor" file="routes/settings+/profile.two-factor.tsx">
+				<Route
+					path="disable"
+					file="routes/settings+/profile.two-factor.disable.tsx"
+				/>
 				<Route index file="routes/settings+/profile.two-factor.index.tsx" />
 				<Route
 					path="verify"
@@ -186,6 +194,7 @@ Here's an example of the output in a bigger application:
 			<Route index file="routes/users+/$username_+/notes.index.tsx" />
 			<Route path="new" file="routes/users+/$username_+/notes.new.tsx" />
 		</Route>
+		<Route path="users/" index file="routes/users+/index.tsx" />
 	</Route>
 </Routes>
 ```

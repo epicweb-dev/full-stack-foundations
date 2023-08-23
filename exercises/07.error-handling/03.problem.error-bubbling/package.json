@@ -1,5 +1,5 @@
 {
-  "name": "exercises__sep__07.error-handling__sep__03.problem.error-abstraction",
+  "name": "exercises__sep__07.error-handling__sep__03.problem.error-bubbling",
   "private": true,
   "sideEffects": false,
   "type": "module",

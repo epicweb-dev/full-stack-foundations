@@ -167,10 +167,10 @@
       "path": "exercises/07.error-handling/02.solution.thrown-response"
     },
     {
-      "path": "exercises/07.error-handling/03.problem.error-abstraction"
+      "path": "exercises/07.error-handling/03.problem.error-bubbling"
     },
     {
-      "path": "exercises/07.error-handling/03.solution.error-abstraction"
+      "path": "exercises/07.error-handling/03.solution.error-bubbling"
     },
     {
       "path": "exercises/07.error-handling/04.problem.root-boundary"
