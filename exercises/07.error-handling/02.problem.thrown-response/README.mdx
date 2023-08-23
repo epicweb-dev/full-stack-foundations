@@ -4,7 +4,7 @@
 loaders and actions so you can control the status code and other information
 sent in the response. For example:
 
-```tsx filename=app/routes/sandwiches.$sandwichId.tsx lines=14,17,22
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx lines=10,13,18
 import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
 import { invariantResponse, useIsSubmitting } from '#app/utils/misc.ts'
 import { getUser } from '#app/utils/auth.server'
@@ -30,8 +30,8 @@ export async function loader({ request, params }: DataFunctionArgs) {
 
 <callout-info>
 	We've got a handy `invariantResponse` which we use to throw responses for us
-	more easily which works just the same way, but for the sake of clarity, these
-	examples throw raw responses.
+	more easily which works just the same way, but for the sake of clarity, most
+	of these examples throw raw responses.
 </callout-info>
 
 When you throw a `Response` from a loader or action, Remix will catch it and

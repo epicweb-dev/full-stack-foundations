@@ -61,7 +61,7 @@ export function ErrorBoundary() {
 	// 💰 isRouteErrorResponse comes from @remix-run/react
 
 	return (
-		<div className="container mx-auto flex h-full w-full items-center justify-center rounded-xl bg-destructive p-20 text-h2 text-destructive-foreground">
+		<div className="container mx-auto flex h-full w-full items-center justify-center bg-destructive p-20 text-h2 text-destructive-foreground">
 			{/* 🐨 display the error message here */}
 			<p>Oh no, something went wrong. Sorry about that.</p>
 		</div>

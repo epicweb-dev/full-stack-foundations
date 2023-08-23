@@ -47,4 +47,4 @@ export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
 // 🐨 export an ErrorBoundary here
 // 🐨 get the error from useRouteError()
 // 💰 If you'd like it to look nice, you can use this class name:
-// className="container mx-auto flex h-full w-full items-center justify-center rounded-xl bg-destructive p-20 text-h2 text-destructive-foreground"
+// className="container mx-auto flex h-full w-full items-center justify-center bg-destructive p-20 text-h2 text-destructive-foreground"
