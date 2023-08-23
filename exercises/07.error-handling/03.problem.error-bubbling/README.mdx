@@ -1,4 +1,4 @@
-# Error Abstraction
+# Error Bubbling
 
 👨‍💼 To keep things consistent, Kellie (🧝‍♂️) has made a handy abstraction for error
 boundaries. You can find it in <InlineFile file="app/components/error-boundary.tsx" />.
@@ -23,3 +23,7 @@ whatever you return in your callback.
 
 We'd like you to update the `ErrorBoundary` you've got already to use this,
 and now we can add it to several of the `/users/:userId/notes` routes as well.
+
+You'll notice that when a parent route has an error boundary, the child routes
+errors will bubble up to the parent route unless they have one of their own. I
+would love for you to play around with that idea a bit as well.
