@@ -13,6 +13,7 @@ import {
 	type MetaFunction,
 } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
+import { GeneralErrorBoundary } from './components/error-boundary.tsx'
 import { KCDShop } from './kcdshop.tsx'
 import fontStylestylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
@@ -95,4 +96,7 @@ export const meta: MetaFunction = () => {
 	]
 }
 
-// 🐨 render an ErrorBoundary that uses your new Document component.
+export function ErrorBoundary() {
+	// 🐨 render the GeneralErrorBoundary in your new Document component.
+	return <GeneralErrorBoundary />
+}
