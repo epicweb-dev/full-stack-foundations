@@ -10,7 +10,6 @@ type DocRequestArgs = Parameters<HandleDocumentRequestFunction>
 export default async function handleRequest(...args: DocRequestArgs) {
 	const [request, responseStatusCode, responseHeaders, remixContext] = args
 	const markup = renderToString(
-		// @ts-expect-error https://github.com/remix-run/remix/issues/7239
 		<RemixServer context={remixContext} url={request.url} />,
 	)
 
