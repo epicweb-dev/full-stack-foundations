@@ -12,7 +12,7 @@
 <div align="center">
   <a
     alt="Epic Web logo with the words Deployed Version"
-    href="https://epicweb-dev-full-stack-foundations.fly.dev/"
+    href="https://foundations.epicweb.dev/"
   >
     <img
       width="300px"
