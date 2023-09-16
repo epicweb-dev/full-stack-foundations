@@ -28,7 +28,7 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@kentcdodds/workshop-app": "^2.20.3"
+    "@kentcdodds/workshop-app": "^2.23.0"
   },
   "eslintIgnore": [
     "**/node_modules/**",
@@ -40,9 +40,6 @@
   ],
   "eslintConfig": {
     "root": true,
-    "ecmaFeatures": {
-      "modules": true
-    },
     "parserOptions": {
       "ecmaVersion": 2023,
       "sourceType": "module"
@@ -57,7 +54,7 @@
     "npm": ">=8.16.0"
   },
   "devDependencies": {
-    "execa": "^7.1.1",
+    "execa": "^8.0.1",
     "fs-extra": "^11.1.1"
   }
 }
