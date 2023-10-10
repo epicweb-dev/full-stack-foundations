@@ -1,7 +1,7 @@
 <div>
   <h1 align="center"><a href="https://kentcdodds.com/workshops/full-stack-foundations">🔭 Full Stack Foundations</a></h1>
   <strong>
-    Learn the foundational concepts of building web applications
+    Learn the foundational tools and skills of building web applications
   </strong>
   <p>
     In this workshop we'll go through exercises in a real world app that will
