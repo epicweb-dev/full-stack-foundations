@@ -144,7 +144,7 @@ The purpose of the exercise is **not** for you to work through all the material.
 It's intended to get your brain thinking about the right questions to ask me as
 _I_ walk through the material.
 
-## Helpful Emoji 🐨 🦺 💰 📝 🦉 📜 💣 💪 🏁 👨‍💼 🚨
+## Helpful Emoji 🐨 🦺 💰 📝 🦉 📜 💣 💪 🏁 👨‍💼 🚨 🧝‍♀️
 
 Each exercise has comments in it to help you get through the exercise. These fun
 emoji characters are here to help you.
