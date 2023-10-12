@@ -3,7 +3,7 @@ import { Form, Link, useLoaderData } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
-import { invariantResponse } from '#app/utils/misc.ts'
+import { invariantResponse } from '#app/utils/misc.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({
@@ -26,7 +26,7 @@ export async function action({ params }: DataFunctionArgs) {
 	// 🐨 get the intent from the formData
 	// 🐨 if the intent is "delete" then proceed
 	// 🐨 if the intent is not, then throw a 400 Response
-	// 💰 you can use invariantResponse from '#app/utils/misc.ts' for this
+	// 💰 you can use invariantResponse from '#app/utils/misc.tsx' for this
 	db.note.delete({ where: { id: { equals: params.noteId } } })
 	return redirect(`/users/${params.username}/notes`)
 }

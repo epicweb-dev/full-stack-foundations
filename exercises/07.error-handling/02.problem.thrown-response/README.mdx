@@ -8,7 +8,7 @@ sent in the response. For example:
 
 ```tsx filename=app/routes/sandwiches.$sandwichId.tsx lines=10,13,18
 import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
-import { invariantResponse, useIsSubmitting } from '#app/utils/misc.ts'
+import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 import { getUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'
 
@@ -114,7 +114,7 @@ code much easier to write and read:
 
 ```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=7,12-16
 import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
-import { invariantResponse, useIsSubmitting } from '#app/utils/misc.ts'
+import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 import { getUser } from '#app/utils/auth.server'
 import { requireUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'

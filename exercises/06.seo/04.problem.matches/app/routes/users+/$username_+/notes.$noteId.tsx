@@ -3,7 +3,7 @@ import { Form, Link, useLoaderData, type MetaFunction } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
-import { invariantResponse } from '#app/utils/misc.ts'
+import { invariantResponse } from '#app/utils/misc.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

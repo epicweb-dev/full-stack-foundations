@@ -7,7 +7,7 @@ import { Label } from '#app/components/ui/label.tsx'
 import { StatusButton } from '#app/components/ui/status-button.tsx'
 import { Textarea } from '#app/components/ui/textarea.tsx'
 import { db } from '#app/utils/db.server.ts'
-import { invariantResponse, useIsSubmitting } from '#app/utils/misc.ts'
+import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const note = db.note.findFirst({

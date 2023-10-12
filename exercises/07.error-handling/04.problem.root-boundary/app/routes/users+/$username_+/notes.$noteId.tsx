@@ -4,7 +4,7 @@ import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
-import { invariantResponse } from '#app/utils/misc.ts'
+import { invariantResponse } from '#app/utils/misc.tsx'
 import { type loader as notesLoader } from './notes.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {

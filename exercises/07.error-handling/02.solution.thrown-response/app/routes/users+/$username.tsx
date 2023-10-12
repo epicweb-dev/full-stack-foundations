@@ -8,7 +8,7 @@ import {
 	type MetaFunction,
 } from '@remix-run/react'
 import { db } from '#app/utils/db.server.ts'
-import { invariantResponse } from '#app/utils/misc.ts'
+import { invariantResponse } from '#app/utils/misc.tsx'
 
 export async function loader({ params }: DataFunctionArgs) {
 	const user = db.user.findFirst({

@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useParams } from '@remix-run/react'
-import { cn } from '#app/utils/misc.ts'
+import { cn } from '#app/utils/misc.tsx'
 // 🐨 get the db utility using:
 // import { db } from '#app/utils/db.server.ts'
 
