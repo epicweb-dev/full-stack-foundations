@@ -8,13 +8,13 @@
 		/* --font-mono: here if you got it... */
 
 		/* prefixed with foreground because it should look good on the background */
-		--foreground-danger: 345 82.7% 40.8%;
+		--foreground-destructive: 345 82.7% 40.8%;
 
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
 
-		--muted: 210 40% 96.1%;
-		--muted-foreground: 215.4 16.3% 46.9%;
+		--muted: 210 40% 93%;
+		--muted-foreground: 215.4 16.3% 30%;
 
 		--popover: 0 0% 100%;
 		--popover-foreground: 222.2 84% 4.9%;
@@ -29,13 +29,13 @@
 		--primary: 222.2 47.4% 11.2%;
 		--primary-foreground: 210 40% 98%;
 
-		--secondary: 210 40% 96.1%;
+		--secondary: 210 20% 83%;
 		--secondary-foreground: 222.2 47.4% 11.2%;
 
 		--accent: 210 40% 90%;
 		--accent-foreground: 222.2 47.4% 11.2%;
 
-		--destructive: 0 84.2% 60.2%;
+		--destructive: 0 70% 50%;
 		--destructive-foreground: 210 40% 98%;
 
 		--ring: 215 20.2% 65.1%;
@@ -48,9 +48,9 @@
 		--foreground: 210 40% 98%;
 
 		/* prefixed with foreground because it should look good on the background */
-		--foreground-danger: -4 84% 60%;
+		--foreground-destructive: -4 84% 60%;
 
-		--muted: 217.2 32.6% 17.5%;
+		--muted: 217.2 32.6% 12%;
 		--muted-foreground: 215 20.2% 65.1%;
 
 		--popover: 222.2 84% 4.9%;
@@ -66,16 +66,16 @@
 		--primary: 210 40% 98%;
 		--primary-foreground: 222.2 47.4% 11.2%;
 
-		--secondary: 217.2 32.6% 17.5%;
+		--secondary: 217.2 20% 24%;
 		--secondary-foreground: 210 40% 98%;
 
 		--accent: 217.2 32.6% 10%;
 		--accent-foreground: 210 40% 98%;
 
-		--destructive: 0 62.8% 30.6%;
+		--destructive: 0 60% 40%;
 		--destructive-foreground: 0 85.7% 97.3%;
 
-		--ring: 217.2 32.6% 17.5%;
+		--ring: 217.2 32.6% 60%;
 	}
 }
 

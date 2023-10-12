@@ -1,4 +1,4 @@
-import  { type Config } from 'tailwindcss'
+import { type Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme.js'
 import animatePlugin from 'tailwindcss-animate'
 
@@ -22,12 +22,12 @@ export default {
 				},
 				ring: {
 					DEFAULT: 'hsl(var(--ring))',
-					invalid: 'hsl(var(--foreground-danger))',
+					invalid: 'hsl(var(--foreground-destructive))',
 				},
 				background: 'hsl(var(--background))',
 				foreground: {
 					DEFAULT: 'hsl(var(--foreground))',
-					danger: 'hsl(var(--foreground-danger))',
+					destructive: 'hsl(var(--foreground-destructive))',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
