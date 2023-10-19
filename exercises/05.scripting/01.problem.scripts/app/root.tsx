@@ -3,13 +3,13 @@ import { cssBundleHref } from '@remix-run/css-bundle'
 import { type LinksFunction, json } from '@remix-run/node'
 import { Link, Links, Outlet, useLoaderData } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import fontStylestylesheetUrl from './styles/font.css'
+import fontStylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {
 	return [
 		{ rel: 'icon', type: 'image/svg+xml', href: faviconAssetUrl },
-		{ rel: 'stylesheet', href: fontStylestylesheetUrl },
+		{ rel: 'stylesheet', href: fontStylesheetUrl },
 		{ rel: 'stylesheet', href: tailwindStylesheetUrl },
 		cssBundleHref ? { rel: 'stylesheet', href: cssBundleHref } : null,
 	].filter(Boolean)
