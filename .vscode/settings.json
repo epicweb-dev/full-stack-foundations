@@ -14,5 +14,8 @@
   ],
   "workbench.editorAssociations": {
     "*.db": "sqlite-viewer.view"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   }
 }
