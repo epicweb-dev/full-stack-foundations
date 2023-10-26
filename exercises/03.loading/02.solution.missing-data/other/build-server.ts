@@ -4,8 +4,6 @@ import esbuild from 'esbuild'
 import fsExtra from 'fs-extra'
 import { globSync } from 'glob'
 
-const pkg = fsExtra.readJsonSync(path.join(process.cwd(), 'package.json'))
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const here = (...s: Array<string>) => path.join(__dirname, ...s)
 const globsafe = (s: string) => s.replace(/\\/g, '/')
@@ -38,7 +36,7 @@ esbuild
 	.build({
 		entryPoints: entries,
 		outdir: here('../server-build'),
-		target: [`node${pkg.engines.node}`],
+		target: ['node18'],
 		platform: 'node',
 		sourcemap: true,
 		format: 'esm',
