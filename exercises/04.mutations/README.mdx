@@ -35,8 +35,11 @@ a `POST` request: `<form method="POST">`.
 <callout-warning class="aside">
 	Even though `GET` and `POST` are not the only methods available in HTTP, they
 	are the only two methods available on HTML forms. If you try anything other
-	than `post`, the browser will just do a `GET` instead.
+	than `POST`, the browser will just do a `GET` instead. If you'd like to learn
+	more about this, watch the tip below:
 </callout-warning>
+
+<EpicVideo url="https://www.epicweb.dev/tips/only-use-get-and-post" />
 
 When the method is `POST` the form body is submitted as a "payload" instead of a
 query string. The browser will encode it as `application/x-www-form-urlencoded`.
