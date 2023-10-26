@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center"><a href="https://kentcdodds.com/workshops/full-stack-foundations">🔭 Full Stack Foundations</a></h1>
+  <h1 align="center"><a href="https://www.epicweb.dev/workshops/full-stack-foundations">🔭 Full Stack Foundations</a></h1>
   <strong>
     Learn the foundational tools and skills of building web applications
   </strong>
