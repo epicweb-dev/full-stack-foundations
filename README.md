@@ -39,7 +39,7 @@
 
 ## System Requirements
 
-- [git][git] v2.13 or greater
+- [git][git] v2.18 or greater
 - [NodeJS][node] v18 or greater
 - [npm][npm] v8 or greater
 
