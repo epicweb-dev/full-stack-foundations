@@ -164,10 +164,10 @@ import { json } from '@remix-run/node'
 import { type MetaFunction } from '@remix-run/react'
 import { getSandwich } from '../sandwiches.server'
 
-export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [
-		{ title: loaderData.sandwich.name },
-		{ name: 'description', content: loaderData.sandwich.description },
+		{ title: data.sandwich.name },
+		{ name: 'description', content: data.sandwich.description },
 	]
 }
 
