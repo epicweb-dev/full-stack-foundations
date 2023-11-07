@@ -69,9 +69,9 @@ export function ErrorBoundary() {
 }
 ```
 
-Finally, you'll want to 🐨 export a default export so Remix treats this route as
-a regular page (otherwise it'll be treated as a
-[Resource Route](https://remix.run/docs/en/main/guides/resource-routes)):
+Finally, we'll want to 🐨 export a default export just in case the loader is
+changed or fails in some way, we'll still be able to display some error to the
+user:
 
 ```tsx
 // ...
