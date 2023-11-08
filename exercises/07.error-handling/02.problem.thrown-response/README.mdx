@@ -112,7 +112,7 @@ export async function requireUser(request: Request) {
 This is a great way to make nice utilities that make the regular application
 code much easier to write and read:
 
-```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=9-12,18-21
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=9-13,18-22
 import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
 import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 import { getUser } from '#app/utils/auth.server'
@@ -120,15 +120,16 @@ import { requireUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'
 
 export async function loader({ request, params }: DataFunctionArgs) {
+	const user = await requireUser(request)
 	const user = await getUser(request)
 	if (!user) {
 		// this response will be handled by our error boundary
 		throw new Response('Unauthorized', { status: 401 })
 	}
-	const user = await requireUser(request)
 	// this invariant with throw an error which our error boundary will handle as well
 	invariantResponse(params.sandwichId, 'sandwichId is required')
 
+	const sandwich = await requireSandwich(params.sandwichId)
 	const sandwich = await getSandwich(params.sandwichId)
 	if (!sandwich) {
 		// this response will be handled by our error boundary
