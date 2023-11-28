@@ -25,7 +25,7 @@ export async function loader({ params }: DataFunctionArgs) {
 }
 
 // 🐨 export an action function here. You'll need the request and params from the DataFunctionArgs
-//   🐨 Get the formData from the request (📜 https://mdn.io/request.formdata)
+//   🐨 Get the formData from the request (📜 https://developer.mozilla.org/en-US/docs/Web/API/Request/formData)
 //   🐨 Get the title and content from the formData
 //   🐨 update the note:
 //   💰 here's how you can do it.
