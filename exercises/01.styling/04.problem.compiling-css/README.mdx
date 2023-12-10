@@ -24,8 +24,12 @@ export default {
 	},
 }
 ```
+🐨 Next, <InlineFile file="tailwind.config.ts">Click here to create the `tailwind.config.ts` file</InlineFile> or initialize a config file by running this command in your terminal:
 
-🐨 Next, <InlineFile file="tailwind.config.ts">Click here to create the `tailwind.config.ts` file</InlineFile>
+```bash
+# cd playground directory
+npx tailwindcss init --ts
+```
 
 And stick this config in there:
 
@@ -66,7 +70,7 @@ Tailwind with PostCSS in
 a <InlineFile file="app/styles/tailwind.css" /> file and put in the Tailwind
 directives:
 
-```css
+```css filename=tailwind.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
