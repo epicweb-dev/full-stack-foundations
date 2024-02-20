@@ -8,7 +8,7 @@ import {
 	getApps,
 	isExampleApp,
 	isSolutionApp,
-} from '@kentcdodds/workshop-app/apps.server'
+} from '@kentcdodds/workshop-utils/apps.server'
 
 const styles = {
 	// got these from playing around with what I found from:
@@ -32,7 +32,7 @@ const relativeToWorkshopRoot = dir =>
 	dir.replace(`${workshopRoot}${path.sep}`, '')
 
 // bundleMDX - throw when process.NODE_ENV is not a string
-// @kentcdodds/workshop-app/build/utils/compile-mdx.server
+// @kentcdodds/workshop-utils/build/utils/compile-mdx.server
 process.env.NODE_ENV = 'development'
 
 const apps = await getApps()
