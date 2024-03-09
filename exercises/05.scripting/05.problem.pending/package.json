@@ -17,7 +17,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@kentcdodds/workshop-app": "^3.8.5",
+    "@kentcdodds/workshop-app": "^3.8.7",
     "@mswjs/data": "^0.14.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
