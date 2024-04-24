@@ -10,7 +10,7 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { KCDShop } from './kcdshop.tsx'
+import { EpicShop } from './epicshop.tsx'
 import fontStylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
@@ -61,7 +61,7 @@ export default function App() {
 				<div className="h-5" />
 				{/* 🐨 Add ScrollRestoration from '@remix-run/react' here */}
 				<Scripts />
-				<KCDShop />
+				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>

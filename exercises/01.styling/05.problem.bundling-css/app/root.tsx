@@ -1,7 +1,7 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { KCDShop } from './kcdshop.tsx'
+import { EpicShop } from './epicshop.tsx'
 // 🐨 Import the cssBundleHref here
 import fontStylesheetUrl from './styles/font.css'
 // 🧝‍♂️ I imported the CSS file for you. When you have it working, it'll be obvious
@@ -29,7 +29,7 @@ export default function App() {
 			<body>
 				<p className="p-8 text-xl">Hello World</p>
 				<Scripts />
-				<KCDShop />
+				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>

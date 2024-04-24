@@ -111,25 +111,25 @@ a lot to get to the right place at the right time.
 This should just work™️ (it looks at your currently running processes and
 chooses the editor based on that). If it doesn't guess correctly, create a
 `.env` file in the root of this project and add an environment variable called
-`KCDSHOP_EDITOR` with the value being set to the path to your editor's
+`EPICSHOP_EDITOR` with the value being set to the path to your editor's
 executable. For example, if you're using VS Code on Windows, you'd add this to
 your `.env` file:
 
 ```
-KCDSHOP_EDITOR='"C:\Program Files\Microsoft VS Code\bin\code.cmd"'
+EPICSHOP_EDITOR='"C:\Program Files\Microsoft VS Code\bin\code.cmd"'
 ```
 
 Make certain that if the path includes spaces that you wrap the path in quotes
 as above (note the use of single quotes wrapping the double quotes!).
 
-The value of `KCDSHOP_EDITOR` should be the command that you would run in your
+The value of `EPICSHOP_EDITOR` should be the command that you would run in your
 terminal to open your editor from the command line. This means, the first thing
 should be the path to the executable for your editor (or the command if you have
 one in your `PATH`). So you may be able to get away with doing something as
 simple as this:
 
 ```
-KCDSHOP_EDITOR=code
+EPICSHOP_EDITOR=code
 ```
 
 ## Exercises

@@ -1,7 +1,7 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { KCDShop } from './kcdshop.tsx'
+import { EpicShop } from './epicshop.tsx'
 import fontStylesheetUrl from './styles/font.css'
 
 export const links: LinksFunction = () => {
@@ -20,7 +20,7 @@ export default function App() {
 			<body>
 				<p>Hello World</p>
 				<Scripts />
-				<KCDShop />
+				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>
