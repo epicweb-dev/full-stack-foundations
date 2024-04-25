@@ -18,4 +18,4 @@ RUN npm install --omit=dev
 CMD rm -rf ${EPICSHOP_CONTEXT_CWD} && \
     git clone https://github.com/epicweb-dev/full-stack-foundations ${EPICSHOP_CONTEXT_CWD} && \
     cd ${EPICSHOP_CONTEXT_CWD} && \
-    npx kcdshop start
+    npx epicshop start
