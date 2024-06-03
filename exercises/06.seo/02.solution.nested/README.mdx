@@ -5,23 +5,53 @@
 👨‍💼 Great! Now we can customize the meta tags on our routes! Let's do a bit more
 for our profile pages.
 
-<callout-info>
+<callout-warning>
 	🦉 You'll notice that if you navigate to the `/users/kody` route, you'll see
-	the `Profile | Epic Notes` in the title. But you'll see only `Epic Notes`
-	when you navigate to one of its child URLs, like `/users/kody/notes`. It
-	behaves like that because, regardless the 2 URLs have a parent-child
-	relationship, in terms of layout, `/users/kody/notes` is not a child of 
-	`/users/kody`. Remember that the latter folder path is defined like this:
-	`routes/users+/$username.tsx` while the former's path is
-	`routes/users+/$username_+/notes.tsx`. That little underscore in the name of
-	the folder `$username_+` means that the pages inside will skip using the
-	layout defined in the `routes/users+/$username.tsx` file. In other words,
-	they won't be "layout-nested", even if they will be "url-nested". And, because
-	they won't be layout-nested, they won't inherit the meta override defined
-	in the `routes/users+/$username.tsx`, following, instead, the meta override
-	defined in the `routes/root.tsx` which is its parent regarding layout. One way
-	of seeing the layout parent-child relationships is by typing the 
-	`npx remix routes` in a terminal at the root of a remix project to see how
-	the routes will be configured. It should give you a better view of the
-	router layout-nesting structure.
-</callout-info>
+	the `Profile | Epic Notes` in the title, which is expected. But if you
+	navigate to a child path, like `/users/kody/notes`, you'll see only
+	`Epic Notes` again. It may looks like this is an unexpected behavior as we
+	might be expecting the children paths to inherit the parent's meta
+	overrides.
+
+	## Use case: `/users/kody` and `/users/kody/notes`
+
+	Let's focus on `/users/kody` and `/users/kody/notes` URL paths case for a
+	while: regardless they have a parent-child relationship in terms of their
+	paths, they *do not* have the same relashionship in the REMIX's layout
+	hierarchy. This is how our pages are organized in terms of files
+	inside of the `routes` directory:
+
+	```shell
+	/users/kody 			<=> routes/users+/$username.tsx
+	/users/kody/notes <=> routes/users+/$username_+/notes.tsx
+	```
+	That little underscore in the name of the folder `$username_+` means that
+	the pages inside of it don't use the layout defined in the
+	`routes/users+/$username.tsx` file (and consequently, they won't use the
+	meta override defined over there). In other words: they aren't
+	"layout-nested", even when *they are* "url-nested". In summary:
+	- In terms of URL path: `/users/kody/notes` *is* a child of `/users/kody`
+	- In terms of layout: `/users/kody/notes` *is not* a child of `/users/kody`
+
+	The page in `/users/kody/notes` will, in fact, use the meta override from
+	the first route module hierarchically above `routes/users+/$username.tsx`,
+	which is the override we defined in the `root.tsx`. You can always have a
+	better view of the layout-nesting by running `npx remix routes` in a
+	terminal at the root of a remix project:
+
+	```shell
+  ➜  playground :> npx remix routes
+	<Routes>
+		<Route file="root.tsx">
+			<Route index file="routes/index.tsx" />
+			<Route path="resources/healthcheck" file="routes/resources+/healthcheck.tsx" />
+			<Route path="users/:username" file="routes/users+/$username.tsx" />
+			<Route path="users/:username/notes" file="routes/users+/$username_+/notes.tsx">
+				<Route path=":noteId" file="routes/users+/$username_+/notes.$noteId.tsx" />
+				<Route path=":noteId/edit" file="routes/users+/$username_+/notes.$noteId_.edit.tsx" />
+				<Route index file="routes/users+/$username_+/notes.index.tsx" />
+			</Route>
+		</Route>
+	</Routes>
+	```
+</callout-warning>
