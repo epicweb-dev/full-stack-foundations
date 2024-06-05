@@ -40,7 +40,7 @@
 ## System Requirements
 
 - [git][git] v2.18 or greater
-- [NodeJS][node] v18 or greater
+- [NodeJS][node] v20 or greater
 - [npm][npm] v8 or greater
 
 All of these must be available in your `PATH`. To verify things are set up
