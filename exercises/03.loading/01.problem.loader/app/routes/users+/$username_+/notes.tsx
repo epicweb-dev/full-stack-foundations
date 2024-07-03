@@ -3,7 +3,7 @@ import { cn } from '#app/utils/misc.tsx'
 // 🐨 get the db utility using:
 // import { db } from '#app/utils/db.server.ts'
 
-// 🐨 add a `loader` export here which uses the params from the DataFunctionArgs
+// 🐨 add a `loader` export here which uses the params from the LoaderFunctionArgs
 // 🐨 you'll get the username from params.username
 // 💰 Here's how you get the owner information and the note from the database:
 // const owner = db.user.findFirst({

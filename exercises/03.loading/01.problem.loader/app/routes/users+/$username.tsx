@@ -2,7 +2,7 @@ import { Link, useParams } from '@remix-run/react'
 // 🐨 get the database from the utils directory using
 // import { db } from '#app/utils/db.server.ts'
 
-// 🐨 add a `loader` export here which uses the params from the DataFunctionArgs
+// 🐨 add a `loader` export here which uses the params from the LoaderFunctionArgs
 // 🐨 you'll get the username from params.username
 // 💰 Here's how you get the user from the database:
 // const user = db.user.findFirst({

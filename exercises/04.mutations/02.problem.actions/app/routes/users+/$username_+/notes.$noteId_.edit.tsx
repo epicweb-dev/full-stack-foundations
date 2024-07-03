@@ -1,4 +1,4 @@
-import { json, type DataFunctionArgs } from '@remix-run/node'
+import { json, type LoaderFunctionArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
@@ -8,7 +8,7 @@ import { Textarea } from '#app/components/ui/textarea.tsx'
 import { db } from '#app/utils/db.server.ts'
 import { invariantResponse } from '#app/utils/misc.tsx'
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
 	const note = db.note.findFirst({
 		where: {
 			id: {
@@ -24,7 +24,7 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 }
 
-// 🐨 export an action function here. You'll need the request and params from the DataFunctionArgs
+// 🐨 export an action function here. You'll need the request and params from the ActionFunctionArgs
 //   🐨 Get the formData from the request (📜 https://developer.mozilla.org/en-US/docs/Web/API/Request/formData)
 //   🐨 Get the title and content from the formData
 //   🐨 update the note:

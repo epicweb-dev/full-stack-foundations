@@ -1,11 +1,16 @@
-import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
+import {
+	json,
+	redirect,
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+} from '@remix-run/node'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
 import { invariantResponse } from '#app/utils/misc.tsx'
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
 	const note = db.note.findFirst({
 		where: {
 			id: {
@@ -21,7 +26,7 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 }
 
-export async function action({ params }: DataFunctionArgs) {
+export async function action({ params }: ActionFunctionArgs) {
 	// 🐨 get the formData from the request
 	// 🐨 get the intent from the formData
 	// 🐨 if the intent is "delete" then proceed

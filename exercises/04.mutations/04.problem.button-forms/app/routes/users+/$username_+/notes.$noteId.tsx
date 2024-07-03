@@ -1,11 +1,11 @@
-import { json, type DataFunctionArgs } from '@remix-run/node'
+import { json, type LoaderFunctionArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { db } from '#app/utils/db.server.ts'
 import { invariantResponse } from '#app/utils/misc.tsx'
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
 	const note = db.note.findFirst({
 		where: {
 			id: {
@@ -21,7 +21,7 @@ export async function loader({ params }: DataFunctionArgs) {
 	})
 }
 
-// 🐨 export an action function that uses the params from the DataFunctionArgs
+// 🐨 export an action function that uses the params from the ActionFunctionArgs
 //  🐨 delete the note from the database (💰 db.note.delete({ where: { id: { equals: params.noteId } } }))
 //  🐨 return a redirect to the user's notes page
 

@@ -7,12 +7,17 @@ loaders and actions so you can control the status code and other information
 sent in the response. For example:
 
 ```tsx filename=app/routes/sandwiches.$sandwichId.tsx lines=10,13,18
-import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
+import {
+	json,
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+	type MetaFunction,
+} from '@remix-run/node'
 import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 import { getUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'
 
-export async function loader({ request, params }: DataFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
 	const user = await getUser(request)
 	if (!user) {
 		// this response will be handled by our error boundary
@@ -113,13 +118,18 @@ This is a great way to make nice utilities that make the regular application
 code much easier to write and read:
 
 ```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=9-13,18-22
-import { json, type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
+import {
+	json,
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+	type MetaFunction,
+} from '@remix-run/node'
 import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
 import { getUser } from '#app/utils/auth.server'
 import { requireUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'
 
-export async function loader({ request, params }: DataFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
 	const user = await requireUser(request)
 	const user = await getUser(request)
 	if (!user) {

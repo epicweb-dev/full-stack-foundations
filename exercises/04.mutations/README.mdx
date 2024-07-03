@@ -132,9 +132,13 @@ receive the `request` and `params`, and you're expected to return a `Response`
 
 ```tsx filename=app/routes/sandwiches.chooser.tsx
 import { Form } from '@remix-run/react'
-import { type DataFunctionArgs, redirect } from '@remix-run/node'
+import {
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+	redirect,
+} from '@remix-run/node'
 
-export async function action({ request, params }: DataFunctionArgs) {
+export async function action({ request, params }: ActionFunctionArgs) {
 	const formData = await request.formData()
 	const sandwichType = formData.get('sandwichType')
 

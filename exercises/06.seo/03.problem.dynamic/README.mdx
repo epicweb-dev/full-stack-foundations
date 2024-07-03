@@ -19,7 +19,7 @@ Here's an example of how you access data from a route in the meta export:
 
 ```tsx
 // borrowed and modified from the remix docs
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
 	return json({
 		task: await getTask(params.projectId, params.taskId),
 	})
