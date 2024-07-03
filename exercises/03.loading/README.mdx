@@ -81,9 +81,9 @@ environment variables, etc. It receives the `Request` object and `params` object
 and should return a `Response` object. For example:
 
 ```tsx
-import { type DataFunctionArgs } from '@remix-run/node'
+import { type LoaderFunctionArgs } from '@remix-run/node'
 
-export async function loader({ request, params }: DataFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
 	const dataString = JSON.stringify({ hello: 'world' })
 	return new Response(dataString, {
 		headers: { 'content-type': 'application/json' },
@@ -96,9 +96,9 @@ exports a utility called `json` which allows you to more easily create a JSON
 object:
 
 ```tsx
-import { json, type DataFunctionArgs } from '@remix-run/node'
+import { json, type LoaderFunctionArgs } from '@remix-run/node'
 
-export async function loader({ request, params }: DataFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
 	return json({ hello: 'world' })
 }
 ```
@@ -108,10 +108,10 @@ Then the UI code can use the
 from `@remix-run/react` which will return the data from the `loader` function.
 
 ```tsx
-import { json, type DataFunctionArgs } from '@remix-run/node'
+import { json, type LoaderFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
-export async function loader({ request, params }: DataFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
 	return json({ hello: 'world' })
 }
 
