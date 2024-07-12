@@ -117,7 +117,7 @@ export async function requireUser(request: Request) {
 This is a great way to make nice utilities that make the regular application
 code much easier to write and read:
 
-```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8,17 remove=9-13,18-22
+```tsx filename=app/routes/sandwiches.$sandwichId.tsx add=8-9,14,23 remove=10-11,15-19,24-28
 import {
 	json,
 	type ActionFunctionArgs,
@@ -125,8 +125,9 @@ import {
 	type MetaFunction,
 } from '@remix-run/node'
 import { invariantResponse, useIsSubmitting } from '#app/utils/misc.tsx'
-import { getUser } from '#app/utils/auth.server'
 import { requireUser } from '#app/utils/auth.server'
+import { requireSandwich } from '#app/utils/sandwiches.server'
+import { getUser } from '#app/utils/auth.server'
 import { getSandwich } from '#app/utils/sandwiches.server'
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
