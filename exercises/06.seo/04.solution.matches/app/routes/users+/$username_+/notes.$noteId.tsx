@@ -77,7 +77,7 @@ export const meta: MetaFunction<
 	const displayName = notesMatch?.data?.owner.name ?? params.username
 	const noteTitle = data?.note.title ?? 'Note'
 	const noteContentsSummary =
-		jdata && data.note.content.length > 100
+		data && data.note.content.length > 100
 			? data.note.content.slice(0, 97) + '...'
 			: data?.note.content || 'No content'
 	return [
