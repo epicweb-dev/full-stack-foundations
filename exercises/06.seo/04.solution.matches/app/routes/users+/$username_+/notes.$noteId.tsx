@@ -77,9 +77,9 @@ export const meta: MetaFunction<
 	const displayName = notesMatch?.data?.owner.name ?? params.username
 	const noteTitle = data?.note.title ?? 'Note'
 	const noteContentsSummary =
-		data && data.note.content.length > 100
-			? data?.note.content.slice(0, 97) + '...'
-			: 'No content'
+		jdata && data.note.content.length > 100
+			? data.note.content.slice(0, 97) + '...'
+			: data?.note.content || 'No content'
 	return [
 		{ title: `${noteTitle} | ${displayName}'s Notes | Epic Notes` },
 		{
