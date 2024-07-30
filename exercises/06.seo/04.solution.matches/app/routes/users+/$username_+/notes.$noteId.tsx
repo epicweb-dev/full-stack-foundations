@@ -79,7 +79,7 @@ export const meta: MetaFunction<
 	const noteContentsSummary =
 		data && data.note.content.length > 100
 			? data.note.content.slice(0, 97) + '...'
-			: data?.note.content || 'No Content'
+			: data?.note.content || 'No content'
 	return [
 		{ title: `${noteTitle} | ${displayName}'s Notes | Epic Notes` },
 		{
