@@ -84,7 +84,7 @@ export const meta: MetaFunction<typeof loader> = ({
 	const noteContentsSummary =
 		data && data.note.content.length > 100
 			? data?.note.content.slice(0, 97) + '...'
-			: 'No content'
+			: data?.note.content || 'No Content'
 	return [
 		{ title: `${noteTitle} | ${displayName}'s Notes | Epic Notes` },
 		{
