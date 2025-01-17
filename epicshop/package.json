@@ -1,7 +1,7 @@
 {
   "type": "module",
   "dependencies": {
-    "@epic-web/workshop-app": "^5.9.4",
+    "@epic-web/workshop-app": "^5.9.5",
     "fs-extra": "^11.2.0",
     "execa": "^8.0.1"
   }
