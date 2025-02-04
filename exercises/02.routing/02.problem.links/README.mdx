@@ -3,9 +3,9 @@
 <EpicVideo url="https://www.epicweb.dev/workshops/full-stack-foundations/routing/creating-navigation-links-for-seamless-user-experience" />
 
 👨‍💼 Our users want to get around the application quickly. So, we're going to add
-a few links in a couple places.
+a few links in a couple of places.
 
-We want the logo in the header and footer to link to `/`.
+We want the logo in the header and the footer to link to `/`.
 
 On the <LinkToApp to="/users/kody" /> page, we want to link to the user's notes
 route.
@@ -13,7 +13,7 @@ route.
 On the <LinkToApp to="/users/kody/notes" /> route, we should link back to the
 `/users/kody` page. 💰 Tip, you can use a relative path (`..`), but you'll need
 to learn about
-[the `relative` prop](https://reactrouter.com/en/main/components/link#relative)
+[the `relative` prop](https://reactrouter.com/6.29.0/components/link#relative)
 on the `Link` component.
 
 On the notes route, We should also link to the `/users/kody/notes/some-note-id`
@@ -21,14 +21,14 @@ route.
 
 The `Link` component in Remix is a wrapper around the `Link` component from
 react router, so you can learn all about it in
-[the react router `Link` docs](https://reactrouter.com/en/main/components/link).
+[the react router `Link` docs](https://reactrouter.com/6.29.0/components/link).
 
 As a bit of extra credit, do your best to leverage relative routes where you can
 rather than hard-coding the full path of the route. This will make it easier to
 move files around relative to each other in the future.
 
 Also, look into the
-[`NavLink`](https://reactrouter.com/en/main/components/nav-link) component so
+[`NavLink`](https://reactrouter.com/6.29.0/components/nav-link) component so
 you can highlight the link to the `some-note-id` route when that child route is
 active. You can use the `bg-accent` class name when the link is active.
 
@@ -40,5 +40,5 @@ active. You can use the `bg-accent` class name when the link is active.
 
 - [📜 Remix `Link` docs](https://remix.run/docs/en/main/components/link)
 - [📜 Remix `NavLink` docs](https://remix.run/docs/en/main/components/nav-link)
-- [📜 React Router `Link` docs](https://reactrouter.com/en/main/components/link)
-- [📜 React Router `NavLink` docs](https://reactrouter.com/en/main/components/nav-link)
+- [📜 React Router `Link` docs](https://reactrouter.com/6.29.0/components/link)
+- [📜 React Router `NavLink` docs](https://reactrouter.com/6.29.0/components/nav-link)
