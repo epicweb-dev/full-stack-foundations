@@ -75,7 +75,7 @@ load the data will be the same, as will the code to render the UI.
 
 The data loading is a part of the route module in Remix. Each route module in
 the `app/routes` directory can export an `async` function called a
-[`loader`](https://remix.run/docs/en/1.14.3/route/loader). This function is run
+[`loader`](https://remix.run/docs/en/main/route/loader). This function is run
 only on the server and therefore has access to your database, APIs, private
 environment variables, etc. It receives the `Request` object and `params` object
 and should return a `Response` object. For example:
@@ -104,7 +104,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 ```
 
 Then the UI code can use the
-[`useLoaderData`](https://remix.run/docs/en/1.14.3/hooks/use-loader-data) hook
+[`useLoaderData`](https://remix.run/docs/en/main/hooks/use-loader-data) hook
 from `@remix-run/react` which will return the data from the `loader` function.
 
 ```tsx
