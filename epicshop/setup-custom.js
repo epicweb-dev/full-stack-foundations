@@ -3,11 +3,14 @@ import path from 'node:path'
 import { spawn } from 'child_process'
 import fsExtra from 'fs-extra'
 import { $ } from 'execa'
+import { warm } from '@epic-web/workshop-cli/warm'
 import {
 	getApps,
 	isProblemApp,
 	setPlayground,
 } from '@epic-web/workshop-utils/apps.server'
+
+await warm()
 
 const allApps = await getApps()
 const uniqueApps = allApps.filter(
