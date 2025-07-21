@@ -13,6 +13,8 @@ on:
       - 'main'
 jobs:
   setup:
+    name: 🔧 Setup
+    timeout-minutes: 15
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -24,7 +26,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: ▶️ Run setup script
         run: npm run setup
@@ -37,6 +39,7 @@ jobs:
 
   deploy:
     name: 🚀 Deploy
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     # only deploy main branch on pushes
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
