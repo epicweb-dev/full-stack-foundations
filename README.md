@@ -61,7 +61,7 @@ variable and how to fix it here for [windows][win-path] or
 Use the Epic Workshop CLI to get this setup:
 
 ```sh nonumber
-npx epicshop@latest add full-stack-foundations
+npx --yes epicshop@latest add full-stack-foundations
 ```
 
 If you experience errors here, please open [an issue][issue] with as many
