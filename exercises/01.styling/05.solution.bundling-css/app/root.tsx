@@ -2,7 +2,6 @@ import { cssBundleHref } from '@remix-run/css-bundle'
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { EpicShop } from './epicshop.tsx'
 import fontStylesheetUrl from './styles/font.css'
 import './styles/global.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
@@ -25,7 +24,6 @@ export default function App() {
 			<body>
 				<p className="p-8 text-xl">Hello World</p>
 				<Scripts />
-				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>

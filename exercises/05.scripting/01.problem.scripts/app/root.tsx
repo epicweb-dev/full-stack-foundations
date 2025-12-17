@@ -53,10 +53,6 @@ export default function App() {
 				<div className="h-5" />
 				{/* 🐨 add the <Scripts /> component from '@remix-run/react' */}
 
-				{/* To improve the development experience, we've got some components we can render here as well: */}
-				{/* 💯 add the <EpicShop /> component from './epicshop.tsx' */}
-				{/* This is responsible for keeping the iframe in sync with the KCD Workshop App */}
-
 				{/* 💯 add the <LiveReload /> component from '@remix-run/react' */}
 				{/* This is responsible for updating the app whenever you make code changes (HMR/HDR etc). */}
 			</body>

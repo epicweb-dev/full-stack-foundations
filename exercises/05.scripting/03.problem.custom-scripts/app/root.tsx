@@ -11,7 +11,6 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { EpicShop } from './epicshop.tsx'
 import fontStylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
@@ -67,7 +66,6 @@ export default function App() {
 					sets window.ENV to the JSON.stringified value of data.ENV
 				*/}
 				<Scripts />
-				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>

@@ -10,7 +10,6 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import faviconAssetUrl from './assets/favicon.svg'
-import { EpicShop } from './epicshop.tsx'
 import fontStylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
 
@@ -60,7 +59,6 @@ export default function App() {
 				</div>
 				<div className="h-5" />
 				<Scripts />
-				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>

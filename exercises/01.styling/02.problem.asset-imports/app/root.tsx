@@ -1,7 +1,6 @@
 import { type LinksFunction } from '@remix-run/node'
 import { Links, LiveReload, Scripts } from '@remix-run/react'
 // 🐨 Import the SVG favicon, named as 'faviconAssetUrl', using a default import statement.
-import { EpicShop } from './epicshop.tsx'
 
 export const links: LinksFunction = () => {
 	// 🐨 swap the hard-coded href here with the default import of the favicon
@@ -17,7 +16,6 @@ export default function App() {
 			<body>
 				<p>Hello World</p>
 				<Scripts />
-				<EpicShop />
 				<LiveReload />
 			</body>
 		</html>
