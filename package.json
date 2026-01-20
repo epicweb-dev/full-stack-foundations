@@ -45,7 +45,7 @@
   "license": "GPL-3.0-only",
   "devDependencies": {
     "eslint": "^8.57.0",
-    "pkgmgr": "^1.1.0",
+    "pkgmgr": "^1.1.1",
     "prettier": "^3.2.5"
   },
   "eslintIgnore": [
