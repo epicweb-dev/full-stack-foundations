@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('can visit the home page', async ({ page }) => {
 	await page.goto('/')
-	await expect(page.getByText('Hello World')).toBeVisible()
+	await expect(page.getByRole('heading', { name: 'Epic Notes' })).toBeVisible()
 })
 
 test('post requests to missing routes return the not found response', async ({
