@@ -16,8 +16,9 @@ function getWorkshopAppServerBuildPath() {
 }
 
 export function patchServerBuild(contents) {
+	let patchedContents = contents
 	const routeModuleName = contents.match(
-		/"routes\/\$":\s*\{[\s\S]*?module:\s*(route\d+)/,
+		/const routes = \{[\s\S]*?"routes\/\$":\s*\{[\s\S]*?module:\s*(route\d+)/,
 	)?.[1]
 
 	if (!routeModuleName) {
@@ -46,14 +47,20 @@ export function patchServerBuild(contents) {
 	if (!/\n\s+action:/.test(routeModuleBody)) {
 		const patchedRouteModuleBody = routeModuleBody.replace(
 			/\n(\s+)loader:\s*([A-Za-z_$][\w$]*)/,
-			`\n$1action: ${loaderName},\n$1loader: $2`,
+			(_match, indent, loader) =>
+				`\n${indent}action: ${loaderName},\n${indent}loader: ${loader}`,
 		)
-		contents = contents.replace(routeModuleBody, patchedRouteModuleBody)
+		const routeModuleBodyStart =
+			routeModuleMatch.index + routeModuleMatch[0].indexOf(routeModuleBody)
+		patchedContents =
+			patchedContents.slice(0, routeModuleBodyStart) +
+			patchedRouteModuleBody +
+			patchedContents.slice(routeModuleBodyStart + routeModuleBody.length)
 		patchedRouteAction = true
 	}
 
 	let patchedManifest = false
-	contents = contents.replace(
+	patchedContents = patchedContents.replace(
 		/"routes\/\$": \{([\s\S]{0,600}?)"hasAction": false/g,
 		(match, routeManifestPrefix) => {
 			patchedManifest = true
@@ -61,7 +68,7 @@ export function patchServerBuild(contents) {
 		},
 	)
 
-	return { contents, patchedRouteAction, patchedManifest }
+	return { contents: patchedContents, patchedRouteAction, patchedManifest }
 }
 
 export async function patchInstalledWorkshopApp() {
