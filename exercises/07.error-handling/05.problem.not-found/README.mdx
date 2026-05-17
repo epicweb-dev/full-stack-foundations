@@ -29,12 +29,16 @@ As we're following the `remix-flat-routes` convention, to create a route that
 matches `/*`, 🐨 we'll create a file at <InlineFile file="app/routes/$.tsx" />.
 
 With that file created, you need to 🐨 create a loader that throws a `404`
-response:
+response. Also export an action that uses the same behavior so non-GET requests
+to missing routes get the expected 404 response instead of falling through to a
+framework "no action" error:
 
 ```tsx
 export async function loader() {
 	throw new Response('Not found', { status: 404 })
 }
+
+export const action = loader
 ```
 
 Next, let's 🐨 export the `ErrorBoundary`:
